@@ -6,6 +6,9 @@ public class Enemy : MonoBehaviour
 {
     public float speed = 8.0f;
     public GameObject player;
+    public Animator animator;
+    public char direction = 'n';
+    private Vector3 m_velocity = Vector3.zero;
     
     
     
