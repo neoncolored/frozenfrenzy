@@ -1,0 +1,10 @@
+*Frame size* 
+
+- 32x32px: For all the animations.
+
+
+*Frame Duration*
+
+- 100ms: Status_Ice, Snowball_Impact, Throw_Diagonal, Throw_Orthogonal, Dmg, Die.
+
+- 200ms: Idle, Jump.
