@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c2b3eee1678464bbb006a60a5eff6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 0.5
   player: {fileID: 589539105}
   animator: {fileID: 63600403}
   direction: 110
@@ -413,6 +413,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
+  rollCoolDown: 20
+  rollDuration: 5
 --- !u!212 &589539107
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -516,7 +518,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.15}
+    oldSize: {x: 0.16, y: 0.13}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

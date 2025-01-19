@@ -10,9 +10,16 @@ public class Player : MonoBehaviour
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
     
-    
     private Vector3 _velocity = Vector3.zero;
-    public float speed = 10.0f;
+    public float speed = 50.0f;
+    
+    // Rolling variables
+    public float rollCoolDown = 20.0f;
+    public float rollDuration = 5.0f;
+    
+    private Coroutine _rollCoroutine;
+    private float _nextRollTime = 0.0f;
+    private bool _isRolling = false;
 
     private void Awake()
     {
@@ -33,7 +40,7 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         PlayerInput();
     }
@@ -42,14 +49,49 @@ public class Player : MonoBehaviour
     {
         _velocity.y = Input.GetAxis("Vertical") * speed;
         _velocity.x = Input.GetAxis("Horizontal") * speed;
-        _velocity = Vector2.ClampMagnitude(_velocity, 50.0f); 
+        _velocity = Vector2.ClampMagnitude(_velocity, speed);  
         // maxLength muss immer = speed sein, damit man diagonal nicht schenller ist
+        
+        if (Input.GetKeyDown(KeyCode.E)) _animator.SetTrigger("spin");
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !_isRolling)
+        {
+            if (Time.time >= _nextRollTime)
+            {
+                _rollCoroutine = StartCoroutine(Roll());
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftShift) && _isRolling) StopRoll();
+        
     }
 
     private void PlayerMove()
     {
-        _animator.SetFloat("speed", Math.Abs(_velocity.x));
+        _animator.SetFloat("speed", _velocity.magnitude);
         if (_velocity.x != 0) _spriteRenderer.flipX = _velocity.x < 0;
         _rigidbody2D.velocity = _velocity * Time.fixedDeltaTime;
+    }
+
+    private IEnumerator Roll()
+    {
+        _isRolling = true;
+        _nextRollTime = Time.time + rollCoolDown;
+        _animator.SetTrigger("roll");
+        
+        yield return new WaitForSeconds(rollDuration);
+        
+        StopRoll();
+    }
+
+    private void StopRoll()
+    {
+        if (_rollCoroutine != null)
+        {
+            StopCoroutine(_rollCoroutine);
+            _rollCoroutine = null;
+        }
+        
+        _isRolling = false;
+        _animator.ResetTrigger("roll");
+        _animator.Play("walk");
     }
 }
