@@ -6,6 +6,16 @@ using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
+    public enum PlayerState
+    {
+        Idle,
+        Walking,
+        Spinning,
+        Rolling,
+        Hit
+    }
+
+    private PlayerState _state;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -31,7 +41,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _state = PlayerState.Idle;
     }
 
     private void FixedUpdate()
@@ -47,13 +57,21 @@ public class Player : MonoBehaviour
 
     private void PlayerInput()
     {
+        if (speed == 0)
+        {
+            _state = PlayerState.Idle;
+        }
         _velocity.y = Input.GetAxis("Vertical") * speed;
         _velocity.x = Input.GetAxis("Horizontal") * speed;
         _velocity = Vector2.ClampMagnitude(_velocity, speed);  
         // maxLength muss immer = speed sein, damit man diagonal nicht schenller ist
-        
-        if (Input.GetKeyDown(KeyCode.E)) _animator.SetTrigger("spin");
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !_isRolling)
+
+        if (Input.GetKeyDown(KeyCode.E) && _state != PlayerState.Rolling)
+        {
+            _animator.SetTrigger("spin");
+            _state = PlayerState.Spinning;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !_isRolling && _state != PlayerState.Spinning)
         {
             if (Time.time >= _nextRollTime)
             {
@@ -66,6 +84,7 @@ public class Player : MonoBehaviour
 
     private void PlayerMove()
     {
+        _state = PlayerState.Walking;
         _animator.SetFloat("speed", _velocity.magnitude);
         if (_velocity.x != 0) _spriteRenderer.flipX = _velocity.x < 0;
         _rigidbody2D.velocity = _velocity * Time.fixedDeltaTime;
@@ -73,6 +92,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator Roll()
     {
+        _state = PlayerState.Rolling;
         _isRolling = true;
         _nextRollTime = Time.time + rollCoolDown;
         _animator.SetTrigger("roll");
@@ -84,6 +104,7 @@ public class Player : MonoBehaviour
 
     private void StopRoll()
     {
+        if (speed > 0) _state = PlayerState.Walking;
         if (_rollCoroutine != null)
         {
             StopCoroutine(_rollCoroutine);
