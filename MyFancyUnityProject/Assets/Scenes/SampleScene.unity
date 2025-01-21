@@ -156,8 +156,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.2
-  range: 8
+  range: 0.2
   player: {fileID: 589539105}
+  attackSpeed: 1
+  attackDuration: 5
 --- !u!212 &63600400
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -309,7 +311,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 0.31, y: 0.32}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

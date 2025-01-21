@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public enum EnemyState
     {
         Walking,
+        Attacking,
     }
     
     public float speed = 8.0f;
@@ -20,6 +21,13 @@ public class Enemy : MonoBehaviour
     private EnemyState _state;
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody2D;
+    
+    public float attackSpeed = 20.0f;
+    public float attackDuration = 5.0f;
+    
+    private Coroutine _attackCoroutine;
+    private float _nextAttackTime = 0.0f;
+    private bool _isAttacking = false;
 
 
     private void Awake()
@@ -54,22 +62,53 @@ public class Enemy : MonoBehaviour
 
     public void MoveTowardsPlayer(GameObject target)
     {   
-        _state = EnemyState.Walking;
-        
         Vector3 newPosition = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
         var relativePos = transform.position - target.transform.position;
         var distance = relativePos.magnitude;
         var direction = relativePos / distance;
         
-        _rigidbody2D.transform.position = newPosition;
-        _animator.SetFloat("speed", newPosition.magnitude);
-        if (direction.x != 0) _spriteRenderer.flipX = direction.x > 0;
-        if (distance < range) AttackPlayer(target);
+        if (distance < range)
+        {
+            if (Time.time >= _nextAttackTime)
+            {
+                _attackCoroutine = StartCoroutine(AttackPlayer(target));
+            }
+        }
+        else
+        {
+            _state = EnemyState.Walking;
+            _rigidbody2D.transform.position = newPosition;
+            _animator.SetFloat("speed", distance);
+            
+        }
+        if (direction.x != 0) _spriteRenderer.flipX = direction.x > 0; 
+        
 
     }
 
-    public void AttackPlayer(GameObject target)
+    public IEnumerator AttackPlayer(GameObject target)
     {
+        _state = EnemyState.Attacking;
+        _isAttacking = true;
+        _nextAttackTime = Time.time + attackSpeed;
+        _animator.SetTrigger("attack");
         
+        yield return new WaitForSeconds(attackDuration);
+        
+        StopAttack();
+    }
+
+    public void StopAttack()
+    {
+        if (speed > 0) _state = EnemyState.Walking;
+        if (_attackCoroutine != null)
+        {
+            StopCoroutine(_attackCoroutine);
+            _attackCoroutine = null;
+        }
+        
+        _isAttacking = false;
+        _animator.ResetTrigger("attack");
+        _animator.Play("walk");
     }
 }
