@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     
     private Vector3 _velocity = Vector3.zero;
     public float speed = 50.0f;
+    public int hp = 100;
     
     // Rolling variables
     public float rollCoolDown = 20.0f;

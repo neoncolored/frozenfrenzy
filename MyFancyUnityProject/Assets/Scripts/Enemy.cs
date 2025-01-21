@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
     
     public float attackSpeed = 20.0f;
     public float attackDuration = 5.0f;
+    public int hp = 20;
+    public int damage = 20;
     
     private Coroutine _attackCoroutine;
     private float _nextAttackTime = 0.0f;
@@ -66,15 +68,19 @@ public class Enemy : MonoBehaviour
         var relativePos = transform.position - target.transform.position;
         var distance = relativePos.magnitude;
         var direction = relativePos / distance;
+        if (direction.y > 0) _spriteRenderer.sortingOrder = 5;
+        else
+        {
+            _spriteRenderer.sortingOrder = 10;}
         
         if (distance < range)
         {
             if (Time.time >= _nextAttackTime)
             {
-                _attackCoroutine = StartCoroutine(AttackPlayer(target));
+                _attackCoroutine = StartCoroutine(AttackPlayer(target, direction));
             }
         }
-        else
+        else if(_isAttacking == false)
         {
             _state = EnemyState.Walking;
             _rigidbody2D.transform.position = newPosition;
@@ -86,14 +92,24 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public IEnumerator AttackPlayer(GameObject target)
+    public IEnumerator AttackPlayer(GameObject target, Vector3 direction)
     {
         _state = EnemyState.Attacking;
         _isAttacking = true;
         _nextAttackTime = Time.time + attackSpeed;
         _animator.SetTrigger("attack");
         
-        yield return new WaitForSeconds(attackDuration);
+        //krampus specific: attack looks completed after half the animation
+        yield return new WaitForSeconds(attackDuration/2);
+        
+        if ((transform.position - target.transform.position).magnitude < range) //player is hit
+        {
+            player.GetComponent<Player>().hp -= damage;
+            Debug.Log(player.GetComponent<Player>().hp);
+        }
+        
+        
+        yield return new WaitForSeconds(attackDuration/2);
         
         StopAttack();
     }
@@ -109,6 +125,5 @@ public class Enemy : MonoBehaviour
         
         _isAttacking = false;
         _animator.ResetTrigger("attack");
-        _animator.Play("walk");
     }
 }
