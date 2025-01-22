@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3834908661957110138}
   - component: {fileID: 9010024702313738678}
   - component: {fileID: 3530976879194254816}
-  - component: {fileID: 3429249003903405449}
   - component: {fileID: 7049722615109785129}
   - component: {fileID: 1781135665757135337}
+  - component: {fileID: 5909376040013241840}
   m_Layer: 0
   m_Name: EvilSnowman
   m_TagString: Untagged
@@ -107,27 +107,6 @@ MonoBehaviour:
   attackDuration: 0.5
   hp: 20
   damage: 20
---- !u!95 &3429249003903405449
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5932990375833145820}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a979c8cf752404646a65446a72cd1b1a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &7049722615109785129
 Rigidbody2D:
   serializedVersion: 4
@@ -200,3 +179,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.17, y: 0.2}
   m_EdgeRadius: 0
+--- !u!95 &5909376040013241840
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5932990375833145820}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dee6d75a209aec44e8cb94a705407ee2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
