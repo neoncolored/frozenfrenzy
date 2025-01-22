@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     
     private Vector3 _velocity = Vector3.zero;
     public float speed = 50.0f;
-    public int hp = 100;
+    public static int Hp = 100;
     
     // Rolling variables
     public float rollCoolDown = 20.0f;
@@ -71,7 +71,6 @@ public class Player : MonoBehaviour
         {
             _animator.SetTrigger("spin");
             _state = PlayerState.Spinning;
-            
         }
         if (Input.GetKeyDown(KeyCode.LeftShift) && !_isRolling && _state != PlayerState.Spinning)
         {

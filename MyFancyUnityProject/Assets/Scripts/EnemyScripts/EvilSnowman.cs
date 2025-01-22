@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Enemy : MonoBehaviour
+public class EvilSnowman : MonoBehaviour
 {
     public enum EnemyState
     {
@@ -104,8 +104,8 @@ public class Enemy : MonoBehaviour
         
         if ((transform.position - target.transform.position).magnitude < range) //player is hit
         {
-            player.GetComponent<Player>().hp -= damage;
-            Debug.Log(player.GetComponent<Player>().hp);
+            Player.Hp -= damage;
+            Debug.Log(Player.Hp);
         }
         
         
