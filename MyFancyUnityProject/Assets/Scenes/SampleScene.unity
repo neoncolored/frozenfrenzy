@@ -392,6 +392,7 @@ MonoBehaviour:
   speed: 50
   rollCoolDown: 5
   rollDuration: 0.7
+  fishProjectile: {fileID: 2102826674412249398, guid: fac8ee6ff6d3d9a49ad827aeb03dba96, type: 3}
 --- !u!212 &589539107
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -433,15 +434,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 1964308745, guid: f9c4153f83a32498c918c73dd4c2ca76, type: 3}
+  m_Sprite: {fileID: 1916717330, guid: d39ec5e0f7fdc564e9ba70f8d7b557dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.16, y: 0.13}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!4 &589539108
@@ -495,8 +496,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 0.16, y: 0.13}
+    newSize: {x: 0.16, y: 0.13}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -3232,6 +3233,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1781135665757135337, guid: ce038a186ebaee041b498358cb8209cc, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1781135665757135337, guid: ce038a186ebaee041b498358cb8209cc, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3530976879194254816, guid: ce038a186ebaee041b498358cb8209cc, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 589539105}
     - target: {fileID: 3834908661957110138, guid: ce038a186ebaee041b498358cb8209cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.327

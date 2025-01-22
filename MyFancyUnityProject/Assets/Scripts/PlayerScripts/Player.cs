@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
     private float _nextRollTime = 0.0f;
     private bool _isRolling = false;
 
+    public GameObject fishProjectile;
+
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -54,6 +56,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         PlayerInput();
+        Shoot();
     }
 
     private void PlayerInput()
@@ -66,7 +69,9 @@ public class Player : MonoBehaviour
         _velocity.x = Input.GetAxis("Horizontal") * speed;
         _velocity = Vector2.ClampMagnitude(_velocity, speed);  
         // maxLength muss immer = speed sein, damit man diagonal nicht schenller ist
-
+        
+        
+        
         if (Input.GetKeyDown(KeyCode.E) && _state != PlayerState.Rolling)
         {
             _animator.SetTrigger("spin");
@@ -115,5 +120,14 @@ public class Player : MonoBehaviour
         _isRolling = false;
         _animator.ResetTrigger("roll");
         _animator.Play("walk");
+    }
+
+    public void Shoot()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            _animator.SetTrigger("shoot");
+            Instantiate(fishProjectile, transform.position, Quaternion.identity);
+        }
     }
 }
