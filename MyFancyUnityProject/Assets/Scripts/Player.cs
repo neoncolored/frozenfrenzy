@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
         {
             _animator.SetTrigger("spin");
             _state = PlayerState.Spinning;
+            
         }
         if (Input.GetKeyDown(KeyCode.LeftShift) && !_isRolling && _state != PlayerState.Spinning)
         {
