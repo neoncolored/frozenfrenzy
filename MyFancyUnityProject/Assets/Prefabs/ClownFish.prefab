@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 9166237577552715010}
   - component: {fileID: -3216246677461998354}
   - component: {fileID: -2495054521839926679}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ClownFish
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

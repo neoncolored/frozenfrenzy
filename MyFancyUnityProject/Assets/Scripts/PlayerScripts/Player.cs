@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
-    public enum PlayerState
+    private enum PlayerState
     {
         Idle,
         Walking,
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _state = PlayerState.Idle;
     }
@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
         _animator.Play("walk");
     }
 
-    public void Shoot()
+    private void Shoot()
     {
         if (Input.GetMouseButtonDown(0))
         {

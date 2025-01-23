@@ -7,7 +7,7 @@ public class RollSpeedBehaviour : StateMachineBehaviour
     
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Player player = animator.GetComponent<Player>();
+        var player = animator.GetComponent<Player>();
         if (player != null)
         {
             player.speed += 20.0f;
@@ -16,7 +16,7 @@ public class RollSpeedBehaviour : StateMachineBehaviour
     
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Player player = animator.GetComponent<Player>();
+        var player = animator.GetComponent<Player>();
         if (player != null)
         {
             player.speed -= 20.0f;
