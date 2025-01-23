@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -14,7 +15,8 @@ public class Player : MonoBehaviour
         Rolling,
         Hit
     }
-
+    
+    private Player _player;
     private PlayerState _state;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
     private bool _isRolling = false;
 
     public GameObject fishProjectile;
+    public Transform firePoint;
 
     private void Awake()
     {
@@ -56,7 +59,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         PlayerInput();
-        Shoot();
+        if (Input.GetMouseButtonDown(0))
+        {
+            Shoot();
+        }
     }
 
     private void PlayerInput()
@@ -124,10 +130,16 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            _animator.SetTrigger("shoot");
-            Instantiate(fishProjectile, transform.position, Quaternion.identity);
-        }
+        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+        var direction = (mousePos - firePoint.position).normalized;
+        
+        GameObject projectile = Instantiate(fishProjectile, firePoint.position, Quaternion.identity);
+        Projectile projectileScript = projectile.GetComponent<Projectile>();
+        projectileScript.SetDirection(direction);            
+        
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        projectile.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }

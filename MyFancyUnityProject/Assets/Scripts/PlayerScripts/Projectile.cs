@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed = 1.0f;
-    
+    public float speed = 2.5f;
+    private Vector3 _direction;
     
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,13 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.right * (speed * Time.deltaTime);
+        transform.position += _direction * (speed * Time.deltaTime);
+    }
+
+
+    public void SetDirection(Vector3 dir)
+    {
+        _direction = dir.normalized;
     }
 
 
@@ -25,6 +31,4 @@ public class Projectile : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    
-    
 }
