@@ -9,7 +9,7 @@ public class EvilSnowman : MonoBehaviour
     public enum EnemyState
     {
         Walking,
-        Attacking,
+        Attacking, //
     }
     
     public float speed = 8.0f;
