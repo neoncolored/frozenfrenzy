@@ -10,7 +10,7 @@ public class RollSpeedBehaviour : StateMachineBehaviour
         var player = animator.GetComponent<Player>();
         if (player != null)
         {
-            player.speed += 80.0f;
+            player.speed += 30.0f;
         }
     }
     
@@ -19,7 +19,7 @@ public class RollSpeedBehaviour : StateMachineBehaviour
         var player = animator.GetComponent<Player>();
         if (player != null)
         {
-            player.speed -= 80.0f;
+            player.speed -= 30.0f;
         }
     }
 }
