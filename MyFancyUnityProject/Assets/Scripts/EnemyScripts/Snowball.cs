@@ -30,10 +30,10 @@ public class Snowball : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("hello");
         GameObject player = other.gameObject;
         Player script = player.GetComponent<Player>();
-        script.DamagePlayer(5);
+        script.DamagePlayer(damage);
+        
         Destroy(gameObject);
     }
 

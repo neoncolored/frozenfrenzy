@@ -107,16 +107,7 @@ public class EvilSnowman : GenericEnemy
         _animator.SetTrigger("attack");
         
         //krampus specific: attack looks completed after half the animation
-        yield return new WaitForSeconds(attackDuration/2);
-        
-        if ((transform.position - target.transform.position).magnitude < range) //player is hit
-        {
-            Shoot();
-        }
-        
-        
-        yield return new WaitForSeconds(attackDuration/2);
-        
+        yield return new WaitForSeconds(attackDuration);
         StopAttack();
     }
     
