@@ -6,6 +6,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float speed = 2.5f;
+    public int damage = 5;
     private Vector3 _direction;
     
     // Start is called before the first frame update
@@ -24,6 +25,16 @@ public class Projectile : MonoBehaviour
     public void SetDirection(Vector3 dir)
     {
         _direction = dir.normalized;
+    }
+
+    
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        GameObject enemy = other.gameObject;
+        GenericEnemy script = enemy.GetComponent<GenericEnemy>();
+        script.DamageEnemy(5);
+        Destroy(gameObject);
     }
 
 

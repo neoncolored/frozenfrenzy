@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class PlayerHealthBar : MonoBehaviour
 {
     public Slider healthBar;
-    public float maxHealth = Player.maxHp;
+    private float maxHealth = Player.maxHp;
     
     
     void Start(){

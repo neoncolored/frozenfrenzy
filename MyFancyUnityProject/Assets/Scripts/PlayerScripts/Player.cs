@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     // Rolling variables
     public float rollCoolDown = 20.0f;
     public float rollDuration = 5.0f;
+    private float _timeSinceRoll = 0.0f;
     
     private Coroutine _rollCoroutine;
     private float _nextRollTime = 0.0f;
@@ -37,7 +38,9 @@ public class Player : MonoBehaviour
 
     public GameObject fishProjectile;
     public Transform firePoint;
-    public HealthBar hpBar;
+    public PlayerHealthBar hpBar;
+    public PlayerRollStamina playerRollStamina;
+    public HideStaminaBar h;
 
     private void Awake()
     {
@@ -50,6 +53,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _state = PlayerState.Idle;
+        playerRollStamina.setValue(1);
+
     }
 
     private void FixedUpdate()
@@ -65,6 +70,8 @@ public class Player : MonoBehaviour
         {
             Shoot();
         }
+        
+        
     }
 
     private void PlayerInput()
@@ -78,6 +85,8 @@ public class Player : MonoBehaviour
         _velocity = Vector2.ClampMagnitude(_velocity, speed);  
         // maxLength muss immer = speed sein, damit man diagonal nicht schenller ist
         
+        _timeSinceRoll += Time.deltaTime;
+        playerRollStamina.setValue(Mathf.Clamp(_timeSinceRoll/rollCoolDown, 0, 100));
         
         
         if (Input.GetKeyDown(KeyCode.E) && _state != PlayerState.Rolling)
@@ -106,6 +115,8 @@ public class Player : MonoBehaviour
 
     private IEnumerator Roll()
     {
+        h.SetActive();
+        _timeSinceRoll = 0.0f;
         _state = PlayerState.Rolling;
         _isRolling = true;
         _nextRollTime = Time.time + rollCoolDown;
@@ -118,8 +129,12 @@ public class Player : MonoBehaviour
 
     public void DamagePlayer(int damage)
     {
-        hp -= damage;
-        hpBar.healthBar.value = hp;
+        if (_state != PlayerState.Rolling)
+        {
+            hp -= damage;
+            hpBar.healthBar.value = hp; 
+        }
+        
     }
 
     private void StopRoll()
@@ -134,6 +149,7 @@ public class Player : MonoBehaviour
         _isRolling = false;
         _animator.ResetTrigger("roll");
         _animator.Play("walk");
+        StartCoroutine(h.SetInactive());
     }
 
     private void Shoot()
