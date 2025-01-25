@@ -149,10 +149,12 @@ public class Player : MonoBehaviour
         if (_state != PlayerState.Rolling)
         {
             hp -= damage;
+            _animator.SetTrigger("getHit");
             hpBar.healthBar.value = hp; 
         }
         
     }
+
 
     private void StopRoll()
     {
