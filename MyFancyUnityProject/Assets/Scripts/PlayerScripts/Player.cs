@@ -24,7 +24,8 @@ public class Player : MonoBehaviour
     
     private Vector3 _velocity = Vector3.zero;
     public float speed = 50.0f;
-    public static int Hp = 100;
+    public static int maxHp = 100;
+    public int hp = maxHp;
     
     // Rolling variables
     public float rollCoolDown = 20.0f;
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
 
     public GameObject fishProjectile;
     public Transform firePoint;
+    public HealthBar hpBar;
 
     private void Awake()
     {
@@ -112,6 +114,12 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(rollDuration);
         
         StopRoll();
+    }
+
+    public void DamagePlayer(int damage)
+    {
+        hp -= damage;
+        hpBar.healthBar.value = hp;
     }
 
     private void StopRoll()

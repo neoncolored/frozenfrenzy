@@ -16,6 +16,8 @@ public class Krampus : MonoBehaviour
     public float range = 8.0f;
     
     public GameObject player;
+
+    private Player playerScript;
     private Animator _animator;
     private Vector3 _velocity = Vector3.zero;
     private EnemyState _state;
@@ -37,6 +39,8 @@ public class Krampus : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        playerScript = player.GetComponent<Player>();
+
     }
 
     // Start is called before the first frame update
@@ -104,8 +108,7 @@ public class Krampus : MonoBehaviour
         
         if ((transform.position - target.transform.position).magnitude < range) //player is hit
         {
-            Player.Hp -= damage;
-            Debug.Log(Player.Hp);
+            playerScript.DamagePlayer(damage);
         }
         
         
