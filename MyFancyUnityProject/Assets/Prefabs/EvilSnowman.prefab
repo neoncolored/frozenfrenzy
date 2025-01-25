@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2028171486852962772}
   - component: {fileID: 2859696560559669118}
   m_Layer: 7
-  m_Name: EvilSnowman 1 1
+  m_Name: EvilSnowman
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

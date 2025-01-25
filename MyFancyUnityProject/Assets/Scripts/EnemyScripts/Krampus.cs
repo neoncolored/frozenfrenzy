@@ -8,9 +8,6 @@ using Random = UnityEngine.Random;
 
 public class Krampus : GenericEnemy
 {
-    
-    
-    
     public GameObject player;
     private GenericEnemy _genericEnemy;
     
@@ -83,7 +80,7 @@ public class Krampus : GenericEnemy
         
     }
     
-    public new IEnumerator PlayDeathAnimation()
+    public IEnumerator PlayDeathAnimation()
     {
         _animator.SetTrigger("die");
         _state = EnemyState.Dying;
@@ -92,7 +89,7 @@ public class Krampus : GenericEnemy
         Destroy(gameObject);
     }
     
-    public new IEnumerator PlayHurtAnimation()
+    public  IEnumerator PlayHurtAnimation()
     {
         _animator.SetTrigger("hurt");
         _state = EnemyState.Hurting;

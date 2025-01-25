@@ -6,31 +6,39 @@ using Random = UnityEngine.Random;
 
 public class EvilSnowman : GenericEnemy
 {
-    public enum EnemyState
+    public GameObject player;
+    private GenericEnemy _genericEnemy;
+    
+    private enum EnemyState
     {
         Walking,
-        Attacking, //
+        Attacking,
+        Dying,
+        Hurting,
     }
-    
-    public GameObject player;
+
+    private Player playerScript;
+    private Coroutine _hurtCoroutine;
+    private EnemyState _state;
     private Animator _animator;
     private Vector3 _velocity = Vector3.zero;
-    private EnemyState _state;
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody2D;
+    
+    
     private Coroutine _attackCoroutine;
     private float _nextAttackTime = 0.0f;
     private bool _isAttacking = false;
-
+    
 
     private void Awake()
     {
-        
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        playerScript = player.GetComponent<Player>();
+        _state = EnemyState.Walking;
     }
-    
 
     private void FixedUpdate()
     {
@@ -39,33 +47,53 @@ public class EvilSnowman : GenericEnemy
     
 
     public void MoveTowardsPlayer(GameObject target)
-    {   
-        Vector3 newPosition = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-        var relativePos = transform.position - target.transform.position;
-        var distance = relativePos.magnitude;
-        var direction = relativePos / distance;
-        if (direction.y > 0) _spriteRenderer.sortingOrder = 5;
-        else
+    {
+        if (_state != EnemyState.Dying && _state != EnemyState.Hurting)
         {
-            _spriteRenderer.sortingOrder = 10;}
-        
-        if (distance < range)
-        {
-            if (Time.time >= _nextAttackTime)
+            Vector3 newPosition = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+            var relativePos = transform.position - target.transform.position;
+            var distance = relativePos.magnitude;
+            var direction = relativePos / distance;
+            if (direction.y > 0) _spriteRenderer.sortingOrder = 5;
+            else
             {
-                _attackCoroutine = StartCoroutine(AttackPlayer(target, direction));
-            }
-        }
-        else if(_isAttacking == false)
-        {
-            _state = EnemyState.Walking;
-            _rigidbody2D.transform.position = newPosition;
-            _animator.SetFloat("speed", distance);
-            
-        }
-        if (direction.x != 0) _spriteRenderer.flipX = direction.x > 0; 
+                _spriteRenderer.sortingOrder = 10;}
         
-
+            if (distance < range)
+            {
+                if (Time.time >= _nextAttackTime)
+                {
+                    _attackCoroutine = StartCoroutine(AttackPlayer(target, direction));
+                }
+            }
+            else if(_isAttacking == false)
+            {
+                _state = EnemyState.Walking;
+                _rigidbody2D.transform.position = newPosition;
+                _animator.SetFloat("speed", distance);
+            
+            }
+            if (direction.x != 0) _spriteRenderer.flipX = direction.x > 0;     
+        }
+        
+    }
+    
+    public IEnumerator PlayDeathAnimation()
+    {
+        _animator.SetTrigger("die");
+        _state = EnemyState.Dying;
+        yield return new WaitForSeconds(deathDuration);
+        
+        Destroy(gameObject);
+    }
+    
+    public IEnumerator PlayHurtAnimation()
+    {
+        _animator.SetTrigger("hurt");
+        _state = EnemyState.Hurting;
+        yield return new WaitForSeconds(hurtDuration);
+        _state = EnemyState.Walking;
+        _animator.ResetTrigger("hurt");
     }
 
     public IEnumerator AttackPlayer(GameObject target, Vector3 direction)
@@ -80,8 +108,8 @@ public class EvilSnowman : GenericEnemy
         
         if ((transform.position - target.transform.position).magnitude < range) //player is hit
         {
-            //todo
-            Debug.Log("hit");
+            //throw snowball
+            //playerScript.DamagePlayer(damage);
         }
         
         

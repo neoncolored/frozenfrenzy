@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -95,7 +95,931 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Throw_Orthogonal_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 108
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8dfeb34f264fbe459ea908d197c3143
+      internalID: -1220184959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_1
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 108
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a6168937288a4a4cb4b436878379760
+      internalID: 83354027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_2
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 108
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ede6232827802a4da91050a9a7c16f3
+      internalID: 953223573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_3
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 108
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 444acd9f77ddd164c9bf43dc1c8b6edb
+      internalID: 242865854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_4
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 108
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af75536c31e268f4ea2626c065016cb9
+      internalID: 1899508721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_5
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 108
+        width: 19
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4666928f5563c604bb5cd439683bf792
+      internalID: -1637084296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_6
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 108
+        width: 19
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2d629ba82918924986fda9daa0c3f39
+      internalID: -1701582839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_7
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 108
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57aabb810b38e384f9cc71ac5151da94
+      internalID: 951163327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_8
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 108
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f560fd2c2db889e44bba3db393641449
+      internalID: -968200740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_9
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 108
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c51fdea0a5c6987439c62decec6b6ced
+      internalID: 117261639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_10
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 108
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14893d063e57ab149a7244da5740f147
+      internalID: 1510346246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_11
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 76
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 705c8da689487c24288dc06f66820c25
+      internalID: 1277054663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_12
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 76
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 924331648e2fa1840b4e31c1b2df1b04
+      internalID: 1135520254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_13
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 76
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28d7fd19dbdd61d428ea7eb14def0f5f
+      internalID: 1244164593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_14
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 76
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1838b565a8a914846a40a66df047b3ec
+      internalID: -502635946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_15
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 76
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 720cdfc210ae24a408667976654ddf86
+      internalID: 761985372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_16
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 76
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c6afa9535250cc4b99614c0c2bbc0df
+      internalID: -462389345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_17
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 76
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a5b6aff8c2d47041b7fcfd2e6e093a4
+      internalID: -1329288879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_18
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 76
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a897430899cd7d49bd5bc1bc4cd3ab8
+      internalID: -987317607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_19
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 76
+        width: 21
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fd1cc2c489280940a7d109da91750cb
+      internalID: -1932301734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_20
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 76
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a04b25c6ee1fa442ad18d9a210cbb4e
+      internalID: 1428933412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_21
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 76
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddb30f67a75093a409a1bb04fbe55e1c
+      internalID: 963087796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_22
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 44
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29a5882509754244ea0b74edbea8c5ad
+      internalID: -371075193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_23
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 44
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd288784691517f46981754c2d62f59e
+      internalID: 808720547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_24
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 44
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8abbc04671891ae4ebed4878144c5d05
+      internalID: -260370296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_25
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 44
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1c18bb66d5e27b4fb635f69ce26222a
+      internalID: 1855392517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_26
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 44
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 954818fcfa7cda340ba0bd2325c4aa05
+      internalID: -903461448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_27
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 44
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d89e52bd25726bc4491bc2fc1a761caa
+      internalID: -1743727986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_28
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 44
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6a68dddc28b13f41b518d7800cee3be
+      internalID: 1461268368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_29
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 44
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dfb63e4b46a8144eba5bf31b3d6a984
+      internalID: 1556586075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_30
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 33
+        width: 11
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6973a790936c8f4bb5a4eef0c2a7235
+      internalID: -1905944216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_31
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 44
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47e357e56dff07e45b6d270348ba74fb
+      internalID: -49921737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_32
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 44
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 900e87dfe04b4d14b9d92b8f1bf0da07
+      internalID: 636692197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_33
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 12
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a7ac49d374f504693ed700e5456a75
+      internalID: -933778072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_34
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 12
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7ca3a77d44d9f14292e10ff929342ae
+      internalID: -341311420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_35
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 12
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6195d27c53dece5409447717b3cbb9df
+      internalID: 982687112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_36
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 12
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76b6afda5bd7d6541aa87bb897271d3d
+      internalID: -856349742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_37
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 12
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b124fd36f1280b4f9a0cdae6434f875
+      internalID: 901000456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_38
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 12
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4393cae1533935343b193814c6f57cdd
+      internalID: -1843158278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_39
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 12
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e93bbb820302e0e4db37c3dd5967a34e
+      internalID: -1901844942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_40
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 12
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c95f09ccf1ecdfc41bd744d92342d7e6
+      internalID: 435910428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_41
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 12
+        width: 12
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8b5f2913191e3a4cbab7433676826b2
+      internalID: -225528064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_42
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 12
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b2b92b1c7e18f546af39951c413b1ff
+      internalID: -1341175345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throw_Orthogonal_43
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 12
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 420cb750ed5045d428ce66ac979a2b4c
+      internalID: 1426790521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +1030,51 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Throw_Orthogonal_0: -1220184959
+      Throw_Orthogonal_1: 83354027
+      Throw_Orthogonal_10: 1510346246
+      Throw_Orthogonal_11: 1277054663
+      Throw_Orthogonal_12: 1135520254
+      Throw_Orthogonal_13: 1244164593
+      Throw_Orthogonal_14: -502635946
+      Throw_Orthogonal_15: 761985372
+      Throw_Orthogonal_16: -462389345
+      Throw_Orthogonal_17: -1329288879
+      Throw_Orthogonal_18: -987317607
+      Throw_Orthogonal_19: -1932301734
+      Throw_Orthogonal_2: 953223573
+      Throw_Orthogonal_20: 1428933412
+      Throw_Orthogonal_21: 963087796
+      Throw_Orthogonal_22: -371075193
+      Throw_Orthogonal_23: 808720547
+      Throw_Orthogonal_24: -260370296
+      Throw_Orthogonal_25: 1855392517
+      Throw_Orthogonal_26: -903461448
+      Throw_Orthogonal_27: -1743727986
+      Throw_Orthogonal_28: 1461268368
+      Throw_Orthogonal_29: 1556586075
+      Throw_Orthogonal_3: 242865854
+      Throw_Orthogonal_30: -1905944216
+      Throw_Orthogonal_31: -49921737
+      Throw_Orthogonal_32: 636692197
+      Throw_Orthogonal_33: -933778072
+      Throw_Orthogonal_34: -341311420
+      Throw_Orthogonal_35: 982687112
+      Throw_Orthogonal_36: -856349742
+      Throw_Orthogonal_37: 901000456
+      Throw_Orthogonal_38: -1843158278
+      Throw_Orthogonal_39: -1901844942
+      Throw_Orthogonal_4: 1899508721
+      Throw_Orthogonal_40: 435910428
+      Throw_Orthogonal_41: -225528064
+      Throw_Orthogonal_42: -1341175345
+      Throw_Orthogonal_43: 1426790521
+      Throw_Orthogonal_5: -1637084296
+      Throw_Orthogonal_6: -1701582839
+      Throw_Orthogonal_7: 951163327
+      Throw_Orthogonal_8: -968200740
+      Throw_Orthogonal_9: 117261639
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GenericEnemy : MonoBehaviour
 {
@@ -13,17 +15,17 @@ public class GenericEnemy : MonoBehaviour
     public float attackDuration;
     public int damage;
     public int hp;
-    public static int MaxHp;
-    public int deathDuration;
-    public int hurtDuration;
+    public int maxHp;
+    public float deathDuration;
+    public float hurtDuration;
     public GenericHealthBar genericHealthBar;
     
 
     private void Start()
     {
-        MaxHp = hp;
-        genericHealthBar.genericHealthBar.maxValue = MaxHp;
-        genericHealthBar.genericHealthBar.value = MaxHp;
+        maxHp = hp;
+        genericHealthBar.genericHealthBar.maxValue = hp;
+        genericHealthBar.genericHealthBar.value = hp;
         ResetPosition();
     }
     
@@ -41,6 +43,13 @@ public class GenericEnemy : MonoBehaviour
                 GetComponent<BoxCollider2D>().enabled = false;
                 StartCoroutine(krampus.PlayDeathAnimation());
             }
+
+            if (genericScript.GetType() == typeof(EvilSnowman))
+            {
+                EvilSnowman evilSnowman = GetComponent<EvilSnowman>();
+                GetComponent<BoxCollider2D>().enabled = false;
+                StartCoroutine(evilSnowman.PlayDeathAnimation());
+            }
             
             //do for each enemy sadly
         }
@@ -51,6 +60,12 @@ public class GenericEnemy : MonoBehaviour
                 Krampus krampus = GetComponent<Krampus>();
                 StartCoroutine(krampus.PlayHurtAnimation());
             }
+            
+            if (genericScript.GetType() == typeof(EvilSnowman))
+            {
+                EvilSnowman evilSnowman = GetComponent<EvilSnowman>();
+                StartCoroutine(evilSnowman.PlayHurtAnimation());
+            }
         }
     }
     
@@ -59,11 +74,6 @@ public class GenericEnemy : MonoBehaviour
         transform.position = new Vector2(Random.Range(-2.4f, 3.8f), Random.Range(-3.25f, 3.05f));
     }
 
-    public void PlayDeathAnimation()
-    {
-        //nothing here!
-        Debug.Log("in generic");
-    }
     
 
 }

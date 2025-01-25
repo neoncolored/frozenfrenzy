@@ -7,12 +7,15 @@ public class GenericHealthBar : MonoBehaviour
 {
     
     public Slider genericHealthBar;
-    private float maxHealth = GenericEnemy.MaxHp;
+    private float _maxHealth;
+    public GenericEnemy g;
     
     
-    void Start(){
+    void Start()
+    {
+        _maxHealth = g.maxHp;
         genericHealthBar = GetComponent<Slider>();
-        genericHealthBar.value= maxHealth;
+        genericHealthBar.value= _maxHealth;
         
     }
     
