@@ -122,6 +122,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &104400438
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 104400440}
+  - component: {fileID: 104400439}
+  m_Layer: 0
+  m_Name: SoundFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &104400439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104400438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2225563c9c951d4b90b4de7bfcfeb15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFXObject: {fileID: 3355165549651132950, guid: 3264102ff1467224db145bb1b3e161b1, type: 3}
+--- !u!4 &104400440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104400438}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &174983194
 GameObject:
   m_ObjectHideFlags: 0
@@ -31101,6 +31146,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4033458099755391574, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
+      propertyPath: walk
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c7fdac6ac0e34847bc63f1ad642cb26, type: 3}
+    - target: {fileID: 4033458099755391574, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
+      propertyPath: timeForOneStep
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033458099755391574, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
+      propertyPath: walkClips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033458099755391574, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
+      propertyPath: walkClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c7fdac6ac0e34847bc63f1ad642cb26, type: 3}
+    - target: {fileID: 4033458099755391574, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
+      propertyPath: walkClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d3723214020ed141a3b133ab6a463fe, type: 3}
+    - target: {fileID: 4033458099755391574, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
+      propertyPath: walkClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: da08d336a9893ce408b06cde9f596df8, type: 3}
     - target: {fileID: 7097365651381732966, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -31136,6 +31205,7 @@ GameObject:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 104400440}
   - {fileID: 4720915004451315643}
   - {fileID: 519420032}
   - {fileID: 1509048711}

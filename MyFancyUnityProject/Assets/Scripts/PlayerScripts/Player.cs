@@ -16,6 +16,14 @@ public class Player : MonoBehaviour
         Hit
     }
     
+    //SFX
+    [SerializeField] private AudioClip[] walkClips;
+    [SerializeField] private float timeForOneStep = 0.3f;
+    private float _nextStepTime = 0.0f;
+    
+    
+    //------
+    
     private Player _player;
     private PlayerState _state;
     private Rigidbody2D _rigidbody2D;
@@ -85,6 +93,12 @@ public class Player : MonoBehaviour
         _velocity = Vector2.ClampMagnitude(_velocity, speed);  
         // maxLength muss immer = speed sein, damit man diagonal nicht schenller ist
         
+        if (_velocity.magnitude > 0.01 && Time.time >= _nextStepTime && _state == PlayerState.Walking)
+        {
+            SoundFXManager.instance.PlayRandomSoundFXClip(walkClips, transform, 0.3f);
+            _nextStepTime = Time.time + timeForOneStep;
+        }
+        
         _timeSinceRoll += Time.deltaTime;
         playerRollStamina.setValue(Mathf.Clamp(_timeSinceRoll/rollCoolDown, 0, 100));
         
@@ -111,6 +125,9 @@ public class Player : MonoBehaviour
         _animator.SetFloat("speed", _velocity.magnitude);
         if (_velocity.x != 0) _spriteRenderer.flipX = _velocity.x < 0;
         _rigidbody2D.velocity = _velocity * Time.fixedDeltaTime;
+        
+        
+        
     }
 
     private IEnumerator Roll()
