@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
         Walking,
         Spinning,
         Rolling,
-        Hit
+        Hit,
+        Dead
     }
     
     //SFX
@@ -50,6 +51,8 @@ public class Player : MonoBehaviour
     public PlayerRollStamina playerRollStamina;
     public HideStaminaBar h;
 
+    
+    public LosingScreenManager losingScreenManager;
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -67,19 +70,23 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PlayerMove();
+        if (_state != PlayerState.Dead)
+        {
+            PlayerMove();
+        }
     }
 
     // Update is called once per frame
     private void Update()
     {
-        PlayerInput();
-        if (Input.GetMouseButtonDown(0))
+        if (_state != PlayerState.Dead)
         {
-            Shoot();
+            PlayerInput();
+            if (Input.GetMouseButtonDown(0))
+            {
+                Shoot();
+            }
         }
-        
-        
     }
 
     private void PlayerInput()
@@ -95,7 +102,7 @@ public class Player : MonoBehaviour
         
         if (_velocity.magnitude > 0.01 && Time.time >= _nextStepTime && _state == PlayerState.Walking)
         {
-            SoundFXManager.instance.PlayRandomSoundFXClip(walkClips, transform, 0.3f);
+            SoundFXManager.instance.PlayRandomSoundFXClip(walkClips, transform, 0.1f);
             _nextStepTime = Time.time + timeForOneStep;
         }
         
@@ -150,11 +157,13 @@ public class Player : MonoBehaviour
         {
             hp -= damage;
             _animator.SetTrigger("getHit");
-            hpBar.healthBar.value = hp; 
+            hpBar.healthBar.value = hp;
+            if (hp <= 0)
+            {
+                Die();
+            }
         }
-        
     }
-
 
     private void StopRoll()
     {
@@ -185,4 +194,13 @@ public class Player : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         projectile.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
+
+    private void Die()
+    {
+        _state = PlayerState.Dead;
+        _animator.SetBool("isDead", true);
+        losingScreenManager.ShowLosingScreen();
+    }
+    
+    
 }
