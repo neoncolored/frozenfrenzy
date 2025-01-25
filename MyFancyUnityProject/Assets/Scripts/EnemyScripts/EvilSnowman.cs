@@ -30,6 +30,9 @@ public class EvilSnowman : GenericEnemy
     private float _nextAttackTime = 0.0f;
     private bool _isAttacking = false;
     
+    public Transform firePoint;
+    public GameObject snowball;
+    
 
     private void Awake()
     {
@@ -108,14 +111,28 @@ public class EvilSnowman : GenericEnemy
         
         if ((transform.position - target.transform.position).magnitude < range) //player is hit
         {
-            //throw snowball
-            //playerScript.DamagePlayer(damage);
+            Shoot();
         }
         
         
         yield return new WaitForSeconds(attackDuration/2);
         
         StopAttack();
+    }
+    
+    private void Shoot()
+    {
+        var target = player.transform.position;
+        target.z = 0;
+        var direction = (target - firePoint.position).normalized;
+        
+        GameObject ball = Instantiate(snowball, firePoint.position, Quaternion.identity);
+        Snowball snowballScript = ball.GetComponent<Snowball>();
+        snowballScript.SetDirection(direction);            
+        
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        ball.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     public void StopAttack()
