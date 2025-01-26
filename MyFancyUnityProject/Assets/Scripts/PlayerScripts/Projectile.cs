@@ -31,10 +31,16 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
         GameObject enemy = other.gameObject;
-        GenericEnemy script = enemy.GetComponent<GenericEnemy>();
-        script.DamageEnemy(5);
-        Destroy(gameObject);
+        if (enemy.TryGetComponent<GenericEnemy>(out GenericEnemy e))
+        {
+            GenericEnemy script = enemy.GetComponent<GenericEnemy>();
+            script.DamageEnemy(5);
+            Destroy(gameObject); 
+        }
+
+        
     }
 
 

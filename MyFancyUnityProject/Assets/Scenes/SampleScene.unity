@@ -305,6 +305,101 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 428366453}
   m_ConfineScreenEdges: 1
   m_Damping: 0
+--- !u!1 &188223073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 188223076}
+  - component: {fileID: 188223075}
+  - component: {fileID: 188223074}
+  m_Layer: 0
+  m_Name: Campfire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &188223074
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188223073}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 951
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0058442056, y: 0.0043831766}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.72532195, y: 0.7282441}
+  m_EdgeRadius: 0
+--- !u!114 &188223075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188223073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ad59f2604064fd9aecc3f79a249c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpPerTick: 0.07
+--- !u!224 &188223076
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188223073}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.72, y: -0.0828}
+  m_SizeDelta: {x: 0.7531, y: 0.7551}
+  m_Pivot: {x: 0.50711143, y: 0.49927065}
 --- !u!1 &378636463
 GameObject:
   m_ObjectHideFlags: 0
@@ -4124,7 +4219,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_TargetDisplay: 0
 --- !u!1 &1108023368
 GameObject:
@@ -11698,6 +11793,10 @@ PrefabInstance:
       propertyPath: g
       value: 
       objectReference: {fileID: 97553249}
+    - target: {fileID: 1121283476697081679, guid: ee8fe801807cb6a4e9ca03aa11713aa8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1250976980726509941, guid: ee8fe801807cb6a4e9ca03aa11713aa8, type: 3}
       propertyPath: range
       value: 0.2
@@ -49445,6 +49544,10 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 512
       objectReference: {fileID: 0}
+    - target: {fileID: 6681928761409454551, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
+      propertyPath: m_SortingOrder
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 7097365651381732966, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -49494,3 +49597,4 @@ SceneRoots:
   - {fileID: 1627468913}
   - {fileID: 1228826672}
   - {fileID: 571575641}
+  - {fileID: 188223076}
