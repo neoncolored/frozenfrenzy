@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
         if (_state != PlayerState.Rolling)
         {
             hp -= damage;
-            _animator.SetTrigger("getHit");
+            _animator.SetTrigger("hit");
             hpBar.healthBar.value = hp;
             if (hp <= 0)
             {

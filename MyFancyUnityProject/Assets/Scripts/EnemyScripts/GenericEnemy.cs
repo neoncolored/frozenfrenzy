@@ -38,6 +38,8 @@ public class GenericEnemy : MonoBehaviour
         GenericEnemy genericScript = GetComponent<GenericEnemy>();
         if (hp <= 0)
         {
+            SampleWave.activeEnemies--;
+            
             if (genericScript.GetType() == typeof(Krampus))
             {
                 Krampus krampus = GetComponent<Krampus>();
