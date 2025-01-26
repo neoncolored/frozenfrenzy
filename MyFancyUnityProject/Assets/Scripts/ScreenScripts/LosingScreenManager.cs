@@ -43,6 +43,7 @@ public class LosingScreenManager : MonoBehaviour
     private static void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Player.hp = 100;
     }
 }
 

@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class Krampus : GenericEnemy
 {
-    public GameObject player;
+    
     private GenericEnemy _genericEnemy;
     
     private enum EnemyState
