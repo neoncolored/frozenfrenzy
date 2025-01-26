@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadSceneAsync("SampleScene");
+        Player.hp = 100;
     }
 
     public void QuitGame()

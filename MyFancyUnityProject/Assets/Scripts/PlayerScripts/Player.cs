@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     private Vector3 _velocity = Vector3.zero;
     public float speed = 50.0f;
     public static int maxHp = 100;
-    public int hp = maxHp;
+    public static int hp = maxHp;
     
     // Rolling variables
     public float rollCoolDown = 20.0f;
@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
     public PlayerHealthBar hpBar;
     public PlayerRollStamina playerRollStamina;
     public HideStaminaBar h;
+    [SerializeField] private SampleWave wave1;
 
     
     public LosingScreenManager losingScreenManager;
@@ -65,9 +66,9 @@ public class Player : MonoBehaviour
     {
         _state = PlayerState.Idle;
         playerRollStamina.setValue(1);
-
+        wave1.StartCoroutine(wave1.StartWave());
     }
-
+    
     private void FixedUpdate()
     {
         if (_state != PlayerState.Dead)

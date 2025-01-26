@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class EvilSnowman : GenericEnemy
 {
-    public GameObject player;
+    
     private GenericEnemy _genericEnemy;
     
     private enum EnemyState

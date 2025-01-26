@@ -8,14 +8,14 @@ using Random = UnityEngine.Random;
 public class GenericEnemy : MonoBehaviour
 {
     
-    
+    public GameObject player;
     public float speed;
     public float range;
     public float attackSpeed;
     public float attackDuration;
     public int damage;
     public int hp;
-    public int maxHp;
+    [NonSerialized] public int maxHp;
     public float deathDuration;
     public float hurtDuration;
     public GenericHealthBar genericHealthBar;
@@ -23,6 +23,7 @@ public class GenericEnemy : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.Find("Player");
         maxHp = hp;
         genericHealthBar.genericHealthBar.maxValue = hp;
         genericHealthBar.genericHealthBar.value = hp;
@@ -69,7 +70,7 @@ public class GenericEnemy : MonoBehaviour
         }
     }
     
-    private void ResetPosition()
+    public void ResetPosition()
     {
         transform.position = new Vector2(Random.Range(-2.4f, 3.8f), Random.Range(-3.25f, 3.05f));
     }

@@ -311,6 +311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00701f27e396847478cc3e5e524fe530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkClips: []
+  timeForOneStep: 0.3
   speed: 50
   hp: 100
   rollCoolDown: 5
@@ -320,6 +322,8 @@ MonoBehaviour:
   hpBar: {fileID: 5706333027589803906}
   playerRollStamina: {fileID: 5564176653491770397}
   h: {fileID: 1595953810156355271}
+  wave1: {fileID: 0}
+  losingScreenManager: {fileID: 0}
 --- !u!61 &6515024675380034246
 BoxCollider2D:
   m_ObjectHideFlags: 0
