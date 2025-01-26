@@ -92,10 +92,6 @@ public class Player : MonoBehaviour
 
     private void PlayerInput()
     {
-        if (speed == 0)
-        {
-            _state = PlayerState.Idle;
-        }
         _velocity.y = Input.GetAxis("Vertical") * speed;
         _velocity.x = Input.GetAxis("Horizontal") * speed;
         _velocity = Vector2.ClampMagnitude(_velocity, speed);  
@@ -116,6 +112,7 @@ public class Player : MonoBehaviour
             _animator.SetTrigger("spin");
             _state = PlayerState.Spinning;
         }
+        
         if (Input.GetKeyDown(KeyCode.LeftShift) && !_isRolling && _state != PlayerState.Spinning)
         {
             if (Time.time >= _nextRollTime)
@@ -198,10 +195,9 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
+        _rigidbody2D.constraints = RigidbodyConstraints2D.FreezePosition;
         _state = PlayerState.Dead;
         _animator.SetBool("isDead", true);
         losingScreenManager.ShowLosingScreen();
     }
-    
-    
 }
