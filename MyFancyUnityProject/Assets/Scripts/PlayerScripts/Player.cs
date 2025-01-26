@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
         
         if (_velocity.magnitude > 0.01 && Time.time >= _nextStepTime && _state == PlayerState.Walking)
         {
-            SoundFXManager.instance.PlayRandomSoundFXClip(walkClips, transform, 0.3f);
+            SoundFXManager.instance.PlayRandomSoundFXClip(walkClips, transform, 0.1f);
             _nextStepTime = Time.time + timeForOneStep;
         }
         
