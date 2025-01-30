@@ -13865,17 +13865,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 5531796619526459431, guid: b56e8ec0b2f2a404a8ce4783dbe3859f, type: 3}
+  - {fileID: 5581267829795814315, guid: 9ff67b8613c32de4981163ffbfc6a560, type: 3}
+  - {fileID: 3144439215761170626, guid: f6415795d5792e94ba7f3aa6172876c9, type: 3}
   - {fileID: 1048692610274371016, guid: 92bd1369d71a43243b3c68f78cd954fa, type: 3}
-  - {fileID: 5531796619526459431, guid: b56e8ec0b2f2a404a8ce4783dbe3859f, type: 3}
-  - {fileID: 5531796619526459431, guid: b56e8ec0b2f2a404a8ce4783dbe3859f, type: 3}
-  - {fileID: 5531796619526459431, guid: b56e8ec0b2f2a404a8ce4783dbe3859f, type: 3}
+  - {fileID: 5581267829795814315, guid: 9ff67b8613c32de4981163ffbfc6a560, type: 3}
+  - {fileID: 3144439215761170626, guid: f6415795d5792e94ba7f3aa6172876c9, type: 3}
+  - {fileID: 5581267829795814315, guid: 9ff67b8613c32de4981163ffbfc6a560, type: 3}
   - {fileID: 1048692610274371016, guid: 92bd1369d71a43243b3c68f78cd954fa, type: 3}
-  - {fileID: 1048692610274371016, guid: 92bd1369d71a43243b3c68f78cd954fa, type: 3}
-  - {fileID: 1048692610274371016, guid: 92bd1369d71a43243b3c68f78cd954fa, type: 3}
-  - {fileID: 1048692610274371016, guid: 92bd1369d71a43243b3c68f78cd954fa, type: 3}
-  - {fileID: 1048692610274371016, guid: 92bd1369d71a43243b3c68f78cd954fa, type: 3}
-  - {fileID: 1048692610274371016, guid: 92bd1369d71a43243b3c68f78cd954fa, type: 3}
+  - {fileID: 3144439215761170626, guid: f6415795d5792e94ba7f3aa6172876c9, type: 3}
 --- !u!4 &1159565986
 Transform:
   m_ObjectHideFlags: 0
@@ -13914,7 +13911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1193814382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57157,6 +57154,14 @@ PrefabInstance:
     - target: {fileID: 970553193427116091, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -301.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243967851333853435, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243967851333853435, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
+      propertyPath: m_Transition
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2187140979681104213, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
       propertyPath: m_LocalPosition.x

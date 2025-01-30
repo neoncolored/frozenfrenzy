@@ -25,7 +25,7 @@ public class GenericEnemy : MonoBehaviour
     {
         player = GameObject.Find("Player");
         maxHp = hp;
-        genericHealthBar.genericHealthBar.maxValue = hp;
+        genericHealthBar.genericHealthBar.maxValue = maxHp;
         genericHealthBar.genericHealthBar.value = hp;
         ResetPosition();
     }
@@ -67,8 +67,10 @@ public class GenericEnemy : MonoBehaviour
         {
             if (genericScript.GetType() == typeof(Krampus))
             {
+                Debug.Log("here");
                 Krampus krampus = GetComponent<Krampus>();
                 StartCoroutine(krampus.PlayHurtAnimation());
+                Debug.Log("here2");
             }
             
             if (genericScript.GetType() == typeof(EvilSnowman))

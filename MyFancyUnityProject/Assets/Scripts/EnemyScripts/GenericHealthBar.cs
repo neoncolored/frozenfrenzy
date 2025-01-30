@@ -15,6 +15,7 @@ public class GenericHealthBar : MonoBehaviour
     {
         _maxHealth = g.maxHp;
         genericHealthBar = GetComponent<Slider>();
+        genericHealthBar.maxValue = _maxHealth;
         genericHealthBar.value= _maxHealth;
         
     }
