@@ -21,8 +21,6 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip[] walkClips;
     [SerializeField] private float timeForOneStep = 0.3f;
     private float _nextStepTime = 0.0f;
-    
-    
     //------
     
     private Player _player;
@@ -40,30 +38,37 @@ public class Player : MonoBehaviour
     public float rollCoolDown = 20.0f;
     public float rollDuration = 5.0f;
     private float _timeSinceRoll = 0.0f;
-    
     private Coroutine _rollCoroutine;
     private float _nextRollTime = 0.0f;
     private bool _isRolling = false;
-
-    public GameObject fishProjectile;
-    public Transform firePoint;
-    public PlayerHealthBar hpBar;
     public PlayerRollStamina playerRollStamina;
-    public HideStaminaBar h;
-    [SerializeField] private SampleWave wave1;
 
+    // Projectile 
+    public GameObject fishProjectile;
+    public ProjectilePool projectilePool;
+    public Transform firePoint;
     
+    // UI
+    public PlayerHealthBar hpBar;
+    public HideStaminaBar h;
+    
+    // Other
+    [SerializeField] private SampleWave wave1;
+    private Camera _camera;
     public LosingScreenManager losingScreenManager;
+    
+    
     private void Awake()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Start is called before the first frame update
     private void Start()
     {
+        _camera = Camera.main;
         _state = PlayerState.Idle;
         playerRollStamina.setValue(1);
         wave1.StartCoroutine(wave1.StartWave());
@@ -94,8 +99,7 @@ public class Player : MonoBehaviour
     {
         _velocity.y = Input.GetAxis("Vertical") * speed;
         _velocity.x = Input.GetAxis("Horizontal") * speed;
-        _velocity = Vector2.ClampMagnitude(_velocity, speed);  
-        // maxLength muss immer = speed sein, damit man diagonal nicht schenller ist
+        _velocity = Vector2.ClampMagnitude(_velocity, speed);
         
         if (_velocity.magnitude > 0.01 && Time.time >= _nextStepTime && _state == PlayerState.Walking)
         {
@@ -130,9 +134,6 @@ public class Player : MonoBehaviour
         _animator.SetFloat("speed", _velocity.magnitude);
         if (_velocity.x != 0) _spriteRenderer.flipX = _velocity.x < 0;
         _rigidbody2D.velocity = _velocity * Time.fixedDeltaTime;
-        
-        
-        
     }
 
     private IEnumerator Roll()
@@ -154,7 +155,7 @@ public class Player : MonoBehaviour
         if (_state != PlayerState.Rolling)
         {
             hp -= damage;
-            _animator.SetTrigger("hit");
+            _animator.SetTrigger("getHit");
             hpBar.healthBar.value = hp;
             if (hp <= 0)
             {
@@ -180,7 +181,7 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
         var direction = (mousePos - firePoint.position).normalized;
         
