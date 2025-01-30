@@ -54,6 +54,13 @@ public class GenericEnemy : MonoBehaviour
                 StartCoroutine(evilSnowman.PlayDeathAnimation());
             }
             
+            if (genericScript.GetType() == typeof(Grinch))
+            {
+                Grinch grinch = GetComponent<Grinch>();
+                GetComponent<BoxCollider2D>().enabled = false;
+                StartCoroutine(grinch.PlayDeathAnimation());
+            }
+            
             //do for each enemy sadly
         }
         else
@@ -68,6 +75,12 @@ public class GenericEnemy : MonoBehaviour
             {
                 EvilSnowman evilSnowman = GetComponent<EvilSnowman>();
                 StartCoroutine(evilSnowman.PlayHurtAnimation());
+            }
+            
+            if (genericScript.GetType() == typeof(Grinch))
+            {
+                Grinch grinch = GetComponent<Grinch>();
+                StartCoroutine(grinch.PlayHurtAnimation());
             }
         }
     }

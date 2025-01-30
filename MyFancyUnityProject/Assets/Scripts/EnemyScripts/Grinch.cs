@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Krampus : GenericEnemy
+public class Grinch : GenericEnemy
 {
-     private GenericEnemy _genericEnemy;
+    private GenericEnemy _genericEnemy2;
     
     private enum EnemyState
     {
