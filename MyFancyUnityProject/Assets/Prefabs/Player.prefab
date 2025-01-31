@@ -208,6 +208,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2187140979681104213}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1632460053361402506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5551216791338267904}
+  - component: {fileID: 5772271819832864803}
+  m_Layer: 6
+  m_Name: ProjectilePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5551216791338267904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632460053361402506}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2187140979681104213}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5772271819832864803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632460053361402506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d3142dee2cf9a43b357be9b286539c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 2102826674412249398, guid: fac8ee6ff6d3d9a49ad827aeb03dba96, type: 3}
+  poolSize: 20
 --- !u!1 &2338408930864450690
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,6 +291,7 @@ Transform:
   - {fileID: 1893515589090950581}
   - {fileID: 5087449659765968497}
   - {fileID: 1448563621802100800}
+  - {fileID: 5551216791338267904}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3660729260569980378
@@ -314,10 +361,10 @@ MonoBehaviour:
   walkClips: []
   timeForOneStep: 0.3
   speed: 50
-  hp: 100
   rollCoolDown: 5
   rollDuration: 0.7
   fishProjectile: {fileID: 2102826674412249398, guid: fac8ee6ff6d3d9a49ad827aeb03dba96, type: 3}
+  projectilePool: {fileID: 5772271819832864803}
   firePoint: {fileID: 1893515589090950581}
   hpBar: {fileID: 5706333027589803906}
   playerRollStamina: {fileID: 5564176653491770397}

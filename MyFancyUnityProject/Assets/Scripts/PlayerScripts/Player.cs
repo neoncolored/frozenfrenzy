@@ -131,9 +131,6 @@ public class Player : MonoBehaviour
         _animator.SetFloat("speed", _velocity.magnitude);
         if (_velocity.x != 0) _spriteRenderer.flipX = _velocity.x < 0;
         _rigidbody2D.velocity = _velocity * Time.fixedDeltaTime;
-        
-        
-        
     }
 
     private IEnumerator Roll()
