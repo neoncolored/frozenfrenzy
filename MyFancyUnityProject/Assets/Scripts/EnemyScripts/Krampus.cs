@@ -21,6 +21,7 @@ public class Krampus : GenericEnemy
     private Vector3 _velocity = Vector3.zero;
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody2D;
+    private bool isDead = false;
     
     
     private Coroutine _attackCoroutine;
@@ -55,7 +56,7 @@ public class Krampus : GenericEnemy
 
     public void MoveTowardsPlayer(GameObject target)
     {
-        if (_state != EnemyState.Dying && _state != EnemyState.Hurting)
+        if (_state != EnemyState.Dying && _state != EnemyState.Hurting && !isDead)
         {
             Vector3 newPosition = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
             var relativePos = transform.position - target.transform.position;
@@ -89,6 +90,7 @@ public class Krampus : GenericEnemy
     {
         _animator.SetTrigger("die");
         _state = EnemyState.Dying;
+        isDead = true;
         yield return new WaitForSeconds(deathDuration);
         
         Destroy(gameObject);

@@ -13904,12 +13904,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976cac1540133e44e9350011a560d6ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 4523686212186713886, guid: d566eed2b7718a549b735a3d0a8da610, type: 3}
-  - {fileID: 4523686212186713886, guid: d566eed2b7718a549b735a3d0a8da610, type: 3}
-  - {fileID: 4523686212186713886, guid: d566eed2b7718a549b735a3d0a8da610, type: 3}
-  - {fileID: 4523686212186713886, guid: d566eed2b7718a549b735a3d0a8da610, type: 3}
-  - {fileID: 4523686212186713886, guid: d566eed2b7718a549b735a3d0a8da610, type: 3}
+  krampus: {fileID: 3144439215761170626, guid: f6415795d5792e94ba7f3aa6172876c9, type: 3}
+  snowman: {fileID: 1048692610274371016, guid: 92bd1369d71a43243b3c68f78cd954fa, type: 3}
+  grinch: {fileID: 5581267829795814315, guid: 9ff67b8613c32de4981163ffbfc6a560, type: 3}
+  bat: {fileID: 4523686212186713886, guid: d566eed2b7718a549b735a3d0a8da610, type: 3}
+  numKrampus: 2
+  numBat: 3
+  numSnowman: 2
+  numGrinch: 1
+  wave: 0
+  enemyCap: 10
 --- !u!4 &1159565986
 Transform:
   m_ObjectHideFlags: 0

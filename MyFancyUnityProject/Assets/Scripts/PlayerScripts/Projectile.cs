@@ -26,6 +26,7 @@ public class Projectile : MonoBehaviour
     public void SetDirection(Vector3 dir)
     {
         _direction = dir.normalized;
+        SoundFXManager.instance.PlayRandomSoundFXClipWithRandomPitch(hitClips, transform, 0.3f);
     }
 
     
