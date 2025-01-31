@@ -13910,6 +13910,8 @@ MonoBehaviour:
   - {fileID: 4523686212186713886, guid: d566eed2b7718a549b735a3d0a8da610, type: 3}
   - {fileID: 4523686212186713886, guid: d566eed2b7718a549b735a3d0a8da610, type: 3}
   - {fileID: 4523686212186713886, guid: d566eed2b7718a549b735a3d0a8da610, type: 3}
+  wave: 0
+  enemycap: 10
 --- !u!4 &1159565986
 Transform:
   m_ObjectHideFlags: 0
