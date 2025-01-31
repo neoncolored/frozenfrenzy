@@ -63,7 +63,7 @@ public class Bat : GenericEnemy
             var relativePos = transform.position - target.transform.position;
             var distance = relativePos.magnitude;
             var direction = relativePos / distance;
-            if (direction.y > 0) _spriteRenderer.sortingOrder = 5;
+            if (direction.y > 0) _spriteRenderer.sortingOrder = 5; //
             else
             {
                 _spriteRenderer.sortingOrder = 10;}
