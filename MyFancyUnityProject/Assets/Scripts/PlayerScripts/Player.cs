@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        Application.targetFrameRate = 60;
         _state = PlayerState.Idle;
         playerRollStamina.setValue(1);
         wave1.StartCoroutine(wave1.StartWave());

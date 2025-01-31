@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public float speed = 2.5f;
     public int damage = 5;
     private Vector3 _direction;
+    [SerializeField] private AudioClip[] hitClips;
     
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,7 @@ public class Projectile : MonoBehaviour
         {
             GenericEnemy script = enemy.GetComponent<GenericEnemy>();
             script.DamageEnemy(5);
+            SoundFXManager.instance.PlayRandomSoundFXClipWithRandomPitch(hitClips, transform, 0.3f);
             Destroy(gameObject); 
         }
 

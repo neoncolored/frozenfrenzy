@@ -8,6 +8,7 @@ public class Snowball : MonoBehaviour
     public int damage = 5;
     private Vector3 _direction;
     
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +34,6 @@ public class Snowball : MonoBehaviour
         GameObject player = other.gameObject;
         Player script = player.GetComponent<Player>();
         script.DamagePlayer(damage);
-        
         Destroy(gameObject);
     }
 

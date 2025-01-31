@@ -61,6 +61,13 @@ public class GenericEnemy : MonoBehaviour
                 StartCoroutine(grinch.PlayDeathAnimation());
             }
             
+            if (genericScript.GetType() == typeof(Bat))
+            {
+                Bat bat = GetComponent<Bat>();
+                GetComponent<BoxCollider2D>().enabled = false;
+                StartCoroutine(bat.PlayDeathAnimation());
+            }
+            
             //do for each enemy sadly
         }
         else
@@ -83,6 +90,12 @@ public class GenericEnemy : MonoBehaviour
             {
                 Grinch grinch = GetComponent<Grinch>();
                 StartCoroutine(grinch.PlayHurtAnimation());
+            }
+            
+            if (genericScript.GetType() == typeof(Bat))
+            {
+                Bat bat = GetComponent<Bat>();
+                StartCoroutine(bat.PlayHurtAnimation());
             }
         }
     }
