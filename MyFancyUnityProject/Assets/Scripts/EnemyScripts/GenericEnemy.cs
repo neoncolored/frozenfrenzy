@@ -25,7 +25,7 @@ public class GenericEnemy : MonoBehaviour
     {
         player = GameObject.Find("Player");
         maxHp = hp;
-        genericHealthBar.genericHealthBar.maxValue = hp;
+        genericHealthBar.genericHealthBar.maxValue = maxHp;
         genericHealthBar.genericHealthBar.value = hp;
         ResetPosition();
     }
@@ -61,14 +61,23 @@ public class GenericEnemy : MonoBehaviour
                 StartCoroutine(grinch.PlayDeathAnimation());
             }
             
+            if (genericScript.GetType() == typeof(Bat))
+            {
+                Bat bat = GetComponent<Bat>();
+                GetComponent<BoxCollider2D>().enabled = false;
+                StartCoroutine(bat.PlayDeathAnimation());
+            }
+            
             //do for each enemy sadly
         }
         else
         {
             if (genericScript.GetType() == typeof(Krampus))
             {
+                Debug.Log("here");
                 Krampus krampus = GetComponent<Krampus>();
                 StartCoroutine(krampus.PlayHurtAnimation());
+                Debug.Log("here2");
             }
             
             if (genericScript.GetType() == typeof(EvilSnowman))
@@ -81,6 +90,12 @@ public class GenericEnemy : MonoBehaviour
             {
                 Grinch grinch = GetComponent<Grinch>();
                 StartCoroutine(grinch.PlayHurtAnimation());
+            }
+            
+            if (genericScript.GetType() == typeof(Bat))
+            {
+                Bat bat = GetComponent<Bat>();
+                StartCoroutine(bat.PlayHurtAnimation());
             }
         }
     }

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Krampus : GenericEnemy
+public class Bat : GenericEnemy
 {
-     private GenericEnemy _genericEnemy;
+    private GenericEnemy _genericEnemy2;
     
     private enum EnemyState
     {
@@ -31,11 +31,12 @@ public class Krampus : GenericEnemy
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
+        _animator = this.GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _state = EnemyState.Walking;
+        
+        
     }
-    
+
     private void Start()
     {
         player = GameObject.FindWithTag("Player");

@@ -8,6 +8,8 @@ public class SampleWave : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private GameObject[] enemies;
     [NonSerialized] public static int activeEnemies;
+    public int wave = 0;
+    public int enemycap = 10;
     void Start()
     {
         activeEnemies = 0;
@@ -22,11 +24,16 @@ public class SampleWave : MonoBehaviour
         }
 
         activeEnemies = enemies.Length;
+        wave = +1;
+        enemycap = +2;
     }
     
     // Update is called once per frame
     void Update()
     {
-        
+        if (activeEnemies == 0)
+        {
+            StartWave();
+        }
     }
 }

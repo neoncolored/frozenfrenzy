@@ -31,10 +31,21 @@ public class Grinch : GenericEnemy
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
+        _animator = this.GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        
+    }
+
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<Player>();
+        maxHp = hp;
+        genericHealthBar.genericHealthBar.maxValue = maxHp;
+        genericHealthBar.genericHealthBar.value = maxHp;
         _state = EnemyState.Walking;
+        ResetPosition();
     }
 
     private void FixedUpdate()
@@ -63,7 +74,7 @@ public class Grinch : GenericEnemy
                     _attackCoroutine = StartCoroutine(AttackPlayer(target, direction));
                 }
             }
-            else if(_isAttacking == false)
+            else 
             {
                 _state = EnemyState.Walking;
                 _rigidbody2D.transform.position = newPosition;
