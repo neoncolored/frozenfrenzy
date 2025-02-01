@@ -6,17 +6,9 @@ public class Grinch : GenericEnemy
 {
     private GenericEnemy _genericEnemy2;
     
-    private enum EnemyState
-    {
-        Walking,
-        Attacking,
-        Dying,
-        Hurting,
-    }
 
     private Player playerScript;
     private Coroutine _hurtCoroutine;
-    private EnemyState _state;
     private Animator _animator;
     private Vector3 _velocity = Vector3.zero;
     private SpriteRenderer _spriteRenderer;
@@ -26,7 +18,6 @@ public class Grinch : GenericEnemy
     
     private Coroutine _attackCoroutine;
     private float _nextAttackTime = 0.0f;
-    private bool _isAttacking = false;
     
 
     private void Awake()
@@ -45,7 +36,6 @@ public class Grinch : GenericEnemy
         maxHp = hp;
         genericHealthBar.genericHealthBar.maxValue = maxHp;
         genericHealthBar.genericHealthBar.value = maxHp;
-        _state = EnemyState.Walking;
         ResetPosition();
     }
 
@@ -77,7 +67,6 @@ public class Grinch : GenericEnemy
             }
             else 
             {
-                _state = EnemyState.Walking;
                 _rigidbody2D.transform.position = newPosition;
                 _animator.SetFloat("speed", distance);
             
@@ -90,7 +79,6 @@ public class Grinch : GenericEnemy
     public IEnumerator PlayDeathAnimation()
     {
         _animator.SetTrigger("die");
-        _state = EnemyState.Dying;
         isDead = true;
         yield return new WaitForSeconds(deathDuration);
         
@@ -100,16 +88,12 @@ public class Grinch : GenericEnemy
     public  IEnumerator PlayHurtAnimation()
     {
         _animator.SetTrigger("hurt");
-        _state = EnemyState.Hurting;
         yield return new WaitForSeconds(hurtDuration);
-        _state = EnemyState.Walking;
         _animator.ResetTrigger("hurt");
     }
 
     public IEnumerator AttackPlayer(GameObject target, Vector3 direction)
     {
-        _state = EnemyState.Attacking;
-        _isAttacking = true;
         _nextAttackTime = Time.time + attackSpeed;
         _animator.SetTrigger("attack");
         
@@ -129,14 +113,12 @@ public class Grinch : GenericEnemy
 
     public void StopAttack()
     {
-        if (speed > 0) _state = EnemyState.Walking;
         if (_attackCoroutine != null)
         {
             StopCoroutine(_attackCoroutine);
             _attackCoroutine = null;
         }
         
-        _isAttacking = false;
         _animator.ResetTrigger("attack");
     }
 }

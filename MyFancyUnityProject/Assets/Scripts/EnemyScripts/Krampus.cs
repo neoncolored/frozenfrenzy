@@ -26,7 +26,6 @@ public class Krampus : GenericEnemy
     
     private Coroutine _attackCoroutine;
     private float _nextAttackTime = 0.0f;
-    private bool _isAttacking = false;
     
 
     private void Awake()
@@ -108,7 +107,6 @@ public class Krampus : GenericEnemy
     public IEnumerator AttackPlayer(GameObject target, Vector3 direction)
     {
         _state = EnemyState.Attacking;
-        _isAttacking = true;
         _nextAttackTime = Time.time + attackSpeed;
         _animator.SetTrigger("attack");
         
@@ -135,7 +133,6 @@ public class Krampus : GenericEnemy
             _attackCoroutine = null;
         }
         
-        _isAttacking = false;
         _animator.ResetTrigger("attack");
     }
 }

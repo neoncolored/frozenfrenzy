@@ -29,7 +29,6 @@ public class EvilSnowman : GenericEnemy
     
     private Coroutine _attackCoroutine;
     private float _nextAttackTime = 0.0f;
-    private bool _isAttacking = false;
     
     public Transform firePoint;
     public GameObject snowball;
@@ -81,7 +80,7 @@ public class EvilSnowman : GenericEnemy
                     _attackCoroutine = StartCoroutine(AttackPlayer(target, direction));
                 }
             }
-            else if(_isAttacking == false)
+            else 
             {
                 _state = EnemyState.Walking;
                 _rigidbody2D.transform.position = newPosition;
@@ -115,7 +114,6 @@ public class EvilSnowman : GenericEnemy
     public IEnumerator AttackPlayer(GameObject target, Vector3 direction)
     {
         _state = EnemyState.Attacking;
-        _isAttacking = true;
         _nextAttackTime = Time.time + attackSpeed;
         _animator.SetTrigger("attack");
         
@@ -148,7 +146,6 @@ public class EvilSnowman : GenericEnemy
             _attackCoroutine = null;
         }
         
-        _isAttacking = false;
         _animator.ResetTrigger("attack");
     }
 }

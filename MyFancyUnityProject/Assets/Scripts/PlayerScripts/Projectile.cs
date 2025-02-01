@@ -37,6 +37,8 @@ public class Projectile : MonoBehaviour
         GameObject enemy = other.gameObject;
         if (enemy.TryGetComponent<GenericEnemy>(out GenericEnemy e))
         {
+            ScreenShake.Instance.ShakeCamera(0.2f, 0.2f);
+            
             GenericEnemy script = enemy.GetComponent<GenericEnemy>();
             script.DamageEnemy(5);
             SoundFXManager.instance.PlayRandomSoundFXClipWithRandomPitch(hitClips, transform, 0.3f);

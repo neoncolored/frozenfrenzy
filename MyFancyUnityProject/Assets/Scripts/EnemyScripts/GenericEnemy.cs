@@ -74,10 +74,8 @@ public class GenericEnemy : MonoBehaviour
         {
             if (genericScript.GetType() == typeof(Krampus))
             {
-                Debug.Log("here");
                 Krampus krampus = GetComponent<Krampus>();
                 StartCoroutine(krampus.PlayHurtAnimation());
-                Debug.Log("here2");
             }
             
             if (genericScript.GetType() == typeof(EvilSnowman))
