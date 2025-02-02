@@ -8,20 +8,18 @@ public class Golem : GenericEnemy
     
     private enum EnemyState
     {
-        Walking,
-        Attacking,
-        Dying,
-        Hurting,
+        PHASEONE,
+        PHASETWO,
+        PHASETHREE,
     }
-
-    private Player playerScript;
+    
     private Coroutine _hurtCoroutine;
     private EnemyState _state;
     private Animator _animator;
     private Vector3 _velocity = Vector3.zero;
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody2D;
-    private bool isDead = false;
+    private bool _isDead = false;
     
     public Transform firePointRight;
     public Transform firePointLeft;
@@ -36,17 +34,16 @@ public class Golem : GenericEnemy
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _state = EnemyState.Walking;
+        _state = EnemyState.PHASEONE;
     }
     
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<Player>();
         maxHp = hp;
         genericHealthBar.genericHealthBar.maxValue = maxHp;
         genericHealthBar.genericHealthBar.value = maxHp;
-        _state = EnemyState.Walking;
+        _state = EnemyState.PHASEONE;
         ResetPosition();
     }
 
@@ -58,7 +55,7 @@ public class Golem : GenericEnemy
 
     public void MoveTowardsPlayer(GameObject target)
     {
-        if (!isDead)
+        if (!_isDead)
         {
             Vector3 newPosition = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
             var relativePos = transform.position - target.transform.position;
@@ -78,7 +75,6 @@ public class Golem : GenericEnemy
             }
             else 
             {
-                _state = EnemyState.Walking;
                 _rigidbody2D.transform.position = newPosition;
                 _animator.SetFloat("speed", distance);
             
@@ -91,8 +87,7 @@ public class Golem : GenericEnemy
     public IEnumerator PlayDeathAnimation()
     {
         _animator.SetTrigger("die");
-        _state = EnemyState.Dying;
-        isDead = true;
+        _isDead = true;
         yield return new WaitForSeconds(deathDuration);
         //TODO you win!!
     }
@@ -100,15 +95,12 @@ public class Golem : GenericEnemy
     public  IEnumerator PlayHurtAnimation()
     {
         _animator.SetTrigger("hurt");
-        _state = EnemyState.Hurting;
         yield return new WaitForSeconds(hurtDuration);
-        _state = EnemyState.Walking;
         _animator.ResetTrigger("hurt");
     }
 
     public IEnumerator AttackPlayer(GameObject target, Vector3 direction)
     {
-        _state = EnemyState.Attacking;
         _nextAttackTime = Time.time + attackSpeed;
         _animator.SetTrigger("attack");
         
@@ -141,7 +133,6 @@ public class Golem : GenericEnemy
 
     public void StopAttack()
     {
-        if (speed > 0) _state = EnemyState.Walking;
         if (_attackCoroutine != null)
         {
             StopCoroutine(_attackCoroutine);

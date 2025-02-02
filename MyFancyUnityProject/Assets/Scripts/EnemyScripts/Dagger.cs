@@ -32,8 +32,10 @@ public class Dagger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         GameObject player = other.gameObject;
-        Player script = player.GetComponent<Player>();
-        script.DamagePlayer(damage);
+        if(player.TryGetComponent<Player>(out Player p))
+        {
+            p.DamagePlayer(damage);
+        }
         Destroy(gameObject);
     }
 
