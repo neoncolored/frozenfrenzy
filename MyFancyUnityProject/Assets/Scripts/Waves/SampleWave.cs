@@ -35,7 +35,7 @@ public class SampleWave : MonoBehaviour
 
         switch (wave)
         {
-            case 1:
+            case 1: //wie viele gegner in wave 1 spawnen
             {
                 numBat = 5;
                 numGrinch = 0;
@@ -44,7 +44,7 @@ public class SampleWave : MonoBehaviour
                 numBoss = 0;
                 break;
             }
-            case 2:
+            case 2: //in wave 2
             {
                 numBat = 0;
                 numGrinch = 5;
@@ -53,7 +53,7 @@ public class SampleWave : MonoBehaviour
                 numBoss = 0;
                 break;
             }
-            case 3:
+            case 3: //usw.
             {
                 numBat = 10;
                 numGrinch = 0;
