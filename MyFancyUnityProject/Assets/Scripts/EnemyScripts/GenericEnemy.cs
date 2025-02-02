@@ -68,6 +68,13 @@ public class GenericEnemy : MonoBehaviour
                 StartCoroutine(bat.PlayDeathAnimation());
             }
             
+            if (genericScript.GetType() == typeof(Golem))
+            {
+                Golem golem = GetComponent<Golem>();
+                GetComponent<BoxCollider2D>().enabled = false;
+                StartCoroutine(golem.PlayDeathAnimation());
+            }
+            
             //do for each enemy sadly
         }
         else
@@ -94,6 +101,12 @@ public class GenericEnemy : MonoBehaviour
             {
                 Bat bat = GetComponent<Bat>();
                 StartCoroutine(bat.PlayHurtAnimation());
+            }
+            
+            if (genericScript.GetType() == typeof(Golem))
+            {
+                Golem golem = GetComponent<Golem>();
+                StartCoroutine(golem.PlayHurtAnimation());
             }
         }
     }

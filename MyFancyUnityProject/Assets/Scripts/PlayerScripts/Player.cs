@@ -149,11 +149,11 @@ public class Player : MonoBehaviour
 
     public void DamagePlayer(int damage)
     {
-        if (_state != PlayerState.Rolling)
+        if (_state != PlayerState.Rolling && _state != PlayerState.Dead)
         {
             hp -= damage;
             _animator.SetTrigger("hit");
-            hpBar.healthBar.value = hp;
+            hpBar.SetHealth(hp);
             if (hp <= 0)
             {
                 Die();

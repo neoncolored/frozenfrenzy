@@ -29,7 +29,7 @@ public class Campfire : MonoBehaviour
 
     private void Heal(Player p)
     {
-        _player.hpBar.healthBar.value += hpPerTick;
+        _player.hpBar.SetHealth(_player.hpBar.healthBar.value + hpPerTick);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

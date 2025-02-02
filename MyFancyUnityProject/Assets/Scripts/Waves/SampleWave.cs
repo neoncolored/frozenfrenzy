@@ -11,56 +11,72 @@ public class SampleWave : MonoBehaviour
     [SerializeField] private GameObject snowman;
     [SerializeField] private GameObject grinch;
     [SerializeField] private GameObject bat;
+    [SerializeField] private GameObject boss;
     [NonSerialized] public static int activeEnemies;
     public int numKrampus;
     public int numBat;
     public int numSnowman;
     public int numGrinch;
+    public int numBoss;
     public int wave = 0;
     public int enemyCap = 10; // siehe unten
     void Start()
     {
-        activeEnemies = numBat+numGrinch+numSnowman+numKrampus;
+        activeEnemies = numBat+numGrinch+numSnowman+numKrampus+numBoss;
     }
 
     public IEnumerator StartWave()
     {
         yield return new WaitForSeconds(3);
-        enemies = new GameObject[numBat+numGrinch+numSnowman+numKrampus];
+        enemies = new GameObject[numBat+numGrinch+numSnowman+numKrampus+numBoss];
 
         int count = 0;
+        int index = 0;
         
         while (count < numKrampus)
         {
-            enemies[count] = Instantiate(krampus);
+            enemies[index] = Instantiate(krampus);
             count++;
+            index++;
         }
 
         count = 0;
         
         while (count < numSnowman)
         {
-            enemies[count] = Instantiate(snowman);
+            enemies[index] = Instantiate(snowman);
             count++;
+            index++;
         }
         
         count = 0;
         
         while (count < numBat)
         {
-            enemies[count] = Instantiate(bat);
+            enemies[index] = Instantiate(bat);
             count++;
+            index++;
         }
         
         count = 0;
         
         while (count < numGrinch)
         {
-            enemies[count] = Instantiate(grinch);
+            enemies[index] = Instantiate(grinch);
             count++;
+            index++;
         }
         
-        activeEnemies = numBat+numGrinch+numSnowman+numKrampus;
+        count = 0;
+        
+        while (count < numBoss)
+        {
+            enemies[index] = Instantiate(boss);
+            count++;
+            index++;
+        }
+        
+        activeEnemies = numBat+numGrinch+numSnowman+numKrampus+numBoss;
         wave = +1;
         enemyCap = +2; //maybe something like numGrinch+=2
     }
@@ -70,7 +86,7 @@ public class SampleWave : MonoBehaviour
     {
         if (activeEnemies == 0)
         {
-            activeEnemies = numBat + numGrinch + numSnowman + numKrampus;
+            activeEnemies = numBat+numGrinch+numSnowman+numKrampus+numBoss;
             StartCoroutine(StartWave());
         }
     }
