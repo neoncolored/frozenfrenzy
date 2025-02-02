@@ -19,6 +19,7 @@ public class SampleWave : MonoBehaviour
     public int numGrinch;
     public int numBoss;
     public int wave = 0;
+    public int count = 0;
     public int enemyCap = 10; // siehe unten
     void Start()
     {
@@ -30,55 +31,76 @@ public class SampleWave : MonoBehaviour
         yield return new WaitForSeconds(3);
         enemies = new GameObject[numBat+numGrinch+numSnowman+numKrampus+numBoss];
 
-        int count = 0;
+        
         int index = 0;
         
-        while (count < numKrampus)
-        {
-            enemies[index] = Instantiate(krampus);
-            count++;
-            index++;
-        }
+        
+        //Test
+        //Wave 1
 
-        count = 0;
-        
-        while (count < numSnowman)
-        {
-            enemies[index] = Instantiate(snowman);
-            count++;
-            index++;
+
+            while (count < enemyCap)
+            {
+                enemies[index] = Instantiate(krampus);
+                count++;
+                index++;
+            }
+
+            
+
+            while (count < enemyCap)
+            {
+                enemies[index] = Instantiate(snowman);
+                count++;
+                index++;
+            }
+
+            
+
+            while (count < enemyCap)
+            {
+                enemies[index] = Instantiate(bat);
+                count++;
+                index++;
+            }
+
+            
+
+            while (count < enemyCap)
+            {
+                enemies[index] = Instantiate(grinch);
+                count++;
+                index++;
+            }
+
+            
+
+            //spawnt so nicht jede Runde ein Boss?
+            //while (count < numBoss)
+            //{
+           //     enemies[index] = Instantiate(boss);
+           //     count++;
+           //     index++;
+            //}
+
+            if (wave == 10)
+            {
+                
+            }
+
+            activeEnemies = numBat + numGrinch + numSnowman + numKrampus + numBoss;
+            wave = +1;
+            enemyCap = +2; //maybe something like numGrinch+=2
         }
-        
-        count = 0;
-        
-        while (count < numBat)
+    
+
+    public void Bosswave()
+    {
+        if (wave == 10)
         {
-            enemies[index] = Instantiate(bat);
-            count++;
-            index++;
+            wave = 0;
+            Instantiate(boss);
         }
-        
-        count = 0;
-        
-        while (count < numGrinch)
-        {
-            enemies[index] = Instantiate(grinch);
-            count++;
-            index++;
-        }
-        
-        count = 0;
-        
-        while (count < numBoss)
-        {
-            enemies[index] = Instantiate(boss);
-            count++;
-            index++;
-        }
-        
-        activeEnemies = numBat+numGrinch+numSnowman+numKrampus+numBoss;
-        wave = +1;
-        enemyCap = +2; //maybe something like numGrinch+=2
     }
     
     // Update is called once per frame
@@ -88,6 +110,7 @@ public class SampleWave : MonoBehaviour
         {
             activeEnemies = numBat+numGrinch+numSnowman+numKrampus+numBoss;
             StartCoroutine(StartWave());
+            count = 0;
         }
     }
 }
