@@ -18,11 +18,79 @@ public class SampleWave : MonoBehaviour
     public int numSnowman;
     public int numGrinch;
     public int numBoss;
-    public int wave = 0;
-    public int count = 0;
+    private int wave = 1;
+    private bool isSet = false;
     public int enemyCap = 10; // siehe unten
     void Start()
     {
+        activeEnemies = 0;
+    }
+
+    private void SetWave()
+    {
+        //Test
+        //Wave 1
+        
+        //du könntest sowas machen
+
+        switch (wave)
+        {
+            case 1:
+            {
+                numBat = 5;
+                numGrinch = 0;
+                numKrampus = 0;
+                numSnowman = 5;
+                numBoss = 0;
+                break;
+            }
+            case 2:
+            {
+                numBat = 0;
+                numGrinch = 5;
+                numKrampus = 0;
+                numSnowman = 0;
+                numBoss = 0;
+                break;
+            }
+            case 3:
+            {
+                numBat = 10;
+                numGrinch = 0;
+                numKrampus = 10;
+                numSnowman = 0;
+                numBoss = 0;
+                break;
+            }
+            case 4:
+            {
+                numBat = 5;
+                numGrinch = 5;
+                numKrampus = 5;
+                numSnowman = 5;
+                numBoss = 0;
+                break;
+            }
+            case 5: //Boss
+            {
+                numBat = 0;
+                numGrinch = 0;
+                numKrampus = 0;
+                numSnowman = 0;
+                numBoss = 1;
+                break;
+            }
+            default:
+            {
+                numBat = 0;
+                numGrinch = 0;
+                numKrampus = 0;
+                numSnowman = 0;
+                numBoss = 0;
+                break;
+            }
+            
+        }
         activeEnemies = numBat+numGrinch+numSnowman+numKrampus+numBoss;
     }
 
@@ -33,84 +101,60 @@ public class SampleWave : MonoBehaviour
 
         
         int index = 0;
-        
-        
-        //Test
-        //Wave 1
+        int count = 0;
 
-
-            while (count < enemyCap)
-            {
+        while (count < numKrampus)
+        {
                 enemies[index] = Instantiate(krampus);
                 count++;
                 index++;
-            }
+        }
 
+        count = 0;
             
-
-            while (count < enemyCap)
-            {
+        while (count < numSnowman)
+        {
                 enemies[index] = Instantiate(snowman);
                 count++;
                 index++;
-            }
-
-            
-
-            while (count < enemyCap)
-            {
+        }
+        count = 0;
+        
+        while (count < numBat)
+        {
                 enemies[index] = Instantiate(bat);
                 count++;
                 index++;
-            }
-
-            
-
-            while (count < enemyCap)
-            {
+        }
+        count = 0;
+        while (count < numGrinch)
+        {
                 enemies[index] = Instantiate(grinch);
                 count++;
                 index++;
-            }
-
-            
-
-            //spawnt so nicht jede Runde ein Boss?
-            //while (count < numBoss)
-            //{
-           //     enemies[index] = Instantiate(boss);
-           //     count++;
-           //     index++;
-            //}
-
-            if (wave == 10)
-            {
-                
-            }
-
-            activeEnemies = numBat + numGrinch + numSnowman + numKrampus + numBoss;
-            wave = +1;
-            enemyCap = +2; //maybe something like numGrinch+=2
         }
-    
-
-    public void Bosswave()
-    {
-        if (wave == 10)
+        count = 0;
+        //spawnt so nicht jede Runde ein Boss? ne nur wenn numBoss >= 1 ist
+        while (count < numBoss)
         {
-            wave = 0;
-            Instantiate(boss);
+                enemies[index] = Instantiate(boss);
+                count++;
+                index++;
         }
+        wave += 1;
+        enemyCap += 2; //maybe something like numGrinch+=2
+        isSet = false;
     }
+    
     
     // Update is called once per frame
     void Update()
     {
-        if (activeEnemies == 0)
+        if (activeEnemies == 0 && isSet == false)
         {
-            activeEnemies = numBat+numGrinch+numSnowman+numKrampus+numBoss;
+            isSet = true;
+            SetWave();
             StartCoroutine(StartWave());
-            count = 0;
         }
     }
 }

@@ -67,7 +67,6 @@ public class Player : MonoBehaviour
         Application.targetFrameRate = 60;
         _state = PlayerState.Idle;
         playerRollStamina.setValue(1);
-        wave1.StartCoroutine(wave1.StartWave());
     }
     
     private void FixedUpdate()
