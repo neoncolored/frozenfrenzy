@@ -115,7 +115,7 @@ public class Krampus : GenericEnemy
         
         if ((transform.position - target.transform.position).magnitude < range) //player is hit
         {
-            playerScript.DamagePlayer(damage);
+            playerScript.DamagePlayer(damage, transform);
         }
         
         

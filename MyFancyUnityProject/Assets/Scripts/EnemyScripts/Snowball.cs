@@ -33,7 +33,7 @@ public class Snowball : MonoBehaviour
     {
         GameObject player = other.gameObject;
         Player script = player.GetComponent<Player>();
-        script.DamagePlayer(damage);
+        script.DamagePlayer(damage, transform);
         Destroy(gameObject);
     }
 

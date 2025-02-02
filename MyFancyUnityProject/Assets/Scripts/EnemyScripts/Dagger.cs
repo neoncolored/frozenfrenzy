@@ -7,6 +7,7 @@ public class Dagger : MonoBehaviour
     public float speed = 2.5f;
     public int damage = 5;
     private Vector3 _direction;
+    public Transform damageSpawn;
     
     
     // Start is called before the first frame update
@@ -34,7 +35,7 @@ public class Dagger : MonoBehaviour
         GameObject player = other.gameObject;
         if(player.TryGetComponent<Player>(out Player p))
         {
-            p.DamagePlayer(damage);
+            p.DamagePlayer(damage, damageSpawn);
         }
         Destroy(gameObject);
     }

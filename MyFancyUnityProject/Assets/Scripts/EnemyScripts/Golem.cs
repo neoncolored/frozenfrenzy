@@ -6,7 +6,7 @@ public class Golem : GenericEnemy
 {
     private GenericEnemy _genericEnemy;
     
-    private enum EnemyState
+    public enum EnemyState
     {
         PHASEONE,
         PHASETWO,
@@ -14,7 +14,7 @@ public class Golem : GenericEnemy
     }
     
     private Coroutine _hurtCoroutine;
-    private EnemyState _state;
+    public EnemyState state;
     private Animator _animator;
     private Vector3 _velocity = Vector3.zero;
     private SpriteRenderer _spriteRenderer;
@@ -34,7 +34,7 @@ public class Golem : GenericEnemy
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _state = EnemyState.PHASEONE;
+        state = EnemyState.PHASEONE;
     }
     
     private void Start()
@@ -43,7 +43,7 @@ public class Golem : GenericEnemy
         maxHp = hp;
         genericHealthBar.genericHealthBar.maxValue = maxHp;
         genericHealthBar.genericHealthBar.value = maxHp;
-        _state = EnemyState.PHASEONE;
+        state = EnemyState.PHASEONE;
         ResetPosition();
     }
 
@@ -111,6 +111,12 @@ public class Golem : GenericEnemy
     
     private void Shoot()
     {
+        if (state == EnemyState.PHASETWO)
+        {
+            ShootThree();
+            return;
+        }
+        
         var target = player.transform.position;
         target.z = 0;
         Transform firePoint;
@@ -128,7 +134,35 @@ public class Golem : GenericEnemy
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         daggerObject.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
-    
+
+    private void ShootThree()
+    {
+        var target = player.transform.position;
+        target.z = 0;
+        Transform firePoint;
+
+        if (_spriteRenderer.flipX) firePoint = firePointLeft;
+        else firePoint = firePointRight;
+        
+        var direction = (target - firePoint.position).normalized;
+        
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 30;
+
+
+        GameObject[] daggers = new GameObject[3];
+
+        for (int i = 0; i < daggers.Length; i++)
+        {
+            daggers[i] = Instantiate(dagger, firePoint.position, Quaternion.identity);
+            Dagger daggerScript = daggers[i].GetComponent<Dagger>();
+            Vector3 newVector = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad),
+                Mathf.Sin(angle * Mathf.Deg2Rad)
+                , 0);
+            daggerScript.SetDirection(newVector);  
+            daggers[i].transform.rotation = Quaternion.Euler(0, 0, angle);
+            angle += 30;
+        }
+    }
     
 
     public void StopAttack()

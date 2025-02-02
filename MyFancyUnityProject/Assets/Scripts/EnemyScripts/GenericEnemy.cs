@@ -73,6 +73,7 @@ public class GenericEnemy : MonoBehaviour
                 Golem golem = GetComponent<Golem>();
                 GetComponent<BoxCollider2D>().enabled = false;
                 StartCoroutine(golem.PlayDeathAnimation());
+                
             }
             
             //do for each enemy sadly
@@ -107,6 +108,11 @@ public class GenericEnemy : MonoBehaviour
             {
                 Golem golem = GetComponent<Golem>();
                 StartCoroutine(golem.PlayHurtAnimation());
+                if (hp <= 200)
+                {
+                    golem.state = Golem.EnemyState.PHASETWO;
+                    Debug.Log("IN PHASE TWO");
+                }
             }
         }
     }

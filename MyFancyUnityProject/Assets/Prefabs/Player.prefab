@@ -342,11 +342,12 @@ Transform:
   m_GameObject: {fileID: 2338408930864450690}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.721, y: -0.072, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1893515589090950581}
+  - {fileID: 1697908117826201877}
   - {fileID: 5087449659765968497}
   - {fileID: 1448563621802100800}
   m_Father: {fileID: 0}
@@ -425,6 +426,7 @@ MonoBehaviour:
   rollDuration: 0.7
   fishProjectile: {fileID: 2102826674412249398, guid: fac8ee6ff6d3d9a49ad827aeb03dba96, type: 3}
   firePoint: {fileID: 1893515589090950581}
+  damagePoint: {fileID: 1697908117826201877}
   hpBar: {fileID: 5706333027589803906}
   playerRollStamina: {fileID: 5564176653491770397}
   h: {fileID: 1595953810156355271}
@@ -879,6 +881,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4033458099755391574}
+--- !u!1 &4153914735986433382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1697908117826201877}
+  m_Layer: 6
+  m_Name: Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1697908117826201877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153914735986433382}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0034, y: -0.018, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2187140979681104213}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4461102908820930379
 GameObject:
   m_ObjectHideFlags: 0

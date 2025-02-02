@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
 
     public GameObject fishProjectile;
     public Transform firePoint;
+    public Transform damagePoint;
     public PlayerHealthBar hpBar;
     public PlayerRollStamina playerRollStamina;
     public HideStaminaBar h;
@@ -146,11 +147,14 @@ public class Player : MonoBehaviour
         StopRoll();
     }
 
-    public void DamagePlayer(int damage)
+    public void DamagePlayer(int damage, Transform position)
     {
         if (_state != PlayerState.Rolling && _state != PlayerState.Dead)
         {
             hp -= damage;
+            Vector3 point = (UnityEngine.Random.onUnitSphere * 0.1f);
+            damagePoint.position += point;
+            DamageCounterManager.Instance.InstantiateDamage(damagePoint, damage.ToString());
             _animator.SetTrigger("hit");
             hpBar.SetHealth(hp);
             if (hp <= 0)

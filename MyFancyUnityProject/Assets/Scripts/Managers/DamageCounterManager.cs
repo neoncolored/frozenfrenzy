@@ -6,24 +6,18 @@ using TMPro;
 
 public class DamageCounterManager : MonoBehaviour
 {
-    public void DestroyParent()
+    public static DamageCounterManager Instance;
+    
+    private void Awake()
     {
-        GameObject parent = gameObject.transform.parent.gameObject;
-        Destroy(parent);
+        Instance = this;
+        
     }
+    public GameObject damageTextPrefab;
 
-
-    public GameObject damageTextPrefab, enemyInstance;
-    public string textToDisplay;
-
-    private void Update()
+    public void InstantiateDamage(Transform positionToAttachTo, string damageAmount)
     {
-        if(Input.GetKeyDown(KeyCode.X)) InstantiateDamage();
-    }
-
-    public void InstantiateDamage()
-    {
-        GameObject damageTextInstance = Instantiate(damageTextPrefab, enemyInstance.transform);
-        damageTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
+        GameObject damageTextInstance = Instantiate(damageTextPrefab, positionToAttachTo);
+        damageTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(damageAmount);
     }
 }
