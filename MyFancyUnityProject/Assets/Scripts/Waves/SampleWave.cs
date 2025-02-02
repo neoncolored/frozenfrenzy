@@ -28,9 +28,6 @@ public class SampleWave : MonoBehaviour
 
     private void SetWave()
     {
-        //Test
-        //Wave 1
-        
         //du könntest sowas machen
 
         switch (wave)
