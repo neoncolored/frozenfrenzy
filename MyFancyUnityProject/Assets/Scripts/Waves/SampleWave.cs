@@ -23,7 +23,8 @@ public class SampleWave : MonoBehaviour
     public int enemyCap = 10; // siehe unten
     void Start()
     {
-        activeEnemies = numBat+numGrinch+numSnowman+numKrampus+numBoss;
+        activeEnemies = 0;
+        StartWave();
     }
 
     public IEnumerator StartWave()
@@ -41,9 +42,10 @@ public class SampleWave : MonoBehaviour
 
             while (count < enemyCap)
             {
-                enemies[index] = Instantiate(krampus);
+                Instantiate(krampus);
                 count++;
                 index++;
+                activeEnemies++;
             }
 
             
@@ -87,10 +89,16 @@ public class SampleWave : MonoBehaviour
             {
                 
             }
-
-            activeEnemies = numBat + numGrinch + numSnowman + numKrampus + numBoss;
-            wave = +1;
-            enemyCap = +2; //maybe something like numGrinch+=2
+            
+            if (activeEnemies == 0)
+            {
+                StartCoroutine(StartWave());
+                enemyCap = +2;
+                wave = +1;
+            }
+            
+            
+             //maybe something like numGrinch+=2
         }
     
 
@@ -106,11 +114,6 @@ public class SampleWave : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (activeEnemies == 0)
-        {
-            activeEnemies = numBat+numGrinch+numSnowman+numKrampus+numBoss;
-            StartCoroutine(StartWave());
-            count = 0;
-        }
+        
     }
 }
