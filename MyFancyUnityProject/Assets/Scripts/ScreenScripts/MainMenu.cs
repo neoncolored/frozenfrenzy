@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using PlayerScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class MainMenu : MonoBehaviour
 
+namespace ScreenScripts
 {
-    public void PlayGame()
-    {
-        SceneManager.LoadSceneAsync("SampleScene");
-        Player.hp = 100;
-    }
+    public class MainMenu : MonoBehaviour
 
-    public void QuitGame()
     {
-        Application.Quit();
+        public void PlayGame()
+        {
+            SceneManager.LoadSceneAsync("SampleScene");
+            BackgroundMusic.Instance.PlaySong(0);
+            Player.hp = 100;
+        }
+
+        public void QuitGame()
+        {
+            Application.Quit();
+            BackgroundMusic.Instance.StopSong(0);
+        }
     }
 }

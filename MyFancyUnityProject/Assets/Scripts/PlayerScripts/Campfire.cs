@@ -1,34 +1,56 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using Managers;
 using UnityEngine;
 
-public class Campfire : MonoBehaviour
+namespace PlayerScripts
 {
-
-    public float hpPerTick = 0.1f;
-    // Start is called before the first frame update
-    void Start()
+    public class Campfire : MonoBehaviour
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        public float hpPerTick = 0.1f;
+        public AudioClip campfireSound;
+        private bool isHealing = false;
+        public Transform posForBoss;
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        GameObject player = other.gameObject;
-        if (player.TryGetComponent<Player>(out Player p))
+        private Player _player;
+
+        private void Start()
         {
-            Player script = player.GetComponent<Player>();
-            script.hpBar.healthBar.value += hpPerTick;
+            SoundFXManager.instance.PlaySoundFXClip(campfireSound, transform, 0.2f, true, true);
         }
+
+        private void FixedUpdate()
+        {
         
+            if (isHealing)
+            {
+                Heal(_player);
+            }
+        }
+
+        private void Heal(Player p)
+        {
+            _player.hpBar.SetHealth(_player.hpBar.healthBar.value + hpPerTick);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
         
+            GameObject player = other.gameObject;
+            if (player.TryGetComponent<Player>(out Player p))
+            {
+                _player = player.GetComponent<Player>();
+                isHealing = true;
+            } 
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            GameObject player = other.gameObject;
+            if (player.TryGetComponent<Player>(out Player p))
+            {
+                _player = player.GetComponent<Player>();
+                isHealing = false;
+            }
+        }
     }
 }

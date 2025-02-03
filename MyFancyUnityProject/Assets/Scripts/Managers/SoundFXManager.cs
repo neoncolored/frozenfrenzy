@@ -1,43 +1,76 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Random = System.Random;
 
-public class SoundFXManager : MonoBehaviour
+namespace Managers
 {
-    public static SoundFXManager instance;
-
-    [SerializeField] private AudioSource soundFXObject;
-
-    private void Awake()
+    public class SoundFXManager : MonoBehaviour
     {
-        if (instance == null) instance = this;
-    }
+        public static SoundFXManager instance;
 
-    public void PlaySoundFXClip(AudioClip audioClip, Transform spawn, float volume)
-    {
-        AudioSource audioSource = Instantiate(soundFXObject, spawn.position, Quaternion.identity);
-        audioSource.clip = audioClip;
-        audioSource.volume = volume;
-        audioSource.Play();
+        [SerializeField] private AudioSource soundFXObject;
+        [SerializeField] private AudioSource campfireSoundFXObject; 
 
-        float clipLength = audioSource.clip.length;
+        private void Awake()
+        {
+            if (instance == null) instance = this;
+        }
+
+        public void PlaySoundFXClip(AudioClip audioClip, Transform spawn, float volume, bool loop, bool spatial)
+        {
+            AudioSource audioSource = Instantiate(soundFXObject, spawn.position, Quaternion.identity);
+            audioSource.clip = audioClip;
+            audioSource.volume = volume;
+            audioSource.loop = loop;
+            audioSource.spatialize = spatial;
+            if (spatial)
+            {
+                audioSource.spatialBlend = 1f;
+                audioSource.rolloffMode = AudioRolloffMode.Linear;
+                audioSource.minDistance = 10;
+                audioSource.maxDistance = 10.3f;
+            }
         
-        Destroy(audioSource.gameObject, clipLength);
-    }
+            audioSource.Play();
+
+        
+            float clipLength = audioSource.clip.length;
+
+
+
+            if (!loop)
+            {
+                Destroy(audioSource.gameObject, clipLength); 
+            }
+        }
     
-    public void PlayRandomSoundFXClip(AudioClip[] audioClip, Transform spawn, float volume)
-    {
-        int random = UnityEngine.Random.Range(0, audioClip.Length);
+        public void PlayRandomSoundFXClip(AudioClip[] audioClip, Transform spawn, float volume)
+        {
+            int random = UnityEngine.Random.Range(0, audioClip.Length-1);
         
-        AudioSource audioSource = Instantiate(soundFXObject, spawn.position, Quaternion.identity);
-        audioSource.clip = audioClip[random];
-        audioSource.volume = volume;
-        audioSource.Play();
+            AudioSource audioSource = Instantiate(soundFXObject, spawn.position, Quaternion.identity);
+            audioSource.clip = audioClip[random];
+            audioSource.volume = volume;
+            audioSource.Play();
 
-        float clipLength = audioSource.clip.length;
+            float clipLength = audioSource.clip.length;
         
-        Destroy(audioSource.gameObject, clipLength);
+            Destroy(audioSource.gameObject, clipLength);
+        }
+    
+        public void PlayRandomSoundFXClipWithRandomPitch(AudioClip[] audioClip, Transform spawn, float volume)
+        {
+            int random = UnityEngine.Random.Range(0, audioClip.Length-1);
+        
+            AudioSource audioSource = Instantiate(soundFXObject, spawn.position, Quaternion.identity);
+            audioSource.clip = audioClip[random];
+            audioSource.pitch = UnityEngine.Random.Range(1f, 2f);
+            audioSource.volume = volume;
+            audioSource.Play();
+
+            float clipLength = audioSource.clip.length;
+        
+            Destroy(audioSource.gameObject, clipLength);
+        
+        }
+
     }
 }

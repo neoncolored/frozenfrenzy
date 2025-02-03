@@ -101,6 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.5
   damage: 5
+  hitClips:
+  - {fileID: 8300000, guid: 58929f903f25acc4ea1e2c5a17214c31, type: 3}
 --- !u!50 &-4598805998655690436
 Rigidbody2D:
   serializedVersion: 4
