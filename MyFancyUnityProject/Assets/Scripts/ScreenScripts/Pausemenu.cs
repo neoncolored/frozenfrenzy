@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+public class  PauseScreen : MonoBehaviour
 {
     public GameObject pauseMenuUI;
     public Button resumeButton;
