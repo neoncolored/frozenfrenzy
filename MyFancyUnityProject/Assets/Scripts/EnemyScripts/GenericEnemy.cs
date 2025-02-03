@@ -22,6 +22,7 @@ namespace EnemyScripts
         public float hurtDuration;
         public GenericHealthBar genericHealthBar;
         public Transform damageSpawnPoint;
+        private bool _golemPhaseFour = false;
 
 
         private void Start()
@@ -36,12 +37,24 @@ namespace EnemyScripts
     
         public void DamageEnemy(int amount)
         {
-            hp -= amount;
-            Vector3 point = (UnityEngine.Random.onUnitSphere * 0.1f);
-            damageSpawnPoint.position += point;
-            DamageCounterManager.Instance.InstantiateDamage(damageSpawnPoint, damage.ToString());
-            genericHealthBar.SetHealth(hp);
             GenericEnemy genericScript = GetComponent<GenericEnemy>();
+            bool isInvulnerable = false;
+            
+            if (genericScript.GetType() == typeof(Golem))
+            {
+                Golem golem = GetComponent<Golem>();
+                isInvulnerable = golem.isInvulnerable;
+            }
+
+            if (!isInvulnerable)
+            {
+                hp -= amount;
+                Vector3 point = (UnityEngine.Random.onUnitSphere * 0.1f);
+                damageSpawnPoint.position += point;
+                DamageCounterManager.Instance.InstantiateDamage(damageSpawnPoint, damage.ToString());
+                genericHealthBar.SetHealth(hp);
+            }
+            
             if (hp <= 0)
             {
                 SampleWave.activeEnemies--;
@@ -114,10 +127,27 @@ namespace EnemyScripts
                 {
                     Golem golem = GetComponent<Golem>();
                     StartCoroutine(golem.PlayHurtAnimation());
-                    if (hp <= 200)
+                    if (hp <= 300)
                     {
                         golem.state = Golem.EnemyState.PHASETWO;
-                        Debug.Log("IN PHASE TWO");
+                    }
+
+                    if (hp <= 200)
+                    {
+                        golem.state = Golem.EnemyState.PHASETHREE;
+                        golem.specialAttackSpeed = 2.0f;
+                    }
+
+                    if (hp <= 100)
+                    {
+                        golem.state = Golem.EnemyState.PHASEFOUR;
+                        golem.specialAttackSpeed = 0.5f;
+                        if (!_golemPhaseFour)
+                        {
+                            golem.nextSpecialAttackTime = Time.time + 1f;
+                            _golemPhaseFour = true;
+                        }
+                        
                     }
                 }
             }

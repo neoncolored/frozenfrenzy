@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &203387483295612804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5866567882703402433}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5866567882703402433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203387483295612804}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5616116863004658186}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &544052551180880769
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +452,7 @@ Transform:
   - {fileID: 3571801302195426927}
   - {fileID: 2353924124566130563}
   - {fileID: 740904526476280248}
+  - {fileID: 5866567882703402433}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3779183350154042511
@@ -571,9 +603,13 @@ MonoBehaviour:
   genericHealthBar: {fileID: 7565196505168841162}
   damageSpawnPoint: {fileID: 740904526476280248}
   state: 0
+  isInvulnerable: 0
   firePointRight: {fileID: 3571801302195426927}
   firePointLeft: {fileID: 2353924124566130563}
+  firePoint: {fileID: 5866567882703402433}
   dagger: {fileID: 4284032686961200457, guid: b54beb257c5df97488d36201a2985c3e, type: 3}
+  specialAttackDuration: 45
+  specialAttackSpeed: 2
 --- !u!95 &1978542474373165203
 Animator:
   serializedVersion: 5

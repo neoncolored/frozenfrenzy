@@ -12,6 +12,7 @@ public class Golem : GenericEnemy
         PHASEONE,
         PHASETWO,
         PHASETHREE,
+        PHASEFOUR,
     }
     
     private Coroutine _hurtCoroutine;
@@ -21,13 +22,21 @@ public class Golem : GenericEnemy
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody2D;
     private bool _isDead = false;
+    private bool _isAttacking;
+    public bool isInvulnerable = false;
     
     public Transform firePointRight;
     public Transform firePointLeft;
+    public Transform firePoint;
     public GameObject dagger;
     
     private Coroutine _attackCoroutine;
     private float _nextAttackTime = 0.0f;
+    public float nextSpecialAttackTime = 0.0f;
+    public float specialAttackDuration;
+    public float specialAttackSpeed = 2.0f;
+    private float _nextSubSpecialAttackTime = 0.0f;
+    private Coroutine _specialAttackCoroutine;
     
 
     private void Awake()
@@ -56,6 +65,13 @@ public class Golem : GenericEnemy
 
     public void MoveTowardsPlayer(GameObject target)
     {
+        if (isInvulnerable && Time.time >= _nextSubSpecialAttackTime && _isAttacking)
+        {
+            StartCoroutine(DoSpecialAttack(UnityEngine.Random.Range(10,20)));
+            return;
+        }
+        if(isInvulnerable) return;
+        
         if (!_isDead)
         {
             Vector3 newPosition = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
@@ -65,21 +81,24 @@ public class Golem : GenericEnemy
             if (direction.y > 0) _spriteRenderer.sortingOrder = 5;
             else
             {
-                _spriteRenderer.sortingOrder = 10;}
-        
-            if (distance < range)
-            {
-                if (Time.time >= _nextAttackTime)
-                {
-                    _attackCoroutine = StartCoroutine(AttackPlayer(target, direction));
-                }
+                _spriteRenderer.sortingOrder = 10;
+                
             }
-            else 
+            if (Time.time >= _nextAttackTime)
+            {
+                if ((state == EnemyState.PHASETHREE || state == EnemyState.PHASEFOUR) && Time.time >= nextSpecialAttackTime)
+                {
+                    _specialAttackCoroutine = StartCoroutine(SpecialAttack());
+                }
+                if(distance < range) _attackCoroutine = StartCoroutine(AttackPlayer(target, direction));
+            }
+
+            if (distance >= range)
             {
                 _rigidbody2D.transform.position = newPosition;
                 _animator.SetFloat("speed", distance);
-            
             }
+            
             if (direction.x != 0) _spriteRenderer.flipX = direction.x > 0;     
         }
         
@@ -104,15 +123,92 @@ public class Golem : GenericEnemy
     {
         _nextAttackTime = Time.time + attackSpeed;
         _animator.SetTrigger("attack");
-        
-        //krampus specific: attack looks completed after half the animation
         yield return new WaitForSeconds(attackDuration);
         StopAttack();
     }
     
+    public IEnumerator SpecialAttack()
+    {
+        nextSpecialAttackTime = Time.time + specialAttackDuration;
+        _animator.SetTrigger("special");
+        yield return new WaitForSeconds(1);
+        isInvulnerable = true;
+        yield return new WaitForSeconds(1);
+        _isAttacking = true;
+        yield return new WaitForSeconds((specialAttackDuration/2)-2); //not very clean code all the durations get mixed up
+        StopSpecialAttack();
+    }
+
+    private int count = 0;
+    
+    private IEnumerator DoSpecialAttack(int daggerAmount)
+    {
+        var direction = Vector3.right.normalized;
+        
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        switch (count)
+        {
+            case 0:
+            {
+                angle += 10;
+                count++;
+                break;
+            }
+            case 1:
+            {
+                angle += 20;
+                count++;
+                break;
+            }
+            case 2:
+            {
+                count = 0;
+                break;
+            }
+            default:
+            {
+                count = 0;
+                break;
+            }
+        }
+
+        GameObject[] daggers = new GameObject[daggerAmount];
+
+        for (int i = 0; i < daggers.Length; i++)
+        {
+            daggers[i] = Instantiate(dagger, firePoint.position, Quaternion.identity);
+            Dagger daggerScript = daggers[i].GetComponent<Dagger>();
+            Vector3 newVector = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad),
+                Mathf.Sin(angle * Mathf.Deg2Rad)
+                , 0);
+            daggerScript.SetDirection(newVector);  
+            daggers[i].transform.rotation = Quaternion.Euler(0, 0, angle);
+            angle += 360.0f/daggers.Length;
+        }
+
+        _nextSubSpecialAttackTime = Time.time + specialAttackSpeed;
+        
+        yield return new WaitForSeconds(0);
+    }
+    
+    public void StopSpecialAttack()
+    {
+        if (_specialAttackCoroutine != null)
+        {
+            StopCoroutine(_specialAttackCoroutine);
+            _specialAttackCoroutine = null;
+        }
+
+        _isAttacking = false;
+        isInvulnerable = false;
+        _animator.ResetTrigger("special");
+    }
+    
+    
+    
     private void Shoot()
     {
-        if (state == EnemyState.PHASETWO)
+        if (state == EnemyState.PHASETWO || state == EnemyState.PHASETHREE || state == EnemyState.PHASEFOUR)
         {
             ShootThree();
             return;
