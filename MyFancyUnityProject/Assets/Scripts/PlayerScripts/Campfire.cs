@@ -9,6 +9,7 @@ namespace PlayerScripts
         public float hpPerTick = 0.1f;
         public AudioClip campfireSound;
         private bool isHealing = false;
+        public Transform posForBoss;
 
         private Player _player;
 

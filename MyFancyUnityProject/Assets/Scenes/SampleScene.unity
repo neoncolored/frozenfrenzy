@@ -418,9 +418,9 @@ GameObject:
   - component: {fileID: 188223074}
   - component: {fileID: 188223078}
   - component: {fileID: 188223077}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Campfire
-  m_TagString: Untagged
+  m_TagString: Campfire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -484,6 +484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpPerTick: 0.1
   campfireSound: {fileID: 8300000, guid: 8caa0d0b5cf101e43896a5d65acd3f40, type: 3}
+  posForBoss: {fileID: 1589851148}
 --- !u!224 &188223076
 RectTransform:
   m_ObjectHideFlags: 0
@@ -495,7 +496,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1589851148}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -14341,10 +14343,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6061030386457019683, guid: 8724d8dc9841de94f982d7ac79c33ec0, type: 3}
-      propertyPath: specialAttackSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6061030386457019683, guid: 8724d8dc9841de94f982d7ac79c33ec0, type: 3}
       propertyPath: specialAttackDuration
       value: 60
       objectReference: {fileID: 0}
@@ -14529,6 +14527,37 @@ Transform:
   - {fileID: 961103049}
   - {fileID: 1108023369}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1589851147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1589851148}
+  m_Layer: 10
+  m_Name: PointForBoss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1589851148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589851147}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0053556263, y: -0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 188223076}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1887723533
 GameObject:

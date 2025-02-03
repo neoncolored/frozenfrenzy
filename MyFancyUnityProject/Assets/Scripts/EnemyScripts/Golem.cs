@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using EnemyScripts;
+using PlayerScripts;
 using UnityEngine;
 
 public class Golem : GenericEnemy
@@ -24,7 +25,10 @@ public class Golem : GenericEnemy
     private bool _isDead = false;
     private bool _isAttacking;
     public bool isInvulnerable = false;
-    
+    private bool _isWalkingToCampfire = false;
+
+    private GameObject campfireobj;
+    private Transform campfire;
     public Transform firePointRight;
     public Transform firePointLeft;
     public Transform firePoint;
@@ -36,6 +40,7 @@ public class Golem : GenericEnemy
     public float specialAttackDuration;
     public float specialAttackSpeed = 2.0f;
     private float _nextSubSpecialAttackTime = 0.0f;
+    private bool _preparingForAttack;
     private Coroutine _specialAttackCoroutine;
     
 
@@ -53,6 +58,8 @@ public class Golem : GenericEnemy
         maxHp = hp;
         genericHealthBar.genericHealthBar.maxValue = maxHp;
         genericHealthBar.genericHealthBar.value = maxHp;
+        campfireobj = GameObject.FindWithTag("Campfire");
+        campfire = campfireobj.GetComponent<Campfire>().posForBoss;
         state = EnemyState.PHASEONE;
         ResetPosition();
     }
@@ -72,6 +79,24 @@ public class Golem : GenericEnemy
         }
         if(isInvulnerable) return;
         
+        if (_isWalkingToCampfire)
+        {
+            Vector3 newPosition = Vector3.MoveTowards(transform.position, campfire.position, speed * 2 * Time.deltaTime);
+            var relativePos = transform.position - campfire.position;
+            var distance = relativePos.magnitude;
+            var direction = relativePos / distance;
+            if (direction.y > 0) _spriteRenderer.sortingOrder = 5;
+            else _spriteRenderer.sortingOrder = 10;
+            _rigidbody2D.transform.position = newPosition;
+            if (distance < 0.1 && !_preparingForAttack)
+            {
+                _preparingForAttack = true;
+                _specialAttackCoroutine = StartCoroutine(SpecialAttack());
+            }
+            _animator.SetFloat("speed", distance);
+            if (direction.x != 0) _spriteRenderer.flipX = direction.x > 0;   
+        }
+
         if (!_isDead)
         {
             Vector3 newPosition = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
@@ -88,7 +113,7 @@ public class Golem : GenericEnemy
             {
                 if ((state == EnemyState.PHASETHREE || state == EnemyState.PHASEFOUR) && Time.time >= nextSpecialAttackTime)
                 {
-                    _specialAttackCoroutine = StartCoroutine(SpecialAttack());
+                    StartCoroutine(WalkToCampfireAndStartSpecialAttack());
                 }
                 if(distance < range) _attackCoroutine = StartCoroutine(AttackPlayer(target, direction));
             }
@@ -102,6 +127,12 @@ public class Golem : GenericEnemy
             if (direction.x != 0) _spriteRenderer.flipX = direction.x > 0;     
         }
         
+    }
+
+    public IEnumerator WalkToCampfireAndStartSpecialAttack() // why an iEnumerator??
+    {
+        _isWalkingToCampfire = true;
+        yield return new WaitForSeconds(0);
     }
     
     public IEnumerator PlayDeathAnimation()
@@ -135,7 +166,10 @@ public class Golem : GenericEnemy
         isInvulnerable = true;
         yield return new WaitForSeconds(1);
         _isAttacking = true;
-        yield return new WaitForSeconds((specialAttackDuration/2)-2); //not very clean code all the durations get mixed up
+        _isWalkingToCampfire = false;
+        _preparingForAttack = false;
+        float specialAttackCooldown = specialAttackDuration / 2 - 2; // i think cooldown and duration is switched
+        yield return new WaitForSeconds(specialAttackCooldown-1); //not very clean code all the durations get mixed up
         StopSpecialAttack();
     }
 
@@ -193,11 +227,6 @@ public class Golem : GenericEnemy
     
     public void StopSpecialAttack()
     {
-        if (_specialAttackCoroutine != null)
-        {
-            StopCoroutine(_specialAttackCoroutine);
-            _specialAttackCoroutine = null;
-        }
 
         _isAttacking = false;
         isInvulnerable = false;
