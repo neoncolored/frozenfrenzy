@@ -52,7 +52,7 @@ namespace EnemyScripts
                 Vector3 point = (UnityEngine.Random.onUnitSphere * 0.1f);
                 Transform temp = damageSpawnPoint;
                 damageSpawnPoint.position += point;
-                DamageCounterManager.Instance.InstantiateDamage(damageSpawnPoint, damage.ToString());
+                DamageCounterManager.Instance.InstantiateDamage(damageSpawnPoint, amount.ToString());
                 genericHealthBar.SetHealth(hp);
                 damageSpawnPoint = temp;
             }

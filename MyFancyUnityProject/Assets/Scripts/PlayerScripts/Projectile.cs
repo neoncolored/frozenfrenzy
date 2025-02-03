@@ -34,15 +34,13 @@ namespace PlayerScripts
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-        
             GameObject enemy = other.gameObject;
             if (enemy.TryGetComponent(out GenericEnemy e))
             {
                 if(enemy.GetType() == typeof(Dagger) || enemy.GetType() == typeof(Snowball)) return;
                 //ScreenShake.Instance.ShakeCamera(0.2f, 0.2f);
             
-                GenericEnemy script = enemy.GetComponent<GenericEnemy>();
-                script.DamageEnemy(5);
+                e.DamageEnemy(damage);
                 SoundFXManager.instance.PlayRandomSoundFXClipWithRandomPitch(hitClips, transform, 0.3f);
                 Destroy(gameObject); 
             }
