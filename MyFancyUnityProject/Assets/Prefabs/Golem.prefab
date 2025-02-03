@@ -143,6 +143,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5616116863004658186}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2698952750160734155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 740904526476280248}
+  m_Layer: 0
+  m_Name: DamageSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &740904526476280248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2698952750160734155}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5616116863004658186}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3613893778152727530
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,6 +420,7 @@ Transform:
   - {fileID: 2445404119597982417}
   - {fileID: 3571801302195426927}
   - {fileID: 2353924124566130563}
+  - {fileID: 740904526476280248}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3779183350154042511
@@ -537,6 +569,8 @@ MonoBehaviour:
   deathDuration: 2
   hurtDuration: 1
   genericHealthBar: {fileID: 7565196505168841162}
+  damageSpawnPoint: {fileID: 740904526476280248}
+  state: 0
   firePointRight: {fileID: 3571801302195426927}
   firePointLeft: {fileID: 2353924124566130563}
   dagger: {fileID: 4284032686961200457, guid: b54beb257c5df97488d36201a2985c3e, type: 3}

@@ -1,49 +1,53 @@
 using System.Collections;
+using PlayerScripts;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class LosingScreenManager : MonoBehaviour
+namespace ScreenScripts
 {
-    public CanvasGroup losingScreenCanvasGroup; 
-    public float fadeDuration = 1.5f;
-    public Button restartButton;
-
-    private bool _isFading = false;
-
-    private void Start()
+    public class LosingScreenManager : MonoBehaviour
     {
-        restartButton.onClick.AddListener(RestartGame);
-    }
+        public CanvasGroup losingScreenCanvasGroup; 
+        public float fadeDuration = 1.5f;
+        public Button restartButton;
 
-    public void ShowLosingScreen()
-    {
-        if (!_isFading)
+        private bool _isFading = false;
+
+        private void Start()
         {
-            _isFading = true;
-            StartCoroutine(FadeIn());
-        }
-    }
-
-    private IEnumerator FadeIn()
-    {
-        var elapsedTime = 0f;
-
-        while (elapsedTime < fadeDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            losingScreenCanvasGroup.alpha = Mathf.Clamp01(elapsedTime / fadeDuration);
-            yield return null;
+            restartButton.onClick.AddListener(RestartGame);
         }
 
-        losingScreenCanvasGroup.interactable = true;
-        losingScreenCanvasGroup.blocksRaycasts = true;
-    }
+        public void ShowLosingScreen()
+        {
+            if (!_isFading)
+            {
+                _isFading = true;
+                StartCoroutine(FadeIn());
+            }
+        }
 
-    private static void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Player.hp = 100;
+        private IEnumerator FadeIn()
+        {
+            var elapsedTime = 0f;
+
+            while (elapsedTime < fadeDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                losingScreenCanvasGroup.alpha = Mathf.Clamp01(elapsedTime / fadeDuration);
+                yield return null;
+            }
+
+            losingScreenCanvasGroup.interactable = true;
+            losingScreenCanvasGroup.blocksRaycasts = true;
+        }
+
+        private static void RestartGame()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Player.hp = 100;
+        }
     }
 }
 

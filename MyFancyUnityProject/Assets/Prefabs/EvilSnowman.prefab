@@ -66,6 +66,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4710442862168003421}
+  - {fileID: 2994589616325296014}
   - {fileID: 1637391294625169796}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -236,6 +237,7 @@ MonoBehaviour:
   deathDuration: 1.3
   hurtDuration: 1
   genericHealthBar: {fileID: 1763917857648052463}
+  damageSpawnPoint: {fileID: 2994589616325296014}
   firePoint: {fileID: 4710442862168003421}
   snowball: {fileID: 3694729477542310318, guid: 3ab341ef8a9310848b6f74c999ffca2c, type: 3}
 --- !u!1 &2466073258527310981
@@ -528,6 +530,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   genericHealthBar: {fileID: 7746504982174226810}
   g: {fileID: 160410149311079433}
+--- !u!1 &7955008736393573494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2994589616325296014}
+  m_Layer: 0
+  m_Name: DamageSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2994589616325296014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7955008736393573494}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 751213857823017714}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8603085883354574868
 GameObject:
   m_ObjectHideFlags: 0

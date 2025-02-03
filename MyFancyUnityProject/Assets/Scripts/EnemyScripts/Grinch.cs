@@ -1,124 +1,127 @@
 using System.Collections;
-using System.Collections.Generic;
+using PlayerScripts;
 using UnityEngine;
 
-public class Grinch : GenericEnemy
+namespace EnemyScripts
 {
-    private GenericEnemy _genericEnemy2;
-    
-
-    private Player playerScript;
-    private Coroutine _hurtCoroutine;
-    private Animator _animator;
-    private Vector3 _velocity = Vector3.zero;
-    private SpriteRenderer _spriteRenderer;
-    private Rigidbody2D _rigidbody2D;
-    private bool isDead = false;
-    
-    
-    private Coroutine _attackCoroutine;
-    private float _nextAttackTime = 0.0f;
-    
-
-    private void Awake()
+    public class Grinch : GenericEnemy
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _animator = this.GetComponent<Animator>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        
-        
-    }
-
-    private void Start()
-    {
-        player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<Player>();
-        maxHp = hp;
-        genericHealthBar.genericHealthBar.maxValue = maxHp;
-        genericHealthBar.genericHealthBar.value = maxHp;
-        ResetPosition();
-    }
-
-    private void FixedUpdate()
-    {
-        MoveTowardsPlayer(player);
-    }
+        private GenericEnemy _genericEnemy2;
     
 
-    public void MoveTowardsPlayer(GameObject target)
-    {
-        if (!isDead)
+        private Player playerScript;
+        private Coroutine _hurtCoroutine;
+        private Animator _animator;
+        private Vector3 _velocity = Vector3.zero;
+        private SpriteRenderer _spriteRenderer;
+        private Rigidbody2D _rigidbody2D;
+        private bool isDead = false;
+    
+    
+        private Coroutine _attackCoroutine;
+        private float _nextAttackTime = 0.0f;
+    
+
+        private void Awake()
         {
-            Vector3 newPosition = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-            var relativePos = transform.position - target.transform.position;
-            var distance = relativePos.magnitude;
-            var direction = relativePos / distance;
-            if (direction.y > 0) _spriteRenderer.sortingOrder = 5;
-            else
-            {
-                _spriteRenderer.sortingOrder = 10;}
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+            _animator = this.GetComponent<Animator>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
         
-            if (distance < range)
+        
+        }
+
+        private void Start()
+        {
+            player = GameObject.FindWithTag("Player");
+            playerScript = player.GetComponent<Player>();
+            maxHp = hp;
+            genericHealthBar.genericHealthBar.maxValue = maxHp;
+            genericHealthBar.genericHealthBar.value = maxHp;
+            ResetPosition();
+        }
+
+        private void FixedUpdate()
+        {
+            MoveTowardsPlayer(player);
+        }
+    
+
+        public void MoveTowardsPlayer(GameObject target)
+        {
+            if (!isDead)
             {
-                if (Time.time >= _nextAttackTime)
+                Vector3 newPosition = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+                var relativePos = transform.position - target.transform.position;
+                var distance = relativePos.magnitude;
+                var direction = relativePos / distance;
+                if (direction.y > 0) _spriteRenderer.sortingOrder = 5;
+                else
                 {
-                    _attackCoroutine = StartCoroutine(AttackPlayer(target, direction));
+                    _spriteRenderer.sortingOrder = 10;}
+        
+                if (distance < range)
+                {
+                    if (Time.time >= _nextAttackTime)
+                    {
+                        _attackCoroutine = StartCoroutine(AttackPlayer(target, direction));
+                    }
                 }
-            }
-            else 
-            {
-                _rigidbody2D.transform.position = newPosition;
-                _animator.SetFloat("speed", distance);
+                else 
+                {
+                    _rigidbody2D.transform.position = newPosition;
+                    _animator.SetFloat("speed", distance);
             
+                }
+                if (direction.x != 0) _spriteRenderer.flipX = direction.x > 0;     
             }
-            if (direction.x != 0) _spriteRenderer.flipX = direction.x > 0;     
-        }
         
-    }
+        }
     
-    public IEnumerator PlayDeathAnimation()
-    {
-        _animator.SetTrigger("die");
-        isDead = true;
-        yield return new WaitForSeconds(deathDuration);
+        public IEnumerator PlayDeathAnimation()
+        {
+            _animator.SetTrigger("die");
+            isDead = true;
+            yield return new WaitForSeconds(deathDuration);
         
-        Destroy(gameObject);
-    }
+            Destroy(gameObject);
+        }
     
-    public  IEnumerator PlayHurtAnimation()
-    {
-        _animator.SetTrigger("hurt");
-        yield return new WaitForSeconds(hurtDuration);
-        _animator.ResetTrigger("hurt");
-    }
-
-    public IEnumerator AttackPlayer(GameObject target, Vector3 direction)
-    {
-        _nextAttackTime = Time.time + attackSpeed;
-        _animator.SetTrigger("attack");
-        
-        //krampus specific: attack looks completed after half the animation
-        yield return new WaitForSeconds(attackDuration/2);
-        
-        if ((transform.position - target.transform.position).magnitude < range) //player is hit
+        public  IEnumerator PlayHurtAnimation()
         {
-            playerScript.DamagePlayer(damage, transform);
+            _animator.SetTrigger("hurt");
+            yield return new WaitForSeconds(hurtDuration);
+            _animator.ResetTrigger("hurt");
         }
-        
-        
-        yield return new WaitForSeconds(attackDuration/2);
-        
-        StopAttack();
-    }
 
-    public void StopAttack()
-    {
-        if (_attackCoroutine != null)
+        public IEnumerator AttackPlayer(GameObject target, Vector3 direction)
         {
-            StopCoroutine(_attackCoroutine);
-            _attackCoroutine = null;
-        }
+            _nextAttackTime = Time.time + attackSpeed;
+            _animator.SetTrigger("attack");
         
-        _animator.ResetTrigger("attack");
+            //krampus specific: attack looks completed after half the animation
+            yield return new WaitForSeconds(attackDuration/2);
+        
+            if ((transform.position - target.transform.position).magnitude < range) //player is hit
+            {
+                playerScript.DamagePlayer(damage, transform);
+            }
+        
+        
+            yield return new WaitForSeconds(attackDuration/2);
+        
+            StopAttack();
+        }
+
+        public void StopAttack()
+        {
+            if (_attackCoroutine != null)
+            {
+                StopCoroutine(_attackCoroutine);
+                _attackCoroutine = null;
+            }
+        
+            _animator.ResetTrigger("attack");
+        }
     }
 }

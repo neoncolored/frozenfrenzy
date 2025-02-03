@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using EnemyScripts;
 using UnityEngine;
 
 public class Golem : GenericEnemy
