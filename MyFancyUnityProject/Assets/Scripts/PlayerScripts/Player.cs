@@ -111,7 +111,7 @@ namespace PlayerScripts
             PlayerInput();
             
             
-            if (Input.GetMouseButtonDown(0) && Ammunition > 0)
+            if (Input.GetMouseButtonDown(0) && Ammunition > 0 && state != PlayerState.Reloading)
             {
                 Shoot();
             }
