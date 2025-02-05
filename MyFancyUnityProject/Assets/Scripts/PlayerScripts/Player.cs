@@ -3,6 +3,7 @@ using Managers;
 using ScreenScripts;
 using UnityEngine;
 using Waves;
+using PlayerScripts.UI;
 
 
 namespace PlayerScripts
@@ -16,15 +17,15 @@ namespace PlayerScripts
             Spinning,
             Rolling,
             Hit,
-            Dead
+            Dead,
+            Reloading
         }
     
         //SFX
         [SerializeField] private AudioClip[] walkClips;
         [SerializeField] private float timeForOneStep = 0.3f;
+
         private float _nextStepTime = 0.0f;
-    
-    
         //------
     
         private Player _player;
@@ -35,25 +36,34 @@ namespace PlayerScripts
     
         private Vector3 _velocity = Vector3.zero;
         public float speed = 50.0f;
-        public static int maxHp = 100;
-        public static int hp = maxHp;
+        public static int MaxHp = 100;
+        public static int Hp = MaxHp;
     
         // Rolling variables
         public float rollCoolDown = 20.0f;
         public float rollDuration = 5.0f;
         private float _timeSinceRoll = 0.0f;
-    
         private Coroutine _rollCoroutine;
         private float _nextRollTime = 0.0f;
         private bool _isRolling = false;
-
+        public PlayerRollStamina playerRollStamina;
+        
+        
+        // Ammo and reload variables
+        public static int Ammunition = 15;
+        public AmmoBar ammoBar;
+        public float reloadDuration = 3.0f;
+        private Coroutine _reloadCoroutine;
+        
         public GameObject fishProjectile;
         public Transform firePoint;
         public Transform damagePoint;
         public PlayerHealthBar hpBar;
-        public PlayerRollStamina playerRollStamina;
         public HideStaminaBar h;
+        
+        
         [SerializeField] private SampleWave wave1;
+        
 
     
         public LosingScreenManager losingScreenManager;
@@ -86,7 +96,7 @@ namespace PlayerScripts
             if (_state != PlayerState.Dead)
             {
                 PlayerInput();
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) && Ammunition > 0)
                 {
                     Shoot();
                 }
@@ -124,6 +134,12 @@ namespace PlayerScripts
                 }
             }
             else if (Input.GetKeyDown(KeyCode.LeftShift) && _isRolling) StopRoll();
+
+            if (Input.GetKeyDown(KeyCode.R) && _state != PlayerState.Reloading)
+            {
+                _state = PlayerState.Reloading;
+                _reloadCoroutine = StartCoroutine(Reload());
+            }
         
         }
 
@@ -148,27 +164,7 @@ namespace PlayerScripts
         
             StopRoll();
         }
-
-        public bool DamagePlayer(int damage, Transform position)
-        {
-            if (_state != PlayerState.Rolling && _state != PlayerState.Dead && !_isRolling)
-            {
-                hp -= damage;
-                Vector3 point = (UnityEngine.Random.onUnitSphere * 0.1f);
-                damagePoint.position += point;
-                DamageCounterManager.Instance.InstantiateDamage(damagePoint, damage.ToString());
-                _animator.SetTrigger("hit");
-                hpBar.SetHealth(hp);
-                if (hp <= 0)
-                {
-                    Die();
-                }
-
-                return true;
-            }
-            return false;
-        }
-
+        
         private void StopRoll()
         {
             if (speed > 0) _state = PlayerState.Walking;
@@ -184,6 +180,26 @@ namespace PlayerScripts
             StartCoroutine(h.SetInactive());
         }
 
+        public bool DamagePlayer(int damage, Transform position)
+        {
+            if (_state != PlayerState.Rolling && _state != PlayerState.Dead && !_isRolling)
+            {
+                Hp -= damage;
+                Vector3 point = (UnityEngine.Random.onUnitSphere * 0.1f);
+                damagePoint.position += point;
+                DamageCounterManager.Instance.InstantiateDamage(damagePoint, damage.ToString());
+                _animator.SetTrigger("hit");
+                hpBar.SetHealth(Hp);
+                if (Hp <= 0)
+                {
+                    Die();
+                }
+
+                return true;
+            }
+            return false;
+        }
+        
         private void Shoot()
         {
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -197,6 +213,33 @@ namespace PlayerScripts
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             projectile.transform.rotation = Quaternion.Euler(0, 0, angle);
+            
+            Ammunition--;
+            ammoBar.SetAmmo(Ammunition);
+            if (Ammunition == 0 && _state != PlayerState.Reloading)
+            {
+                _reloadCoroutine = StartCoroutine(Reload());
+            }
+        }
+
+        private IEnumerator Reload()
+        {
+            _state = PlayerState.Reloading;
+            Debug.Log("Reloading...");
+            yield return new WaitForSeconds(reloadDuration);
+            StopReload();
+        }
+
+        private void StopReload()
+        {
+            if (_reloadCoroutine != null)
+            {
+                StopCoroutine(_reloadCoroutine);
+                _reloadCoroutine = null;
+            }
+            
+            Ammunition = 15;
+            ammoBar.SetAmmo(Ammunition);
         }
 
         private void Die()
