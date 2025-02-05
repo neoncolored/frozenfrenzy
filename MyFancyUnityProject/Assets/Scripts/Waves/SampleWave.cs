@@ -69,7 +69,52 @@ namespace Waves
                     numBoss = 0;
                     break;
                 }
-                case 5: //Boss
+                case 5:
+                {
+                    numBat = 5;
+                    numGrinch = 5;
+                    numKrampus = 15;
+                    numSnowman = 5;
+                    numBoss = 0;
+                    break;
+                }
+                case 6:
+                {
+                    numBat = 0;
+                    numGrinch = 0;
+                    numKrampus = 0;
+                    numSnowman = 25;
+                    numBoss = 0;
+                    break;
+                }
+                case 7:
+                {
+                    numBat = 10;
+                    numGrinch = 10;
+                    numKrampus = 10;
+                    numSnowman = 10;
+                    numBoss = 0;
+                    break;
+                }
+                case 8:
+                {
+                    numBat = 10;
+                    numGrinch = 10;
+                    numKrampus = 10;
+                    numSnowman = 10;
+                    numBoss = 0;
+                    break;
+                }
+                case 9:
+                {
+                    numBat = 10;
+                    numGrinch = 10;
+                    numKrampus = 10;
+                    numSnowman = 10;
+                    numBoss = 0;
+                    break;
+                }
+                case 10: //Boss
                 {
                     numBat = 0;
                     numGrinch = 0;
