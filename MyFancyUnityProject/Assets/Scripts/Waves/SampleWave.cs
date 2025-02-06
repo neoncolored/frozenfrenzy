@@ -35,18 +35,18 @@ namespace Waves
             {
                 case 1: //wie viele gegner in wave 1 spawnen
                 {
-                    numBat = 5;
+                    numBat = 0;
                     numGrinch = 0;
-                    numKrampus = 0;
-                    numSnowman = 5;
+                    numKrampus = 10;
+                    numSnowman = 0;
                     numBoss = 0;
                     break;
                 }
                 case 2: //in wave 2
                 {
-                    numBat = 0;
-                    numGrinch = 5;
-                    numKrampus = 0;
+                    numBat = 5;
+                    numGrinch = 0;
+                    numKrampus = 10;
                     numSnowman = 0;
                     numBoss = 0;
                     break;
@@ -63,27 +63,27 @@ namespace Waves
                 case 4:
                 {
                     numBat = 5;
-                    numGrinch = 5;
-                    numKrampus = 5;
+                    numGrinch = 0;
+                    numKrampus = 10;
                     numSnowman = 5;
                     numBoss = 0;
                     break;
                 }
                 case 5:
                 {
-                    numBat = 5;
-                    numGrinch = 5;
-                    numKrampus = 15;
-                    numSnowman = 5;
+                    numBat = 10;
+                    numGrinch = 0;
+                    numKrampus = 10;
+                    numSnowman = 10;
                     numBoss = 0;
                     break;
                 }
                 case 6:
                 {
-                    numBat = 0;
-                    numGrinch = 0;
+                    numBat = 5;
+                    numGrinch = 5;
                     numKrampus = 0;
-                    numSnowman = 25;
+                    numSnowman = 5;
                     numBoss = 0;
                     break;
                 }
@@ -91,17 +91,17 @@ namespace Waves
                 {
                     numBat = 10;
                     numGrinch = 10;
-                    numKrampus = 10;
+                    numKrampus = 0;
                     numSnowman = 10;
                     numBoss = 0;
                     break;
                 }
                 case 8:
                 {
-                    numBat = 10;
-                    numGrinch = 10;
-                    numKrampus = 10;
-                    numSnowman = 10;
+                    numBat = 0;
+                    numGrinch = 0;
+                    numKrampus = 20;
+                    numSnowman = 20;
                     numBoss = 0;
                     break;
                 }
