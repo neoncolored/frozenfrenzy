@@ -600,12 +600,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: da08d336a9893ce408b06cde9f596df8, type: 3}
   timeForOneStep: 0.4
   state: 0
-  speed: 50
+  speed: 40
   rollCoolDown: 5
   rollDuration: 0.7
   playerRollStamina: {fileID: 5564176653491770397}
   ammoBar: {fileID: 5683360361819440576}
   reloadDuration: 3
+  shootCooldown: 0.2
   fishProjectile: {fileID: 2102826674412249398, guid: fac8ee6ff6d3d9a49ad827aeb03dba96, type: 3}
   firePoint: {fileID: 1893515589090950581}
   damagePoint: {fileID: 1697908117826201877}

@@ -414,7 +414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2338408930864450690, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
-  speed: 0.2
+  speed: 0.5
   range: 0.2
   attackSpeed: 0.5
   attackDuration: 0.5

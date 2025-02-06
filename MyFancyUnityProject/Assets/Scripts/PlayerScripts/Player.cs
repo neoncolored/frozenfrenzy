@@ -36,8 +36,8 @@ namespace PlayerScripts
         private SpriteRenderer _spriteRenderer;
     
         private Vector3 _velocity = Vector3.zero;
-        public float speed = 50.0f;
-        public static int MaxHp = 100;
+        public float speed = 40.0f;
+        public static int MaxHp = 85;
         public static int Hp = MaxHp;
     
         // Rolling variables
@@ -55,6 +55,10 @@ namespace PlayerScripts
         public AmmoBar ammoBar;
         public float reloadDuration = 3.0f;
         private Coroutine _reloadCoroutine;
+        
+        // Shoot variables
+        public float shootCooldown = 0.2f;
+        private float _nextShootTime = 0.0f;
         
         public GameObject fishProjectile;
         public Transform firePoint;
@@ -105,15 +109,18 @@ namespace PlayerScripts
                     {
                         ChangeState(PlayerState.Idle);
                     }
-                    
                     break;
             } 
             PlayerInput();
             
             
-            if (Input.GetMouseButtonDown(0) && Ammunition > 0 && state != PlayerState.Reloading)
+            if (Input.GetMouseButtonDown(0) 
+                && Ammunition > 0 
+                && state != PlayerState.Reloading
+                && Time.time >= _nextShootTime)
             {
                 Shoot();
+                _nextShootTime = Time.time + shootCooldown;
             }
             
         }
@@ -246,13 +253,37 @@ namespace PlayerScripts
             ammoBar.SetAmmo(Ammunition);
             if (Ammunition == 0 && state != PlayerState.Reloading)
             {
+                ChangeState(PlayerState.Reloading);
                 _reloadCoroutine = StartCoroutine(Reload());
             }
         }
 
         private IEnumerator Reload()
         {
-            yield return new WaitForSeconds(reloadDuration);
+            float startAmmo = Ammunition; 
+            float targetAmmo = 15f;
+
+            float elapsed = 0f;
+            while (elapsed < reloadDuration)
+            {
+                elapsed += Time.deltaTime;
+                // Wie weit wir im Reload-Fortschritt sind (0 bis 1)
+                float progress = Mathf.Clamp01(elapsed / reloadDuration);
+
+                // Interpoliere zwischen startAmmo und targetAmmo
+                float currentAmount = Mathf.Lerp(startAmmo, targetAmmo, progress);
+
+                // Slider setzen
+                ammoBar.SetAmmo(currentAmount);
+
+                yield return null;
+            }
+
+            // Am Ende sicherstellen, dass die Munition wirklich bei 15 ist
+            Ammunition = 15;
+            ammoBar.SetAmmo(Ammunition);
+
+            // Jetzt den Reload abschließen (StopReload-Logik)
             StopReload();
         }
 
@@ -272,9 +303,6 @@ namespace PlayerScripts
             {
                 ChangeState(PlayerState.Idle);
             }
-            
-            Ammunition = 15;
-            ammoBar.SetAmmo(Ammunition);
         }
 
         private void Die()
