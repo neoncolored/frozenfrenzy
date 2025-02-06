@@ -187,6 +187,10 @@ namespace Waves
             wave += 1;
             enemyCap += 2; //maybe something like numGrinch+=2
             isSet = false;
+            yield return new WaitForSeconds(90);
+            isSet = true;
+            SetWave();
+            StartCoroutine(StartWave());
         }
     
     
