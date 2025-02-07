@@ -190,6 +190,8 @@ namespace Waves
             
             //neue Wave nach 90 Sek
             yield return new WaitForSeconds(90);
+            
+            
             isSet = true;
             SetWave();
             StartCoroutine(StartWave());
@@ -201,6 +203,8 @@ namespace Waves
         {
             if (activeEnemies == 0 && isSet == false)
             {
+                
+                
                 isSet = true;
                 SetWave();
                 StartCoroutine(StartWave());
