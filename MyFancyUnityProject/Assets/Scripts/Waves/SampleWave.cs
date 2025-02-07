@@ -6,6 +6,8 @@ namespace Waves
 {
     public class SampleWave : MonoBehaviour
     {
+        public UpgradeMenu upgradeMenu;
+        
         // Start is called before the first frame update
         private GameObject[] enemies;
         [SerializeField] private GameObject krampus;
@@ -25,9 +27,13 @@ namespace Waves
         void Start()
         {
             activeEnemies = 0;
+            wave = 1;
+            SetWave();                     
+            StartCoroutine(StartWave());  
+            upgradeMenu = FindObjectOfType<UpgradeMenu>();
         }
 
-        private void SetWave()
+        public void SetWave()
         {
             //du könntest sowas machen
 
@@ -191,8 +197,6 @@ namespace Waves
             //neue Wave nach 90 Sek
             yield return new WaitForSeconds(90);
             isSet = true;
-            SetWave();
-            StartCoroutine(StartWave());
         }
     
     
@@ -202,8 +206,7 @@ namespace Waves
             if (activeEnemies == 0 && isSet == false)
             {
                 isSet = true;
-                SetWave();
-                StartCoroutine(StartWave());
+                upgradeMenu.ShowMenu();
             }
         }
     }

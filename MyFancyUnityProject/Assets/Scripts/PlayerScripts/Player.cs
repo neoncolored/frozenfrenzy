@@ -37,7 +37,7 @@ namespace PlayerScripts
     
         private Vector3 _velocity = Vector3.zero;
         public float speed = 40.0f;
-        public static int MaxHp = 85;
+        public static int MaxHp = 100;
         public static int Hp = MaxHp;
     
         // Rolling variables
@@ -267,23 +267,14 @@ namespace PlayerScripts
             while (elapsed < reloadDuration)
             {
                 elapsed += Time.deltaTime;
-                // Wie weit wir im Reload-Fortschritt sind (0 bis 1)
                 float progress = Mathf.Clamp01(elapsed / reloadDuration);
-
-                // Interpoliere zwischen startAmmo und targetAmmo
                 float currentAmount = Mathf.Lerp(startAmmo, targetAmmo, progress);
-
-                // Slider setzen
                 ammoBar.SetAmmo(currentAmount);
-
                 yield return null;
             }
 
-            // Am Ende sicherstellen, dass die Munition wirklich bei 15 ist
             Ammunition = 15;
             ammoBar.SetAmmo(Ammunition);
-
-            // Jetzt den Reload abschließen (StopReload-Logik)
             StopReload();
         }
 

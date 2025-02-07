@@ -421,7 +421,7 @@ MonoBehaviour:
   damage: 20
   hp: 20
   deathDuration: 1
-  hurtDuration: 1
+  hurtDuration: 0
   genericHealthBar: {fileID: 8263606346343173271}
   damageSpawnPoint: {fileID: 2876695481733764758}
 --- !u!1 &6770901534290668819
