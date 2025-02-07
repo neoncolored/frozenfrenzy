@@ -1,4 +1,5 @@
 using System.Collections;
+using Managers;
 using PlayerScripts;
 using UnityEngine;
 
@@ -16,6 +17,9 @@ namespace EnemyScripts
         private SpriteRenderer _spriteRenderer;
         private Rigidbody2D _rigidbody2D;
         private bool isDead = false;
+        public AudioClip grinchSpawn;
+        public AudioClip grinchDeath;
+        public AudioClip grinchHit;
     
     
         private Coroutine _attackCoroutine;
@@ -39,6 +43,7 @@ namespace EnemyScripts
             genericHealthBar.genericHealthBar.maxValue = maxHp;
             genericHealthBar.genericHealthBar.value = maxHp;
             ResetPosition();
+            
         }
 
         private void FixedUpdate()
@@ -83,7 +88,6 @@ namespace EnemyScripts
             _animator.SetTrigger("die");
             isDead = true;
             yield return new WaitForSeconds(deathDuration);
-        
             Destroy(gameObject);
         }
     
