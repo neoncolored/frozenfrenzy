@@ -62,7 +62,7 @@ public class UpgradeMenu : MonoBehaviour
 
     private void OnSpeedUpgrade()
     {
-        player.speed += 5f;
+        player.speed += 2f;
         if (_isShowing) CloseMenu();
     }
 

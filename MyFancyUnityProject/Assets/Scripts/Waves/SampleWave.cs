@@ -193,12 +193,7 @@ namespace Waves
             wave += 1;
             enemyCap += 2; //maybe something like numGrinch+=2
             isSet = false;
-            
             //neue Wave nach 90 Sek
-            yield return new WaitForSeconds(90);
-            
-            
-            isSet = true;
         }
     
     
@@ -207,8 +202,6 @@ namespace Waves
         {
             if (activeEnemies == 0 && isSet == false)
             {
-                
-                
                 isSet = true;
                 upgradeMenu.ShowMenu();
             }
