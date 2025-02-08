@@ -58353,6 +58353,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1159565985}
     - target: {fileID: 4033458099755391574, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
+      propertyPath: shootCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033458099755391574, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
       propertyPath: losingScreenManager
       value: 
       objectReference: {fileID: 571575642}
