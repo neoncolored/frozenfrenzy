@@ -25,10 +25,9 @@ namespace PlayerScripts
         //SFX
         [SerializeField] private AudioClip[] walkClips;
         [SerializeField] private float timeForOneStep = 0.3f;
-
         private float _nextStepTime = 0.0f;
         //------
-    
+        
         private Player _player;
         public PlayerState state;
         private Rigidbody2D _rigidbody2D;
@@ -49,6 +48,9 @@ namespace PlayerScripts
         private bool _isRolling = false;
         public PlayerRollStamina playerRollStamina;
         
+        private Coroutine _spinCoroutine;
+        private bool _isSpinning = false;
+        
         
         // Ammo and reload variables
         public static int Ammunition = 15;
@@ -68,7 +70,7 @@ namespace PlayerScripts
         
         
         [SerializeField] private SampleWave wave1;
-        
+        private Camera _camera;
 
     
         public LosingScreenManager losingScreenManager;
@@ -77,6 +79,7 @@ namespace PlayerScripts
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _camera = Camera.main;
         }
 
         // Start is called before the first frame update
@@ -110,18 +113,9 @@ namespace PlayerScripts
                         ChangeState(PlayerState.Idle);
                     }
                     break;
-            } 
-            PlayerInput();
-            
-            
-            if (Input.GetMouseButtonDown(0) 
-                && Ammunition > 0 
-                && state != PlayerState.Reloading
-                && Time.time >= _nextShootTime)
-            {
-                Shoot();
-                _nextShootTime = Time.time + shootCooldown;
             }
+            
+            PlayerInput();
             
         }
 
@@ -151,15 +145,34 @@ namespace PlayerScripts
             _timeSinceRoll += Time.deltaTime;
             playerRollStamina.setValue(Mathf.Clamp(_timeSinceRoll/rollCoolDown, 0, 100));
         
-        
-            if (Input.GetKeyDown(KeyCode.E) && state != PlayerState.Rolling)
+            
+            if (Input.GetMouseButtonDown(0)
+                && Ammunition > 0
+                && state != PlayerState.Reloading
+                && state != PlayerState.Dead
+                && state != PlayerState.Spinning
+                && state != PlayerState.Rolling
+                && Time.time >= _nextShootTime)
             {
-                _animator.SetTrigger("spin");
-                ChangeState(PlayerState.Spinning);
-                // To-DO Spinning Weglassen oder cooldown. Wenn nicht weg dann mit Coroutine
+                Shoot();
+                _nextShootTime = Time.time + shootCooldown;
             }
         
-            if (Input.GetKeyDown(KeyCode.LeftShift) && !_isRolling && state != PlayerState.Spinning)
+            if (Input.GetKeyDown(KeyCode.E)
+                && !_isSpinning
+                && state != PlayerState.Rolling
+                && state != PlayerState.Dead
+                && state != PlayerState.Reloading)
+            {
+                ChangeState(PlayerState.Spinning);
+                _spinCoroutine = StartCoroutine(Spin());
+            }
+        
+            if (Input.GetKeyDown(KeyCode.LeftShift) 
+                && !_isRolling
+                && state != PlayerState.Dead
+                && state != PlayerState.Idle
+                && !_isSpinning)
             {
                 if (Time.time >= _nextRollTime)
                 {
@@ -167,12 +180,10 @@ namespace PlayerScripts
                     _rollCoroutine = StartCoroutine(Roll());
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.LeftShift) && _isRolling)
-            {
-                StopRoll();
-            }
 
-            if (Input.GetKeyDown(KeyCode.R) && state != PlayerState.Reloading)
+            if (Input.GetKeyDown(KeyCode.R) 
+                && state != PlayerState.Reloading
+                && state != PlayerState.Spinning)
             {
                 ChangeState(PlayerState.Reloading);
                 _reloadCoroutine = StartCoroutine(Reload());
@@ -215,6 +226,28 @@ namespace PlayerScripts
             StartCoroutine(h.SetInactive());
         }
 
+        private IEnumerator Spin()
+        {
+            _isSpinning = true;
+            _animator.SetTrigger("spin");
+
+           
+            yield return null;
+            StopSpin();
+        }
+
+        private void StopSpin()
+        {
+            if (Input.GetKeyDown(KeyCode.E) && state == PlayerState.Spinning) WalkingOrIdle();
+            if (_spinCoroutine != null)
+            {
+                StopCoroutine(_spinCoroutine);
+                _spinCoroutine = null;
+            }
+            
+            _isSpinning = false;
+        }
+
         public bool DamagePlayer(int damage, Transform position)
         {
             if (state != PlayerState.Rolling && state != PlayerState.Dead && !_isRolling)
@@ -237,7 +270,7 @@ namespace PlayerScripts
         
         private void Shoot()
         {
-            var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
             var direction = (mousePos - firePoint.position).normalized;
         
@@ -251,7 +284,9 @@ namespace PlayerScripts
             
             Ammunition--;
             ammoBar.SetAmmo(Ammunition);
-            if (Ammunition == 0 && state != PlayerState.Reloading)
+            if (Ammunition == 0 
+                && state != PlayerState.Reloading
+                && state != PlayerState.Spinning)
             {
                 ChangeState(PlayerState.Reloading);
                 _reloadCoroutine = StartCoroutine(Reload());
@@ -285,15 +320,8 @@ namespace PlayerScripts
                 StopCoroutine(_reloadCoroutine);
                 _reloadCoroutine = null;
             }
-
-            if (HasMovementInput())
-            {
-                ChangeState(PlayerState.Walking);
-            }
-            else
-            {
-                ChangeState(PlayerState.Idle);
-            }
+            
+            WalkingOrIdle();
         }
 
         private void Die()
@@ -302,6 +330,18 @@ namespace PlayerScripts
             _rigidbody2D.constraints = RigidbodyConstraints2D.FreezePosition;
             _animator.SetBool("isDead", true);
             losingScreenManager.ShowLosingScreen();
+        }
+
+        private void WalkingOrIdle()
+        {
+            if (HasMovementInput())
+            {
+                ChangeState(PlayerState.Walking);
+            }
+            else
+            {
+                ChangeState(PlayerState.Idle);
+            }
         }
     }
 }
