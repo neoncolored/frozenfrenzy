@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using EnemyScripts;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -23,7 +24,17 @@ namespace EnemyScripts
         public GenericHealthBar genericHealthBar;
         public Transform damageSpawnPoint;
         private bool _golemPhaseFour = false;
+        private bool _isStunned = false;
+        
+        
+        protected Rigidbody2D Rb;
+        public bool IsStunned => _isStunned;
 
+
+        protected virtual void Awake()
+        {
+            Rb = GetComponentInChildren<Rigidbody2D>();
+        }
 
         private void Start()
         {
@@ -159,8 +170,17 @@ namespace EnemyScripts
         {
             transform.position = new Vector2(Random.Range(-2.4f, 3.8f), Random.Range(-3.25f, 3.05f));
         }
+        
+        public void Stun(float duration)
+        {
+            StartCoroutine(StunRoutine(duration));
+        }
 
-    
-
+        private IEnumerator StunRoutine(float duration)
+        {
+            _isStunned = true;
+            yield return new WaitForSeconds(duration);
+            _isStunned = false;
+        }
     }
 }

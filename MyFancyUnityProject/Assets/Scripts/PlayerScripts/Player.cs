@@ -48,14 +48,20 @@ namespace PlayerScripts
         private bool _isRolling = false;
         public PlayerRollStamina playerRollStamina;
         
+        
+        // Spin Attack
+        [SerializeField] private SpinAttack spinAttack;
+        public float spinCooldown = 15.0f;
         private Coroutine _spinCoroutine;
         private bool _isSpinning = false;
+        private float _nextSpinTime = 0.0f;
+        private float _spinTime = 0.5f;
         
         
         // Ammo and reload variables
         public static int Ammunition = 15;
         public AmmoBar ammoBar;
-        public float reloadDuration = 3.0f;
+        public float reloadDuration = 1.0f;
         private Coroutine _reloadCoroutine;
         
         // Shoot variables
@@ -157,22 +163,20 @@ namespace PlayerScripts
                 Shoot();
                 _nextShootTime = Time.time + shootCooldown;
             }
-        
-            if (Input.GetKeyDown(KeyCode.E)
+
+            if (Input.GetMouseButtonDown(1) 
                 && !_isSpinning
-                && state != PlayerState.Rolling
-                && state != PlayerState.Dead
-                && state != PlayerState.Reloading)
+                && (state == PlayerState.Walking || state == PlayerState.Reloading))
             {
-                ChangeState(PlayerState.Spinning);
-                _spinCoroutine = StartCoroutine(Spin());
+                if (Time.time >= _nextSpinTime)
+                {
+                    _spinCoroutine = StartCoroutine(Spin());    
+                }
             }
-        
+
             if (Input.GetKeyDown(KeyCode.LeftShift) 
                 && !_isRolling
-                && state != PlayerState.Dead
-                && state != PlayerState.Idle
-                && !_isSpinning)
+                && state == PlayerState.Walking)
             {
                 if (Time.time >= _nextRollTime)
                 {
@@ -193,6 +197,11 @@ namespace PlayerScripts
 
         private void PlayerMove()
         {
+            if (state == PlayerState.Spinning)
+            {
+                _rigidbody2D.velocity = Vector2.zero;
+                return;
+            }
             _animator.SetFloat("speed", _velocity.magnitude);
             if (_velocity.x != 0) _spriteRenderer.flipX = _velocity.x < 0;
             _rigidbody2D.velocity = _velocity * Time.fixedDeltaTime;
@@ -228,17 +237,37 @@ namespace PlayerScripts
 
         private IEnumerator Spin()
         {
+            var mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = 0;
+            var direction = (mousePos - firePoint.position).normalized;
+            
             _isSpinning = true;
+            _nextSpinTime = Time.time + spinCooldown;
             _animator.SetTrigger("spin");
+            ChangeState(PlayerState.Spinning);
+            
+            
+            SpinAttack script = spinAttack.GetComponent<SpinAttack>();
+            script.SetDirection(direction);  
+            script.ActivateCollider();
+            
+            float dashSpeed = 1.5f;
+            float elapsed = 0f;
 
-           
-            yield return null;
+            while (elapsed < _spinTime)
+            {
+                transform.position += direction * (dashSpeed * Time.deltaTime);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+            
+            script.DeactivateCollider();
+            
             StopSpin();
         }
 
         private void StopSpin()
         {
-            if (Input.GetKeyDown(KeyCode.E) && state == PlayerState.Spinning) WalkingOrIdle();
             if (_spinCoroutine != null)
             {
                 StopCoroutine(_spinCoroutine);
@@ -246,11 +275,16 @@ namespace PlayerScripts
             }
             
             _isSpinning = false;
+            _animator.ResetTrigger("spin");
+            ChangeState(PlayerState.Walking);
+            _animator.Play("walk");
         }
+        
+        
 
         public bool DamagePlayer(int damage, Transform position)
         {
-            if (state != PlayerState.Rolling && state != PlayerState.Dead && !_isRolling)
+            if (state != PlayerState.Rolling && state != PlayerState.Dead && !_isRolling && !_isSpinning)
             {
                 Hp -= damage;
                 Vector3 point = (UnityEngine.Random.onUnitSphere * 0.1f);
