@@ -30,8 +30,9 @@ namespace EnemyScripts
         private float _nextAttackTime = 0.0f;
     
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -51,7 +52,17 @@ namespace EnemyScripts
 
         private void FixedUpdate()
         {
-            MoveTowardsPlayer(player);
+            if (!IsStunned)
+            {
+                MoveTowardsPlayer(player);    
+            }
+            else
+            {
+                if (_rigidbody2D != null)
+                {
+                    _rigidbody2D.velocity = Vector2.zero;    
+                }
+            }
         }
     
 

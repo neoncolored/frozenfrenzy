@@ -20,7 +20,6 @@ namespace PlayerScripts
 
         private void FixedUpdate()
         {
-        
             if (isHealing)
             {
                 Heal(_player);

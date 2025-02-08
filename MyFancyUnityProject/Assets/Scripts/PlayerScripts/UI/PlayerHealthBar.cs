@@ -3,13 +3,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PlayerScripts
+namespace PlayerScripts.UI
 {
     public class PlayerHealthBar : MonoBehaviour
     {
         public Slider healthBar;
         public GameObject hpText;
-        private float maxHealth = Player.maxHp;
+        private float maxHealth = Player.MaxHp;
         private TextMeshProUGUI hpTextTMP;
     
     
@@ -25,7 +25,7 @@ namespace PlayerScripts
         public void SetHealth(float hp)
         {
             healthBar.value = hp;
-            Player.hp = (int)Math.Round(hp);
+            Player.Hp = (int)Math.Round(hp);
             hpTextTMP.SetText((int)Math.Round(hp)+"/100");
         }
         

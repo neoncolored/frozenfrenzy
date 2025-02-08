@@ -6,6 +6,8 @@ namespace Waves
 {
     public class SampleWave : MonoBehaviour
     {
+        public UpgradeMenu upgradeMenu;
+        
         // Start is called before the first frame update
         private GameObject[] enemies;
         [SerializeField] private GameObject krampus;
@@ -25,9 +27,13 @@ namespace Waves
         void Start()
         {
             activeEnemies = 0;
+            wave = 1;
+            SetWave();                     
+            StartCoroutine(StartWave());  
+            upgradeMenu = FindObjectOfType<UpgradeMenu>();
         }
 
-        private void SetWave()
+        public void SetWave()
         {
             //du könntest sowas machen
 
@@ -35,18 +41,18 @@ namespace Waves
             {
                 case 1: //wie viele gegner in wave 1 spawnen
                 {
-                    numBat = 5;
+                    numBat = 0;
                     numGrinch = 0;
-                    numKrampus = 0;
-                    numSnowman = 5;
+                    numKrampus = 10;
+                    numSnowman = 0;
                     numBoss = 0;
                     break;
                 }
                 case 2: //in wave 2
                 {
-                    numBat = 0;
-                    numGrinch = 5;
-                    numKrampus = 0;
+                    numBat = 5;
+                    numGrinch = 0;
+                    numKrampus = 10;
                     numSnowman = 0;
                     numBoss = 0;
                     break;
@@ -63,13 +69,58 @@ namespace Waves
                 case 4:
                 {
                     numBat = 5;
-                    numGrinch = 5;
-                    numKrampus = 5;
+                    numGrinch = 0;
+                    numKrampus = 10;
                     numSnowman = 5;
                     numBoss = 0;
                     break;
                 }
-                case 5: //Boss
+                case 5:
+                {
+                    numBat = 10;
+                    numGrinch = 0;
+                    numKrampus = 10;
+                    numSnowman = 10;
+                    numBoss = 0;
+                    break;
+                }
+                case 6:
+                {
+                    numBat = 5;
+                    numGrinch = 5;
+                    numKrampus = 0;
+                    numSnowman = 5;
+                    numBoss = 0;
+                    break;
+                }
+                case 7:
+                {
+                    numBat = 10;
+                    numGrinch = 10;
+                    numKrampus = 0;
+                    numSnowman = 10;
+                    numBoss = 0;
+                    break;
+                }
+                case 8:
+                {
+                    numBat = 0;
+                    numGrinch = 0;
+                    numKrampus = 20;
+                    numSnowman = 20;
+                    numBoss = 0;
+                    break;
+                }
+                case 9:
+                {
+                    numBat = 10;
+                    numGrinch = 10;
+                    numKrampus = 10;
+                    numSnowman = 10;
+                    numBoss = 0;
+                    break;
+                }
+                case 10: //Boss
                 {
                     numBat = 0;
                     numGrinch = 0;
@@ -142,6 +193,7 @@ namespace Waves
             wave += 1;
             enemyCap += 2; //maybe something like numGrinch+=2
             isSet = false;
+            //neue Wave nach 90 Sek
         }
     
     
@@ -151,8 +203,7 @@ namespace Waves
             if (activeEnemies == 0 && isSet == false)
             {
                 isSet = true;
-                SetWave();
-                StartCoroutine(StartWave());
+                upgradeMenu.ShowMenu();
             }
         }
     }

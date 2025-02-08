@@ -7,7 +7,7 @@ namespace PlayerScripts
     public class Projectile : MonoBehaviour
     {
         public float speed = 2.5f;
-        public int damage = 5;
+        public static int Damage = 5;
         private Vector3 _direction;
         [SerializeField] private AudioClip[] hitClips;
     
@@ -40,7 +40,7 @@ namespace PlayerScripts
                 if(enemy.GetType() == typeof(Dagger) || enemy.GetType() == typeof(Snowball)) return;
                 //ScreenShake.Instance.ShakeCamera(0.2f, 0.2f);
             
-                e.DamageEnemy(damage);
+                e.DamageEnemy(Damage);
                 SoundFXManager.instance.PlayRandomSoundFXClipWithRandomPitch(hitClips, transform, 0.3f);
                 Destroy(gameObject); 
             }

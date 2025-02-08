@@ -1,62 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-public class  PauseScreen : MonoBehaviour
+public class Pausemenu : MonoBehaviour
 {
-    public GameObject pauseMenuUI;
-    public Button resumeButton;
-    public Button menuButton;
+    public GameObject pauseMenu;
 
-    public static bool gameIsPaused = false;
-
+    public static bool isPaused;
+    // Start is called before the first frame update
     void Start()
     {
-        pauseMenuUI.SetActive(false); 
-        Time.timeScale = 1f; 
-        gameIsPaused = false;
-        resumeButton.onClick.AddListener(ResumeGame);
-        menuButton.onClick.AddListener(GoToMainMenu);
-
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        gameIsPaused = false;
+        pauseMenu.SetActive(false);
+        
     }
-
+    
+    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            TogglePause();
+            if(isPaused)
+            {
+               ResumeGame(); 
+            }
+            else{
+                PauseGame();
+            }
         }
-    }
-
-    public void TogglePause()
-    {
-        if (gameIsPaused)
-            ResumeGame();
-        else
-            PauseGame();
-    }
-
-    public void ResumeGame()
-    {
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        gameIsPaused = false;
     }
 
     public void PauseGame()
     {
-        pauseMenuUI.SetActive(true);
+        pauseMenu.SetActive(true);
         Time.timeScale = 0f;
-        gameIsPaused = true;
+        isPaused = true;
     }
 
-    public void GoToMainMenu()
+    public void ResumeGame()
     {
+        pauseMenu.SetActive(false);
         Time.timeScale = 1f;
-        gameIsPaused = false;
-        SceneManager.LoadScene("Scenes/Main Menu");
+        isPaused = false;
     }
 }

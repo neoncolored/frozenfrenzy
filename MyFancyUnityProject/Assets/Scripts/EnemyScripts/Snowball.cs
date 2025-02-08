@@ -33,8 +33,12 @@ namespace EnemyScripts
         private void OnTriggerEnter2D(Collider2D other)
         {
             GameObject player = other.gameObject;
-            Player script = player.GetComponent<Player>();
-            if(script.DamagePlayer(damage, transform)) Destroy(gameObject);
+            if (player.TryGetComponent(out Player p))
+            {
+                if(p.DamagePlayer(damage, transform)) Destroy(gameObject);
+            }
+
+            
         }
 
 

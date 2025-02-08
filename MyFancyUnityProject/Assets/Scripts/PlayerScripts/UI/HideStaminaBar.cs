@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace PlayerScripts
+namespace PlayerScripts.UI
 {
     public class HideStaminaBar : MonoBehaviour
     {
