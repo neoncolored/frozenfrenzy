@@ -141,6 +141,7 @@ public class Golem : GenericEnemy
         _isDead = true;
         yield return new WaitForSeconds(deathDuration);
         //TODO you win!!
+        
     }
     
     public  IEnumerator PlayHurtAnimation()
