@@ -325,7 +325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f0853cce3554247b78714309e41a7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: {fileID: 0}
+  dialogueText: {fileID: 8563539703611574782}
+  typingClip: {fileID: 8300000, guid: 99cf0b2c8f27f4e0492a51cd5f8828f8, type: 3}
   typingSpeed: 0.05
 --- !u!1 &7915482019315046272
 GameObject:
@@ -386,7 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.0627451}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

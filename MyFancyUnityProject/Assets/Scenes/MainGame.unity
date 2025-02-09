@@ -58463,30 +58463,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2572250125809491383, guid: bbce83683f9944d5f9b9161a2e34d036, type: 3}
-      propertyPath: m_Color.a
-      value: 0.0627451
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572250125809491383, guid: bbce83683f9944d5f9b9161a2e34d036, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572250125809491383, guid: bbce83683f9944d5f9b9161a2e34d036, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572250125809491383, guid: bbce83683f9944d5f9b9161a2e34d036, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6785338485086920134, guid: bbce83683f9944d5f9b9161a2e34d036, type: 3}
       propertyPath: m_Name
       value: DialogueBox
       objectReference: {fileID: 0}
-    - target: {fileID: 7797162122454593844, guid: bbce83683f9944d5f9b9161a2e34d036, type: 3}
-      propertyPath: dialogueText
-      value: 
-      objectReference: {fileID: 757364902}
     - target: {fileID: 8280870279481920022, guid: bbce83683f9944d5f9b9161a2e34d036, type: 3}
       propertyPath: m_Pivot.x
       value: 0
