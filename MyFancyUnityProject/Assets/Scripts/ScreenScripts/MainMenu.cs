@@ -9,9 +9,14 @@ namespace ScreenScripts
     {
         public void PlayGame()
         {
-            SceneManager.LoadSceneAsync("MainGame");
+            SceneManager.LoadScene("MainGame");
             BackgroundMusic.Instance.PlaySong(0);
             Player.Hp = 100;
+        }
+
+        public void Tutorial()
+        {
+            SceneManager.LoadScene("Tutorial");
         }
 
         public void QuitGame()

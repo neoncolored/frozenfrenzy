@@ -1,5 +1,6 @@
 using System;
 using PlayerScripts;
+using PlayerScripts.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Waves;
@@ -18,6 +19,7 @@ public class UpgradeMenu : MonoBehaviour
     private bool _isShowing = false;
     
     private SampleWave _sampleWave;
+    public PlayerHealthBar healthBar;
 
 
     private void Awake()
@@ -49,7 +51,8 @@ public class UpgradeMenu : MonoBehaviour
     // -------------------------------------------
     private void OnHealthUpgrade()
     {
-        Player.MaxHp += 10; 
+        Player.MaxHp += 10;
+        healthBar.SetHealth(Player.MaxHp);
         Player.Hp = Player.MaxHp;
         if (_isShowing) CloseMenu();
     }

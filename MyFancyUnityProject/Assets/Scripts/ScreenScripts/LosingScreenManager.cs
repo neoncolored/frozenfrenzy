@@ -45,8 +45,9 @@ namespace ScreenScripts
 
         private static void RestartGame()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Player.Hp = 100;
+            Player.Ammunition = 15;
+            SceneManager.LoadScene("MainGame");
         }
     }
 }
