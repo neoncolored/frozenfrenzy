@@ -24,6 +24,8 @@ namespace EnemyScripts
         public GenericHealthBar genericHealthBar;
         public Transform damageSpawnPoint;
         private bool _golemPhaseFour = false;
+        private bool _golemPhaseThree = false;
+        private bool _golemPhaseTwo = false;
         private bool _isStunned = false;
         
         
@@ -142,23 +144,44 @@ namespace EnemyScripts
                     StartCoroutine(golem.PlayHurtAnimation());
                     if (hp <= 300)
                     {
-                        golem.state = Golem.EnemyState.PHASETWO;
+                        if (!_golemPhaseTwo)
+                        {
+                            golem.state = Golem.EnemyState.PHASETWO;
+                            _golemPhaseTwo = true;
+                            //hier sound für phasechange
+                            
+                            //
+                        }
+
+                        
                     }
 
                     if (hp <= 200)
                     {
-                        golem.state = Golem.EnemyState.PHASETHREE;
-                        golem.specialAttackSpeed = 2.0f;
+                        if (!_golemPhaseThree)
+                        {
+                            golem.state = Golem.EnemyState.PHASETHREE;
+                            golem.specialAttackSpeed = 2.0f;
+                            _golemPhaseThree = true;
+                            //hier sound für phasechange
+                            
+                            //
+                        }
+
+                        
                     }
 
                     if (hp <= 100)
                     {
-                        golem.state = Golem.EnemyState.PHASEFOUR;
-                        golem.specialAttackSpeed = 0.5f;
                         if (!_golemPhaseFour)
                         {
+                            golem.state = Golem.EnemyState.PHASEFOUR;
+                            golem.specialAttackSpeed = 0.5f;
                             golem.nextSpecialAttackTime = Time.time + 1f;
                             _golemPhaseFour = true;
+                            //hier sound für phasechange
+                            
+                            //
                         }
                         
                     }

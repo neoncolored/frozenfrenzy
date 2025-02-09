@@ -101,10 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.5
   damage: 5
-  hitClips:
-  - {fileID: 8300000, guid: 58929f903f25acc4ea1e2c5a17214c31, type: 3}
-  - {fileID: 8300000, guid: 6bdc1f3418b0d1b48a6621eeec81e807, type: 3}
-  - {fileID: 8300000, guid: 52d52d3f7706f2d459d9f9d08a4be721, type: 3}
+  SnowHit: {fileID: 8300000, guid: e6b4b0828ddb6e74ebe0e2e2861f801a, type: 3}
 --- !u!50 &2172566507161015323
 Rigidbody2D:
   serializedVersion: 4

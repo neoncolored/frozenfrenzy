@@ -16,6 +16,7 @@ namespace Waves
         [SerializeField] private GameObject bat;
         [SerializeField] private GameObject boss;
         [NonSerialized] public static int activeEnemies;
+        public float timeBetweenMonsterSpawn;
         public int numKrampus;
         public int numBat;
         public int numSnowman;
@@ -39,16 +40,36 @@ namespace Waves
 
             switch (wave)
             {
-                case 1: //wie viele gegner in wave 1 spawnen
+                case 1:
                 {
                     numBat = 0;
                     numGrinch = 0;
-                    numKrampus = 10;
+                    numKrampus = 4;
                     numSnowman = 0;
                     numBoss = 0;
                     break;
                 }
-                case 2: //in wave 2
+                
+                case 2:
+                {
+                    numBat = 0;
+                    numGrinch = 0;
+                    numKrampus = 4;
+                    numSnowman = 2;
+                    numBoss = 0;
+                    break;
+                }
+                
+                case 3: //wie viele gegner in wave 1 spawnen
+                {
+                    numBat = 0;
+                    numGrinch = 0;
+                    numKrampus = 8;
+                    numSnowman = 0;
+                    numBoss = 0;
+                    break;
+                }
+                case 4: //in wave 2
                 {
                     numBat = 5;
                     numGrinch = 0;
@@ -57,7 +78,7 @@ namespace Waves
                     numBoss = 0;
                     break;
                 }
-                case 3: //usw.
+                case 5: //usw.
                 {
                     numBat = 10;
                     numGrinch = 0;
@@ -66,7 +87,7 @@ namespace Waves
                     numBoss = 0;
                     break;
                 }
-                case 4:
+                case 6:
                 {
                     numBat = 5;
                     numGrinch = 0;
@@ -75,7 +96,7 @@ namespace Waves
                     numBoss = 0;
                     break;
                 }
-                case 5:
+                case 7:
                 {
                     numBat = 10;
                     numGrinch = 0;
@@ -84,7 +105,7 @@ namespace Waves
                     numBoss = 0;
                     break;
                 }
-                case 6:
+                case 8:
                 {
                     numBat = 5;
                     numGrinch = 5;
@@ -93,7 +114,7 @@ namespace Waves
                     numBoss = 0;
                     break;
                 }
-                case 7:
+                case 9:
                 {
                     numBat = 10;
                     numGrinch = 10;
@@ -102,7 +123,7 @@ namespace Waves
                     numBoss = 0;
                     break;
                 }
-                case 8:
+                case 10:
                 {
                     numBat = 0;
                     numGrinch = 0;
@@ -111,7 +132,7 @@ namespace Waves
                     numBoss = 0;
                     break;
                 }
-                case 9:
+                case 11:
                 {
                     numBat = 10;
                     numGrinch = 10;
@@ -120,7 +141,7 @@ namespace Waves
                     numBoss = 0;
                     break;
                 }
-                case 10: //Boss
+                case 12: //Boss
                 {
                     numBat = 0;
                     numGrinch = 0;
@@ -157,6 +178,8 @@ namespace Waves
                 enemies[index] = Instantiate(krampus);
                 count++;
                 index++;
+                yield return new WaitForSeconds(timeBetweenMonsterSpawn);
+
             }
 
             count = 0;
@@ -166,6 +189,8 @@ namespace Waves
                 enemies[index] = Instantiate(snowman);
                 count++;
                 index++;
+                yield return new WaitForSeconds(timeBetweenMonsterSpawn);
+
             }
             count = 0;
         
@@ -174,6 +199,8 @@ namespace Waves
                 enemies[index] = Instantiate(bat);
                 count++;
                 index++;
+                yield return new WaitForSeconds(timeBetweenMonsterSpawn);
+
             }
             count = 0;
             while (count < numGrinch)
@@ -181,6 +208,8 @@ namespace Waves
                 enemies[index] = Instantiate(grinch);
                 count++;
                 index++;
+                yield return new WaitForSeconds(timeBetweenMonsterSpawn);
+
             }
             count = 0;
             //spawnt so nicht jede Runde ein Boss? ne nur wenn numBoss >= 1 ist
@@ -189,6 +218,8 @@ namespace Waves
                 enemies[index] = Instantiate(boss);
                 count++;
                 index++;
+                yield return new WaitForSeconds(timeBetweenMonsterSpawn);
+
             }
             wave += 1;
             enemyCap += 2; //maybe something like numGrinch+=2

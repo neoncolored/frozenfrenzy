@@ -1,4 +1,5 @@
 using System.Collections;
+using Managers;
 using PlayerScripts;
 using UnityEngine;
 
@@ -24,13 +25,14 @@ namespace EnemyScripts
         private SpriteRenderer _spriteRenderer;
         private Rigidbody2D _rigidbody2D;
         private bool isDead = false;
+        public AudioClip BatDeath;
     
     
         private Coroutine _attackCoroutine;
         private float _nextAttackTime = 0.0f;
     
 
-        private void Awake()
+        private new void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _animator = this.GetComponent<Animator>();
@@ -93,6 +95,7 @@ namespace EnemyScripts
             _animator.SetTrigger("die");
             _state = EnemyState.Dying;
             isDead = true;
+            SoundFXManager.instance.PlaySoundFXClip(BatDeath, transform, 0.3f, false, false);
             yield return new WaitForSeconds(deathDuration);
         
             Destroy(gameObject);

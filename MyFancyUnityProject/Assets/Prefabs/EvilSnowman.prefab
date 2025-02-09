@@ -238,6 +238,7 @@ MonoBehaviour:
   hurtDuration: 1
   genericHealthBar: {fileID: 1763917857648052463}
   damageSpawnPoint: {fileID: 2994589616325296014}
+  SnowmanDeath: {fileID: 8300000, guid: 3faed290585e8704eaef438255bb52e2, type: 3}
   firePoint: {fileID: 4710442862168003421}
   snowball: {fileID: 3694729477542310318, guid: 3ab341ef8a9310848b6f74c999ffca2c, type: 3}
 --- !u!1 &2466073258527310981

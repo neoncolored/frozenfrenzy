@@ -424,6 +424,7 @@ MonoBehaviour:
   hurtDuration: 0
   genericHealthBar: {fileID: 8263606346343173271}
   damageSpawnPoint: {fileID: 2876695481733764758}
+  KrampusDeath: {fileID: 8300000, guid: 971dcfdb024a3454590d80273f0dc344, type: 3}
 --- !u!1 &6770901534290668819
 GameObject:
   m_ObjectHideFlags: 0

@@ -611,6 +611,7 @@ MonoBehaviour:
   nextSpecialAttackTime: 0
   specialAttackDuration: 60
   specialAttackSpeed: 1
+  BossSpawn: {fileID: 8300000, guid: a2271d248a561ff4bb8fe85ff6b7d108, type: 3}
 --- !u!95 &1978542474373165203
 Animator:
   serializedVersion: 5

@@ -26,7 +26,7 @@ namespace EnemyScripts
         private float _nextAttackTime = 0.0f;
     
 
-        private void Awake()
+        private new void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _animator = this.GetComponent<Animator>();
@@ -43,7 +43,8 @@ namespace EnemyScripts
             genericHealthBar.genericHealthBar.maxValue = maxHp;
             genericHealthBar.genericHealthBar.value = maxHp;
             ResetPosition();
-            
+            SoundFXManager.instance.PlaySoundFXClip(grinchSpawn, transform, 0.1f, false, false);
+
         }
 
         private void FixedUpdate()
@@ -97,6 +98,9 @@ namespace EnemyScripts
         {
             _animator.SetTrigger("die");
             isDead = true;
+            
+            SoundFXManager.instance.PlaySoundFXClip(grinchDeath, transform, 0.1f, false, false);
+            
             yield return new WaitForSeconds(deathDuration);
             Destroy(gameObject);
         }
@@ -104,6 +108,7 @@ namespace EnemyScripts
         public  IEnumerator PlayHurtAnimation()
         {
             _animator.SetTrigger("hurt");
+            SoundFXManager.instance.PlaySoundFXClip(grinchHit, transform, 0.1f, false, false);
             yield return new WaitForSeconds(hurtDuration);
             _animator.ResetTrigger("hurt");
         }
