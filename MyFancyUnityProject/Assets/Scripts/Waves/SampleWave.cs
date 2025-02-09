@@ -16,6 +16,7 @@ namespace Waves
         [SerializeField] private GameObject bat;
         [SerializeField] private GameObject boss;
         [NonSerialized] public static int activeEnemies;
+        public float timeBetweenMonsterSpawn;
         public int numKrampus;
         public int numBat;
         public int numSnowman;
@@ -157,6 +158,8 @@ namespace Waves
                 enemies[index] = Instantiate(krampus);
                 count++;
                 index++;
+                yield return new WaitForSeconds(timeBetweenMonsterSpawn);
+
             }
 
             count = 0;
@@ -166,6 +169,8 @@ namespace Waves
                 enemies[index] = Instantiate(snowman);
                 count++;
                 index++;
+                yield return new WaitForSeconds(timeBetweenMonsterSpawn);
+
             }
             count = 0;
         
@@ -174,6 +179,8 @@ namespace Waves
                 enemies[index] = Instantiate(bat);
                 count++;
                 index++;
+                yield return new WaitForSeconds(timeBetweenMonsterSpawn);
+
             }
             count = 0;
             while (count < numGrinch)
@@ -181,6 +188,8 @@ namespace Waves
                 enemies[index] = Instantiate(grinch);
                 count++;
                 index++;
+                yield return new WaitForSeconds(timeBetweenMonsterSpawn);
+
             }
             count = 0;
             //spawnt so nicht jede Runde ein Boss? ne nur wenn numBoss >= 1 ist
@@ -189,6 +198,8 @@ namespace Waves
                 enemies[index] = Instantiate(boss);
                 count++;
                 index++;
+                yield return new WaitForSeconds(timeBetweenMonsterSpawn);
+
             }
             wave += 1;
             enemyCap += 2; //maybe something like numGrinch+=2
