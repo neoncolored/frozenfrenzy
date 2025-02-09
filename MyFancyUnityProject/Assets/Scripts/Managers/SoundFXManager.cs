@@ -14,7 +14,7 @@ namespace Managers
             if (instance == null) instance = this;
         }
 
-        public void PlaySoundFXClip(AudioClip audioClip, Transform spawn, float volume, bool loop, bool spatial)
+        public AudioSource PlaySoundFXClip(AudioClip audioClip, Transform spawn, float volume, bool loop, bool spatial)
         {
             AudioSource audioSource = Instantiate(soundFXObject, spawn.position, Quaternion.identity);
             audioSource.clip = audioClip;
@@ -40,6 +40,8 @@ namespace Managers
             {
                 Destroy(audioSource.gameObject, clipLength); 
             }
+
+            return audioSource;
         }
     
         public void PlayRandomSoundFXClip(AudioClip[] audioClip, Transform spawn, float volume)

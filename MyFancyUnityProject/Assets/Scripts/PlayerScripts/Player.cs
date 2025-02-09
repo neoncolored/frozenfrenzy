@@ -80,6 +80,7 @@ namespace PlayerScripts
 
     
         public LosingScreenManager losingScreenManager;
+        public WinScreenManager winScreenManager;
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -123,7 +124,7 @@ namespace PlayerScripts
             
             PlayerInput();
             
-        }
+        } //
 
         private bool HasMovementInput()
         {
@@ -256,7 +257,8 @@ namespace PlayerScripts
 
             while (elapsed < _spinTime)
             {
-                transform.position += direction * (dashSpeed * Time.deltaTime);
+                
+                _rigidbody2D.transform.position = _rigidbody2D.position + (Vector2) (direction * (dashSpeed * Time.deltaTime));
                 elapsed += Time.deltaTime;
                 yield return null;
             }

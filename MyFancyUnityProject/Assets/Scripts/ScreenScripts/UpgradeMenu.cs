@@ -51,7 +51,6 @@ public class UpgradeMenu : MonoBehaviour
     // -------------------------------------------
     private void OnHealthUpgrade()
     {
-        Player.MaxHp += 10;
         healthBar.SetHealth(Player.MaxHp);
         Player.Hp = Player.MaxHp;
         if (_isShowing) CloseMenu();

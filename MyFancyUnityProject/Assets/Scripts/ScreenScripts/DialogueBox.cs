@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using Managers;
 using TMPro;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace ScreenScripts
         public AudioClip typingClip;
         private AudioClip[] arr = new AudioClip[1];
         public float typingSpeed = 0.05f;
+        private Coroutine typing = null;
+        private bool _isActive = false;
 
         private void Awake()
         {
@@ -27,8 +30,23 @@ namespace ScreenScripts
 
         public void ShowDialogue(string message)
         {
+            if (typing != null)
+            {
+                StopCoroutine(typing);
+                typing = null;
+            }
             dialogueText.text = "";
-            StartCoroutine(TypeText(message));
+            _isActive = true;
+            typing = StartCoroutine(TypeText(message));
+            
+        }
+
+        public void CloseDialogue()
+        {
+            if(typing != null) StopCoroutine(typing);
+            typing = null;
+            dialogueText.text = "";
+            _isActive = false;
         }
         
         
@@ -37,9 +55,12 @@ namespace ScreenScripts
         {
             foreach (char letter in message.ToCharArray())
             {
-                dialogueText.text += letter;
-                SoundFXManager.instance.PlayRandomSoundFXClipWithRandomPitch(arr, transform, 0.1f);
-                yield return new WaitForSecondsRealtime(typingSpeed);
+                if (_isActive)
+                {
+                    dialogueText.text += letter;
+                    SoundFXManager.instance.PlayRandomSoundFXClipWithRandomPitch(arr, transform, 0.07f);
+                    yield return new WaitForSecondsRealtime(typingSpeed);
+                }
                 
             }
         }

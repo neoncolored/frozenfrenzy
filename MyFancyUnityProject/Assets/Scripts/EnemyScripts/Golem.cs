@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using EnemyScripts;
 using Managers;
 using PlayerScripts;
+using ScreenScripts;
 using UnityEditor;
 using UnityEditor.Build.Content;
 using UnityEngine;
@@ -46,6 +47,7 @@ public class Golem : GenericEnemy
     private float _nextSubSpecialAttackTime = 0.0f;
     private bool _preparingForAttack;
     private Coroutine _specialAttackCoroutine;
+    public WinScreenManager winScreenManager;
 
     public AudioClip BossSpawn;
     
@@ -69,6 +71,8 @@ public class Golem : GenericEnemy
         state = EnemyState.PHASEONE;
         ResetPosition();
         SoundFXManager.instance.PlaySoundFXClip(BossSpawn, transform, 0.1f, false, false);
+        BackgroundMusic.Instance.StopSong(0);
+        BackgroundMusic.Instance.PlaySong(1);
     }
 
     private void FixedUpdate()
@@ -147,7 +151,9 @@ public class Golem : GenericEnemy
         _animator.SetTrigger("die");
         _isDead = true;
         yield return new WaitForSeconds(deathDuration);
-        SceneManager.LoadScene("WinScene");
+        BackgroundMusic.Instance.StopSong(1);
+        BackgroundMusic.Instance.PlaySong(0);
+        winScreenManager.ShowWinScreen();
 
     }
     
@@ -168,6 +174,8 @@ public class Golem : GenericEnemy
     
     public IEnumerator SpecialAttack()
     {
+        Color original = genericHealthBar.image.color;
+        genericHealthBar.image.color = Color.black;
         nextSpecialAttackTime = Time.time + specialAttackDuration;
         _animator.SetTrigger("special");
         yield return new WaitForSeconds(1);
@@ -179,6 +187,7 @@ public class Golem : GenericEnemy
         float specialAttackCooldown = specialAttackDuration / 2 - 2; // i think cooldown and duration is switched
         yield return new WaitForSeconds(specialAttackCooldown-1); //not very clean code all the durations get mixed up
         StopSpecialAttack();
+        genericHealthBar.image.color = original;
     }
 
     private int count = 0;

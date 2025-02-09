@@ -186,7 +186,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 200
   m_WholeNumbers: 0
   m_Value: 100
   m_OnValueChanged:
@@ -503,7 +503,6 @@ GameObject:
   - component: {fileID: 6515024675380034246}
   - component: {fileID: 7794542719335294391}
   - component: {fileID: 6833440773783436155}
-  - component: {fileID: 5490422114832757998}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -597,8 +596,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkClips:
   - {fileID: 8300000, guid: 8c7fdac6ac0e34847bc63f1ad642cb26, type: 3}
-  - {fileID: 8300000, guid: 2d3723214020ed141a3b133ab6a463fe, type: 3}
-  - {fileID: 8300000, guid: da08d336a9893ce408b06cde9f596df8, type: 3}
   timeForOneStep: 0.4
   state: 0
   speed: 40
@@ -606,7 +603,7 @@ MonoBehaviour:
   rollDuration: 0.7
   playerRollStamina: {fileID: 5564176653491770397}
   spinAttack: {fileID: 3959149658435275073}
-  spinCooldown: 3
+  spinCooldown: 7
   ammoBar: {fileID: 5683360361819440576}
   reloadDuration: 1
   shootCooldown: 0.25
@@ -710,19 +707,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5490422114832757998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2338408930864450690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40e2dae45a9034243bb20d59a74c902a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
 --- !u!1 &2493614962356552608
 GameObject:
   m_ObjectHideFlags: 0

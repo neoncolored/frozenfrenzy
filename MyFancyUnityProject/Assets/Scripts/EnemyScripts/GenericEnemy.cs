@@ -147,7 +147,7 @@ namespace EnemyScripts
                 {
                     Golem golem = GetComponent<Golem>();
                     StartCoroutine(golem.PlayHurtAnimation());
-                    if (hp <= 300)
+                    if (hp <= 500)
                     {
                         if (!_golemPhaseTwo)
                         {
@@ -161,7 +161,7 @@ namespace EnemyScripts
                         
                     }
 
-                    if (hp <= 200)
+                    if (hp <= 300)
                     {
                         if (!_golemPhaseThree)
                         {
@@ -176,7 +176,7 @@ namespace EnemyScripts
                         
                     }
 
-                    if (hp <= 100)
+                    if (hp <= 150)
                     {
                         if (!_golemPhaseFour)
                         {

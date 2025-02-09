@@ -414,6 +414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   genericHealthBar: {fileID: 7376860696465362478}
   g: {fileID: 6061030386457019683}
+  image: {fileID: 3308091530792952158}
 --- !u!1 &5075499183698587738
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,13 +592,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee6b73cfe6b44b4b860d70d714468b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 2338408930864450690, guid: d43bdac943b9a7e44b647b48f9eac0ea, type: 3}
   speed: 0.4
   range: 1
   attackSpeed: 1.5
   attackDuration: 1
   damage: 10
-  hp: 400
+  hp: 600
   deathDuration: 2
   hurtDuration: 1
   genericHealthBar: {fileID: 7565196505168841162}
@@ -614,6 +615,7 @@ MonoBehaviour:
   nextSpecialAttackTime: 0
   specialAttackDuration: 60
   specialAttackSpeed: 1
+  winScreenManager: {fileID: 4116736992277666504, guid: 67f38aebf1f45cb4eaea81db7251d517, type: 3}
   BossSpawn: {fileID: 8300000, guid: a2271d248a561ff4bb8fe85ff6b7d108, type: 3}
 --- !u!95 &1978542474373165203
 Animator:

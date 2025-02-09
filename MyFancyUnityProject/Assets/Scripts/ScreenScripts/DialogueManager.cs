@@ -12,7 +12,7 @@ namespace ScreenScripts
         public GameObject dialoguePanel;
         public TextMeshProUGUI dialogueText;
         public GameObject dialogueObject;
-        private bool _isShowing = false;
+        public bool _isShowing = false;
 
         private void Awake()
         {
@@ -35,6 +35,7 @@ namespace ScreenScripts
         
         public void CloseMenu()
         {
+            dialogueObject.GetComponent<DialogueBox>().CloseDialogue();
             dialoguePanel.SetActive(false);
             Time.timeScale = 1f;
             _isShowing = false;

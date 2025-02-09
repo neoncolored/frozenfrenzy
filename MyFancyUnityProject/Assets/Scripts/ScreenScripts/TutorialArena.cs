@@ -14,13 +14,17 @@ public class TutorialArena : MonoBehaviour
     public Transform[] spawnPoints;        // Wo du die Gegner spawnen möchtest
 
     [Header("Dialog / UI")] 
-    private string tutorialText = "This is how you can fight of enemies!" +
+    private string tutorialText = "I think I remember what my Penguin-Friends used to tell me..." +
                                  "\nUse left-click to shoot fish," +
-                                 "\nRight-click to dash," +
+                                 "\nRight-click to dash and damage enemies," +
                                  "\nAnd Left-Shift as a get-away!";
+    
+    private string campfire = "Ouch, that hurt! I should try healing next to a campfire...";
+    private bool campfireTriggered = false;
 
-    private string endOfTutorial = "Wow! I see you have done this before." +
-                                  "\nI think you are ready for the real fight!" +
+    private string endOfTutorial = "That was awesome!" +
+                                  "\nI think I'm ready for the real fight!" +
+                                  "\nI'll just have to remember to heal next to the campfire." +
                                   "\nPress 'E' to continue!";
     public DialogueManager dialogueManager;
     private bool tutorialTriggered = false;
@@ -37,6 +41,12 @@ public class TutorialArena : MonoBehaviour
     
     private void Update()
     {
+        if (Player.Hp < 100 && !campfireTriggered)
+        {
+            campfireTriggered = true;
+            dialogueManager.ShowMenu(campfire);
+        }
+        
         if (!hasMoved)
         {
             float h = Input.GetAxisRaw("Horizontal");
@@ -47,6 +57,7 @@ public class TutorialArena : MonoBehaviour
 
                 if (moveText != null)
                 {
+                    new WaitForSecondsRealtime(2);
                     moveText.SetActive(false);
                 }
             }
@@ -82,7 +93,7 @@ public class TutorialArena : MonoBehaviour
         {
             yield return new WaitForSeconds(2.0f);
             dialogueManager.ShowMenu(endOfTutorial);
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(2.0f);
             Player.Hp = 100;
             Player.Ammunition = 15;
             SceneManager.LoadScene("MainGame");

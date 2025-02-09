@@ -9,6 +9,7 @@ namespace EnemyScripts
         public Slider genericHealthBar;
         private float _maxHealth;
         public GenericEnemy g;
+        public Image image;
     
     
         void Start()
