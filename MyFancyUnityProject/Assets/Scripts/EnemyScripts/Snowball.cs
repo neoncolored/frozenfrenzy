@@ -35,7 +35,11 @@ namespace EnemyScripts
             GameObject player = other.gameObject;
             if (player.TryGetComponent(out Player p))
             {
-                if(p.DamagePlayer(damage, transform)) Destroy(gameObject);
+                if (p.DamagePlayer(damage, transform))
+                {
+                    //sound
+                    Destroy(gameObject);
+                }
             }
 
             

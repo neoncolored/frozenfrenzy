@@ -458,6 +458,9 @@ MonoBehaviour:
   hurtDuration: 1
   genericHealthBar: {fileID: 8857497780889014593}
   damageSpawnPoint: {fileID: 715998009087273283}
+  grinchSpawn: {fileID: 8300000, guid: 46f613e63f05991499b8d74dd0f06f2a, type: 3}
+  grinchDeath: {fileID: 8300000, guid: 10782f6a3568f6948911a145c8e0e292, type: 3}
+  grinchHit: {fileID: 8300000, guid: 9de648f048eaa0a4283c7415f513128e, type: 3}
 --- !u!95 &3411899594558663190
 Animator:
   serializedVersion: 5
