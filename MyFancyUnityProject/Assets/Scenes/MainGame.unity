@@ -14274,6 +14274,7 @@ MonoBehaviour:
   grinch: {fileID: 5581267829795814315, guid: 9ff67b8613c32de4981163ffbfc6a560, type: 3}
   bat: {fileID: 4523686212186713886, guid: d566eed2b7718a549b735a3d0a8da610, type: 3}
   boss: {fileID: 5075499183698587738, guid: 8724d8dc9841de94f982d7ac79c33ec0, type: 3}
+  timeBetweenMonsterSpawn: 0.1
   numKrampus: 100
   numBat: 0
   numSnowman: 0

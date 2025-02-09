@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using EnemyScripts;
 using Managers;
 using PlayerScripts;
+using UnityEditor;
+using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Golem : GenericEnemy
 {
@@ -144,7 +147,8 @@ public class Golem : GenericEnemy
         _animator.SetTrigger("die");
         _isDead = true;
         yield return new WaitForSeconds(deathDuration);
-        //TODO you win!!
+        SceneManager.LoadScene("WinScene");
+
     }
     
     public  IEnumerator PlayHurtAnimation()
@@ -305,4 +309,5 @@ public class Golem : GenericEnemy
         
         _animator.ResetTrigger("attack");
     }
+    
 }

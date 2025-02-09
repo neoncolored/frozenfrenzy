@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using EnemyScripts;
+using Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using PlayerScripts;
@@ -24,7 +25,13 @@ namespace EnemyScripts
         public GenericHealthBar genericHealthBar;
         public Transform damageSpawnPoint;
         private bool _golemPhaseFour = false;
+        private bool _golemPhaseThree = false;
+        private bool _golemPhaseTwo = false;
         private bool _isStunned = false;
+        public AudioClip Phase3;
+        public AudioClip Phase2;
+        public AudioClip Phase4;
+        
         
         
         protected Rigidbody2D Rb;
@@ -142,23 +149,44 @@ namespace EnemyScripts
                     StartCoroutine(golem.PlayHurtAnimation());
                     if (hp <= 300)
                     {
-                        golem.state = Golem.EnemyState.PHASETWO;
+                        if (!_golemPhaseTwo)
+                        {
+                            golem.state = Golem.EnemyState.PHASETWO;
+                            _golemPhaseTwo = true;
+                            //hier sound für phasechange
+                            SoundFXManager.instance.PlaySoundFXClip(Phase2, transform, 0.3f, false, false);
+                            //
+                        }
+
+                        
                     }
 
                     if (hp <= 200)
                     {
-                        golem.state = Golem.EnemyState.PHASETHREE;
-                        golem.specialAttackSpeed = 2.0f;
+                        if (!_golemPhaseThree)
+                        {
+                            golem.state = Golem.EnemyState.PHASETHREE;
+                            golem.specialAttackSpeed = 2.0f;
+                            _golemPhaseThree = true;
+                            //hier sound für phasechange
+                            SoundFXManager.instance.PlaySoundFXClip(Phase3, transform, 0.3f, false, false);
+                            //
+                        }
+
+                        
                     }
 
                     if (hp <= 100)
                     {
-                        golem.state = Golem.EnemyState.PHASEFOUR;
-                        golem.specialAttackSpeed = 0.5f;
                         if (!_golemPhaseFour)
                         {
+                            golem.state = Golem.EnemyState.PHASEFOUR;
+                            golem.specialAttackSpeed = 0.5f;
                             golem.nextSpecialAttackTime = Time.time + 1f;
                             _golemPhaseFour = true;
+                            //hier sound für phasechange
+                            SoundFXManager.instance.PlaySoundFXClip(Phase4, transform, 0.3f, false, false);
+                            //
                         }
                         
                     }
