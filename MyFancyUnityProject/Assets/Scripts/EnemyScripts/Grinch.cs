@@ -49,7 +49,17 @@ namespace EnemyScripts
 
         private void FixedUpdate()
         {
-            MoveTowardsPlayer(player);
+            if (!IsStunned)
+            {
+                MoveTowardsPlayer(player);    
+            }
+            else
+            {
+                if (_rigidbody2D != null)
+                {
+                    _rigidbody2D.velocity = Vector2.zero;    
+                }
+            }
         }
     
 
