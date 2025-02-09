@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using EnemyScripts;
+using Managers;
 using PlayerScripts;
 using UnityEngine;
 
@@ -42,6 +43,8 @@ public class Golem : GenericEnemy
     private float _nextSubSpecialAttackTime = 0.0f;
     private bool _preparingForAttack;
     private Coroutine _specialAttackCoroutine;
+
+    public AudioClip BossSpawn;
     
 
     private new void Awake()
@@ -62,6 +65,7 @@ public class Golem : GenericEnemy
         campfire = campfireobj.GetComponent<Campfire>().posForBoss;
         state = EnemyState.PHASEONE;
         ResetPosition();
+        SoundFXManager.instance.PlaySoundFXClip(BossSpawn, transform, 0.1f, false, false);
     }
 
     private void FixedUpdate()

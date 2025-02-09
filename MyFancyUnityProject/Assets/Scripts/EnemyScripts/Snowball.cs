@@ -1,13 +1,16 @@
+using Managers;
 using PlayerScripts;
 using UnityEngine;
 
 namespace EnemyScripts
 {
+    
     public class Snowball : MonoBehaviour
     {
         public float speed = 2.5f;
         public int damage = 5;
         private Vector3 _direction;
+        public AudioClip SnowHit;
     
     
         // Start is called before the first frame update
@@ -37,7 +40,7 @@ namespace EnemyScripts
             {
                 if (p.DamagePlayer(damage, transform))
                 {
-                    //sound
+                    SoundFXManager.instance.PlaySoundFXClip(SnowHit, transform, 0.2f, false, false);
                     Destroy(gameObject);
                 }
             }

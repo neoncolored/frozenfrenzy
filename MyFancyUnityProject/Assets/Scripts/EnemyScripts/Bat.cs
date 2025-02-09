@@ -1,4 +1,5 @@
 using System.Collections;
+using Managers;
 using PlayerScripts;
 using UnityEngine;
 
@@ -24,6 +25,7 @@ namespace EnemyScripts
         private SpriteRenderer _spriteRenderer;
         private Rigidbody2D _rigidbody2D;
         private bool isDead = false;
+        public AudioClip BatDeath;
     
     
         private Coroutine _attackCoroutine;
@@ -93,6 +95,7 @@ namespace EnemyScripts
             _animator.SetTrigger("die");
             _state = EnemyState.Dying;
             isDead = true;
+            SoundFXManager.instance.PlaySoundFXClip(BatDeath, transform, 0.3f, false, false);
             yield return new WaitForSeconds(deathDuration);
         
             Destroy(gameObject);
