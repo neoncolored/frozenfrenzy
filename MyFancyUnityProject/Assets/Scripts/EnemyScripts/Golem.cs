@@ -140,6 +140,7 @@ public class Golem : GenericEnemy
         _animator.SetTrigger("die");
         _isDead = true;
         yield return new WaitForSeconds(deathDuration);
+        
         //TODO you win!!
         
     }
