@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using EnemyScripts;
+using Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using PlayerScripts;
@@ -27,6 +28,10 @@ namespace EnemyScripts
         private bool _golemPhaseThree = false;
         private bool _golemPhaseTwo = false;
         private bool _isStunned = false;
+        public AudioClip Phase3;
+        public AudioClip Phase2;
+        public AudioClip Phase4;
+        
         
         
         protected Rigidbody2D Rb;
@@ -149,7 +154,7 @@ namespace EnemyScripts
                             golem.state = Golem.EnemyState.PHASETWO;
                             _golemPhaseTwo = true;
                             //hier sound für phasechange
-                            
+                            SoundFXManager.instance.PlaySoundFXClip(Phase2, transform, 0.3f, false, false);
                             //
                         }
 
@@ -164,7 +169,7 @@ namespace EnemyScripts
                             golem.specialAttackSpeed = 2.0f;
                             _golemPhaseThree = true;
                             //hier sound für phasechange
-                            
+                            SoundFXManager.instance.PlaySoundFXClip(Phase3, transform, 0.3f, false, false);
                             //
                         }
 
@@ -180,7 +185,7 @@ namespace EnemyScripts
                             golem.nextSpecialAttackTime = Time.time + 1f;
                             _golemPhaseFour = true;
                             //hier sound für phasechange
-                            
+                            SoundFXManager.instance.PlaySoundFXClip(Phase4, transform, 0.3f, false, false);
                             //
                         }
                         

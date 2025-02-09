@@ -602,6 +602,9 @@ MonoBehaviour:
   hurtDuration: 1
   genericHealthBar: {fileID: 7565196505168841162}
   damageSpawnPoint: {fileID: 740904526476280248}
+  Phase3: {fileID: 8300000, guid: 985e993dc39871a4188482adf338acf9, type: 3}
+  Phase2: {fileID: 8300000, guid: 40226f51e9c83794ebcb45601b23d10f, type: 3}
+  Phase4: {fileID: 8300000, guid: 96563e0e83915e741aa4f183d264fd07, type: 3}
   state: 0
   isInvulnerable: 0
   firePointRight: {fileID: 3571801302195426927}
