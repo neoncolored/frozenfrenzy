@@ -22,8 +22,7 @@ namespace ScreenScripts
 
         private void Update()
         {
-            if(!_isShowing && Input.GetKeyDown(KeyCode.P)) ShowMenu("This is a Test Dialogue, do you like it?");
-            if(_isShowing && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))) CloseMenu();
+            if(_isShowing && (Input.GetKeyDown(KeyCode.E))) CloseMenu();
         }
 
         public void ShowMenu(String text)
@@ -34,7 +33,7 @@ namespace ScreenScripts
             _isShowing = true;
         }
         
-        private void CloseMenu()
+        public void CloseMenu()
         {
             dialoguePanel.SetActive(false);
             Time.timeScale = 1f;
