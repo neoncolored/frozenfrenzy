@@ -30,7 +30,7 @@ namespace EnemyScripts
         private float _nextAttackTime = 0.0f;
     
 
-        protected override void Awake()
+        protected new void Awake()
         {
             base.Awake();
             _rigidbody2D = GetComponent<Rigidbody2D>();

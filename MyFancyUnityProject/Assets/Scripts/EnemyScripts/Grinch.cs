@@ -26,7 +26,7 @@ namespace EnemyScripts
         private float _nextAttackTime = 0.0f;
     
 
-        private void Awake()
+        private new void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _animator = this.GetComponent<Animator>();

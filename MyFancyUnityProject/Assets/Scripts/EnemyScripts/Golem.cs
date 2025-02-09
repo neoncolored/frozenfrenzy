@@ -44,7 +44,7 @@ public class Golem : GenericEnemy
     private Coroutine _specialAttackCoroutine;
     
 
-    private void Awake()
+    private new void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
