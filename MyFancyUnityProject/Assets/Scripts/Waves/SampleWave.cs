@@ -7,7 +7,7 @@ namespace Waves
     public class SampleWave : MonoBehaviour
     {
         public UpgradeMenu upgradeMenu;
-        
+        //
         // Start is called before the first frame update
         private GameObject[] enemies;
         [SerializeField] private GameObject krampus;
